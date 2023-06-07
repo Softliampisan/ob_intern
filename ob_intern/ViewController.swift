@@ -11,7 +11,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let controller = ShortVideoListViewController.newInstance()
+        self.navigationController?.pushViewController(controller, animated: false)
     }
 
 

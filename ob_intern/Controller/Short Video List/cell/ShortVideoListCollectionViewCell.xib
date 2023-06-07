@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ShortVideoListCollectionViewCell" id="gTV-IL-0wX" customClass="ShortVideoListCollectionViewCell" customModule="ob_intern" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="92" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="92" height="126"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l7V-oR-Hss">
+                        <rect key="frame" x="0.0" y="0.0" width="92" height="126"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="T2J-Jm-Xli">
+                        <rect key="frame" x="8" y="106.33333333333333" width="14" height="7"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="11" id="70T-CZ-M6h"/>
+                            <constraint firstAttribute="width" constant="14" id="OJ0-jG-ABM"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pv6-hP-2j9">
+                        <rect key="frame" x="26.000000000000004" y="101" width="35.333333333333343" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="T2J-Jm-Xli" secondAttribute="bottom" constant="11" id="FcH-TO-na0"/>
+                <constraint firstAttribute="bottom" secondItem="Pv6-hP-2j9" secondAttribute="bottom" constant="8" id="Nte-mh-tRM"/>
+                <constraint firstAttribute="bottom" secondItem="l7V-oR-Hss" secondAttribute="bottom" id="RFR-Hk-IdC"/>
+                <constraint firstItem="l7V-oR-Hss" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZGK-C1-lbt"/>
+                <constraint firstItem="T2J-Jm-Xli" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="e95-ge-pzP"/>
+                <constraint firstItem="Pv6-hP-2j9" firstAttribute="leading" secondItem="T2J-Jm-Xli" secondAttribute="trailing" constant="4" id="fCA-GC-whp"/>
+                <constraint firstItem="l7V-oR-Hss" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="nZ1-EZ-Kkk"/>
+                <constraint firstAttribute="trailing" secondItem="l7V-oR-Hss" secondAttribute="trailing" id="tbY-Nm-2QC"/>
+            </constraints>
+            <size key="customSize" width="92" height="126"/>
+            <connections>
+                <outlet property="iconViews" destination="T2J-Jm-Xli" id="7Ty-lg-g7o"/>
+                <outlet property="imageViewVideo" destination="l7V-oR-Hss" id="eYx-Ls-b9V"/>
+                <outlet property="labelViews" destination="Pv6-hP-2j9" id="eJE-Y0-37z"/>
+            </connections>
+            <point key="canvasLocation" x="114.50381679389312" y="46.478873239436624"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="eye" catalog="system" width="128" height="79"/>
+    </resources>
+</document>
