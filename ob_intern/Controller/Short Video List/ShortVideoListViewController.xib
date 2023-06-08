@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TS5-jk-dQ5">
-                    <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                    <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z4X-vb-q86">
                         <size key="itemSize" width="128" height="128"/>
@@ -29,13 +29,23 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w01-hR-ksK">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="xNs-h3-YVE"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="TS5-jk-dQ5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1sv-Ef-Utd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TS5-jk-dQ5" secondAttribute="trailing" id="514-O7-sFu"/>
-                <constraint firstItem="TS5-jk-dQ5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="50" id="kvp-gX-H79"/>
+                <constraint firstItem="w01-hR-ksK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UO1-Ss-jbE"/>
+                <constraint firstItem="TS5-jk-dQ5" firstAttribute="top" secondItem="w01-hR-ksK" secondAttribute="bottom" constant="10" id="azz-5W-XrH"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="w01-hR-ksK" secondAttribute="trailing" id="l7N-kZ-S5u"/>
+                <constraint firstItem="w01-hR-ksK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lTM-bk-i5s"/>
                 <constraint firstAttribute="bottom" secondItem="TS5-jk-dQ5" secondAttribute="bottom" id="pPV-Iq-pdS"/>
             </constraints>
             <point key="canvasLocation" x="76" y="18.440779610194905"/>

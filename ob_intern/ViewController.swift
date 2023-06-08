@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let controller = ShortVideoListViewController.newInstance()
+        let controller = CreateShortVideoViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
     }
 

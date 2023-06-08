@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */; };
+		1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */; };
+		1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */; };
 		183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C12A303D6400448624 /* ShortVideoListViewController.swift */; };
 		183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */; };
 		183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C32A303D6400448624 /* ShortVideoListViewController.xib */; };
 		183B27C92A30418600448624 /* ShortVideoListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C72A30418600448624 /* ShortVideoListCollectionViewCell.swift */; };
 		183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */; };
 		183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CC2A305AC700448624 /* ShortVideoList.swift */; };
+		183B27D02A3081E100448624 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CF2A3081E100448624 /* Collection.swift */; };
 		18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AA2A30332400188D98 /* AppDelegate.swift */; };
 		18C163AD2A30332400188D98 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AC2A30332400188D98 /* SceneDelegate.swift */; };
 		18C163AF2A30332400188D98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AE2A30332400188D98 /* ViewController.swift */; };
@@ -23,12 +27,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewController.swift; sourceTree = "<group>"; };
+		1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewModel.swift; sourceTree = "<group>"; };
+		1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateShortVideoViewController.xib; sourceTree = "<group>"; };
 		183B27C12A303D6400448624 /* ShortVideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewController.swift; sourceTree = "<group>"; };
 		183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewModel.swift; sourceTree = "<group>"; };
 		183B27C32A303D6400448624 /* ShortVideoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListViewController.xib; sourceTree = "<group>"; };
 		183B27C72A30418600448624 /* ShortVideoListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListCollectionViewCell.swift; sourceTree = "<group>"; };
 		183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListCollectionViewCell.xib; sourceTree = "<group>"; };
 		183B27CC2A305AC700448624 /* ShortVideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoList.swift; sourceTree = "<group>"; };
+		183B27CF2A3081E100448624 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		18C163A72A30332400188D98 /* ob_intern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ob_intern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C163AA2A30332400188D98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C163AC2A30332400188D98 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +62,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1808CA332A317D01009CA1EB /* Create Short Video */ = {
+			isa = PBXGroup;
+			children = (
+				1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */,
+				1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */,
+				1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */,
+			);
+			path = "Create Short Video";
+			sourceTree = "<group>";
+		};
 		183B27CB2A30448C00448624 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +79,14 @@
 				183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		183B27CE2A3081C700448624 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				183B27CF2A3081E100448624 /* Collection.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		18C1639E2A30332400188D98 = {
@@ -84,6 +110,7 @@
 		18C163A92A30332400188D98 /* ob_intern */ = {
 			isa = PBXGroup;
 			children = (
+				183B27CE2A3081C700448624 /* Extension */,
 				18C163BE2A30394D00188D98 /* Controller */,
 				18C163AA2A30332400188D98 /* AppDelegate.swift */,
 				18C163AC2A30332400188D98 /* SceneDelegate.swift */,
@@ -100,6 +127,7 @@
 		18C163BE2A30394D00188D98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1808CA332A317D01009CA1EB /* Create Short Video */,
 				18C163BF2A30395E00188D98 /* Short Video List */,
 			);
 			path = Controller;
@@ -194,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C163B72A30332600188D98 /* LaunchScreen.storyboard in Resources */,
+				1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				18C163B22A30332400188D98 /* Main.storyboard in Resources */,
@@ -257,6 +286,9 @@
 				183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */,
 				183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */,
 				183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */,
+				1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */,
+				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
+				183B27D02A3081E100448624 /* Collection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

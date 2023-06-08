@@ -18,12 +18,10 @@ class ShortVideoListViewController: UIViewController {
     private let CELL_RATIO: CGFloat = 163/122
     private let ITEM_PER_ROW: Int = 3
     private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
-    var currentVideo: ShortVideoList?
-
+    
     //MARK: - New Instance
     class func newInstance() -> ShortVideoListViewController {
-        let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self),
-                                                       bundle: nil)
+        let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self),bundle: nil)
         
         let viewModel = ShortVideoListViewModel(delegate: viewController)
         viewController.viewModel = viewModel
@@ -40,15 +38,15 @@ class ShortVideoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.currentVideo = ShortVideoList()
         calculateCollectionHeight()
+        collectionView.reloadData()
     }
     
     //MARK: - Functions
     func setupView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "ShortVideoListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
+        collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
     }
     
     
@@ -60,7 +58,7 @@ class ShortVideoListViewController: UIViewController {
         //let heightOfCollection = fandoms.count > 3 ? HEIGHT_PER_ROW * 2 : HEIGHT_PER_ROW
         //self.collectionHeight.constant = heightOfCollection
         
-      
+        
     }
     
     //MARK: - Action
@@ -86,23 +84,29 @@ extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
 extension ShortVideoListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentVideo?.videoImage.count ?? 0
-
+        return viewModel?.currentList.count ?? 0
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ShortVideoListCollectionViewCell.self), for: indexPath) as? ShortVideoListCollectionViewCell else {
-             return UICollectionViewCell()
+            return UICollectionViewCell()
         }
         
-//        if let imageUrl = URL(string: self.currentVideo?.videoImage[indexPath.row]) {
-//            cell.setImage(url: imageUrl)
-//        }
-        cell.backgroundColor = .orange
-        cell.layer.cornerRadius = 16
-
+        if let currentVideo = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
+            cell.setData(imageURL: currentVideo.videoImage, label: "\(currentVideo.numViews)")
+        }
+        
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//            guard !allMedias.isEmpty else { return }
+//            let lastElement = self.allMedias.count - 1
+//            if indexPath.row == lastElement {
+//                self.interactor?.getMedias(request: .init(refresh: false))
+//            }
+//    }
     
 }
 

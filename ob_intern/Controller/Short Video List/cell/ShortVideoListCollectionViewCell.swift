@@ -18,7 +18,7 @@ class ShortVideoListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         imageViewVideo.layer.cornerRadius = 16
-        //imageViewVideo.layer.masksToBounds = true
+        imageViewVideo.clipsToBounds = true 
 
     }
     
