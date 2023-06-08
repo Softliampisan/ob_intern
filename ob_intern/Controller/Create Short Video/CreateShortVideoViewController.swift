@@ -9,9 +9,6 @@ import UIKit
 
 class CreateShortVideoViewController: UIViewController {
 
-    @IBOutlet weak var textViewThoughts: UITextView!
-    @IBOutlet weak var imageViewVideo: UIImageView!
-    
     //MARK: - New Instance
     class func newInstance() -> CreateShortVideoViewController {
         let viewController = CreateShortVideoViewController(nibName: String(describing: CreateShortVideoViewController.self),
@@ -25,9 +22,13 @@ class CreateShortVideoViewController: UIViewController {
     }
     
     //MARK: - IBOutlet
+    @IBOutlet weak var textViewThoughts: UITextView!
+    @IBOutlet weak var imageViewVideo: UIImageView!
     
     //MARK: - Parameters
     private var viewModel: CreateShortVideoViewModel?
+    private let characters = 2001
+    private var PLACEHOLDER_TEXT_COLOR: UIColor = .lightGray
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -73,11 +74,11 @@ extension CreateShortVideoViewController: UITextViewDelegate{
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.count // for Swift use count(newText)
-        return numberOfChars < 2001;
+        return numberOfChars < characters;
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == PLACEHOLDER_TEXT_COLOR {
             textView.text = nil
             textView.textColor = UIColor.black
         }
@@ -86,7 +87,7 @@ extension CreateShortVideoViewController: UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Share your thoughts within 2000 characters"
-            textView.textColor = UIColor.lightGray
+            textView.textColor = PLACEHOLDER_TEXT_COLOR
         }
     }
     

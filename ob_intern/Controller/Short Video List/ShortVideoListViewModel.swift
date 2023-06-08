@@ -29,18 +29,16 @@ class ShortVideoListViewModel {
         currentList.append(ShortVideoList.mock())
         currentList.append(ShortVideoList.mock())
         currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
+        
 
     }
-    
+    func addMockData(){
+        let numberOfVideos: Int = 20
+        for _ in 0..<numberOfVideos {
+            let user = ShortVideoList.mock()
+            self.currentList.append(user)
+        }
+    }
     // MARK: - Functions
     
 }

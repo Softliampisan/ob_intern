@@ -48,14 +48,14 @@
             </constraints>
             <size key="customSize" width="92" height="126"/>
             <connections>
-                <outlet property="iconViews" destination="T2J-Jm-Xli" id="7Ty-lg-g7o"/>
+                <outlet property="imageViewIcon" destination="T2J-Jm-Xli" id="7Ty-lg-g7o"/>
                 <outlet property="imageViewVideo" destination="l7V-oR-Hss" id="eYx-Ls-b9V"/>
-                <outlet property="labelViews" destination="Pv6-hP-2j9" id="eJE-Y0-37z"/>
+                <outlet property="labelViewCount" destination="Pv6-hP-2j9" id="eJE-Y0-37z"/>
             </connections>
             <point key="canvasLocation" x="114.50381679389312" y="46.478873239436624"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="eye" catalog="system" width="128" height="79"/>
+        <image name="eye" catalog="system" width="32" height="32"/>
     </resources>
 </document>

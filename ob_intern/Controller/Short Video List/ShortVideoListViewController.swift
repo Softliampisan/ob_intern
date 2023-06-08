@@ -10,18 +10,9 @@ import SDWebImage
 
 class ShortVideoListViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    private var WIDTH_PER_ROW: CGFloat = 0
-    private var HEIGHT_PER_ROW: CGFloat = 0
-    private let PADDING: CGFloat = 16
-    private let CELL_RATIO: CGFloat = 163/122
-    private let ITEM_PER_ROW: Int = 3
-    private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
-    
     //MARK: - New Instance
     class func newInstance() -> ShortVideoListViewController {
-        let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self),bundle: nil)
+        let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self), bundle: nil)
         
         let viewModel = ShortVideoListViewModel(delegate: viewController)
         viewController.viewModel = viewModel
@@ -30,8 +21,16 @@ class ShortVideoListViewController: UIViewController {
     }
     
     //MARK: - IBOutlet
+    @IBOutlet weak var collectionView: UICollectionView!
+
     
     //MARK: - Parameters
+    private var WIDTH_PER_ROW: CGFloat = 0
+    private var HEIGHT_PER_ROW: CGFloat = 0
+    private let PADDING: CGFloat = 16
+    private let CELL_RATIO: CGFloat = 163/122
+    private let ITEM_PER_ROW: Int = 3
+    private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
     private var viewModel: ShortVideoListViewModel?
     
     //MARK: - Lifecycle
@@ -55,9 +54,6 @@ class ShortVideoListViewController: UIViewController {
         let availableWidth = collectionView.frame.size.width - paddingSpace
         WIDTH_PER_ROW = availableWidth / CGFloat(ITEM_PER_ROW)
         HEIGHT_PER_ROW = WIDTH_PER_ROW * CELL_RATIO
-        //let heightOfCollection = fandoms.count > 3 ? HEIGHT_PER_ROW * 2 : HEIGHT_PER_ROW
-        //self.collectionHeight.constant = heightOfCollection
-        
         
     }
     
@@ -100,13 +96,14 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//            guard !allMedias.isEmpty else { return }
-//            let lastElement = self.allMedias.count - 1
-//            if indexPath.row == lastElement {
-//                self.interactor?.getMedias(request: .init(refresh: false))
-//            }
-//    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard !(viewModel?.currentList.isEmpty ?? false) else { return }
+        let lastElement = (self.viewModel?.currentList.count ?? 0) - 1
+            if indexPath.row == lastElement {
+                viewModel?.addMockData()
+                collectionView.reloadData()
+            }
+    }
     
 }
 

@@ -11,8 +11,8 @@ import SDWebImage
 class ShortVideoListCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageViewVideo: UIImageView!
-    @IBOutlet weak var labelViews: UILabel!
-    @IBOutlet weak var iconViews: UIImageView!
+    @IBOutlet weak var labelViewCount: UILabel!
+    @IBOutlet weak var imageViewIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +24,7 @@ class ShortVideoListCollectionViewCell: UICollectionViewCell {
     
     func setData(imageURL: String,
                  label: String){
-        self.labelViews.text = label
+        self.labelViewCount.text = label
         self.imageViewVideo.sd_setImage(with: URL(string: imageURL))
     }
 }

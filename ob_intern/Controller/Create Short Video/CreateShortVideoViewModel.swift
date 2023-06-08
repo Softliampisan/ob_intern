@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CreateShortVideoViewModelDelegate {
+protocol CreateShortVideoViewModelDelegate: AnyObject {
     func showError(error: Error)
     func showLoading()
     func hideLoading()
@@ -17,7 +17,7 @@ protocol CreateShortVideoViewModelDelegate {
 class CreateShortVideoViewModel {
     
     // MARK: - Properties
-    var delegate: CreateShortVideoViewModelDelegate?
+    weak var delegate: CreateShortVideoViewModelDelegate?
     
     //MARK: - Usecase
     
