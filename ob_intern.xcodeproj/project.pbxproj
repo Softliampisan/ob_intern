@@ -10,6 +10,7 @@
 		1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */; };
 		1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */; };
 		1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */; };
+		1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */; };
 		183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C12A303D6400448624 /* ShortVideoListViewController.swift */; };
 		183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */; };
 		183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C32A303D6400448624 /* ShortVideoListViewController.xib */; };
@@ -30,6 +31,7 @@
 		1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewController.swift; sourceTree = "<group>"; };
 		1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewModel.swift; sourceTree = "<group>"; };
 		1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateShortVideoViewController.xib; sourceTree = "<group>"; };
+		1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		183B27C12A303D6400448624 /* ShortVideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewController.swift; sourceTree = "<group>"; };
 		183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewModel.swift; sourceTree = "<group>"; };
 		183B27C32A303D6400448624 /* ShortVideoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListViewController.xib; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 			path = "Create Short Video";
 			sourceTree = "<group>";
 		};
+		1833D7652A32ED24006C5BF7 /* Custom View */ = {
+			isa = PBXGroup;
+			children = (
+				1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */,
+			);
+			path = "Custom View";
+			sourceTree = "<group>";
+		};
 		183B27CB2A30448C00448624 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		18C163A92A30332400188D98 /* ob_intern */ = {
 			isa = PBXGroup;
 			children = (
+				1833D7652A32ED24006C5BF7 /* Custom View */,
 				183B27CE2A3081C700448624 /* Extension */,
 				18C163BE2A30394D00188D98 /* Controller */,
 				18C163AA2A30332400188D98 /* AppDelegate.swift */,
@@ -289,6 +300,7 @@
 				1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */,
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
+				1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
