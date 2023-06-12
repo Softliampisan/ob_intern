@@ -11,10 +11,30 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let controller = EditVideoTimelineViewController.newInstance()
+
+    }
+    
+    
+    @IBAction func buttonToShortVideoList(_ sender: Any) {
+        let controller = ShortVideoListViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
     }
+    
+    
+    @IBAction func buttonToCreateShortVideo(_ sender: Any) {
+        let controller = CreateShortVideoViewController.newInstance()
+        self.navigationController?.pushViewController(controller, animated: false)
+    }
+    
+    @IBAction func buttonToEditShortVideoCover(_ sender: Any) {
+        let controller = EditShortVideoCoverViewController.newInstance()
+        self.navigationController?.pushViewController(controller, animated: false)
+    }
+    
+    @IBAction func buttonToTestProgressBar(_ sender: Any) {
 
-
+    }
+    
+    
 }
 
