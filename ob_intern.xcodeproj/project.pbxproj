@@ -10,6 +10,9 @@
 		1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */; };
 		1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */; };
 		1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */; };
+		18259C6C2A331B9C0000CCA1 /* EditVideoTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18259C692A331B9C0000CCA1 /* EditVideoTimelineViewController.swift */; };
+		18259C6D2A331B9C0000CCA1 /* EditVideoTimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18259C6A2A331B9C0000CCA1 /* EditVideoTimelineViewModel.swift */; };
+		18259C6E2A331B9C0000CCA1 /* EditVideoTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18259C6B2A331B9C0000CCA1 /* EditVideoTimelineViewController.xib */; };
 		1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */; };
 		183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C12A303D6400448624 /* ShortVideoListViewController.swift */; };
 		183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */; };
@@ -31,6 +34,9 @@
 		1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewController.swift; sourceTree = "<group>"; };
 		1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewModel.swift; sourceTree = "<group>"; };
 		1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateShortVideoViewController.xib; sourceTree = "<group>"; };
+		18259C692A331B9C0000CCA1 /* EditVideoTimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVideoTimelineViewController.swift; sourceTree = "<group>"; };
+		18259C6A2A331B9C0000CCA1 /* EditVideoTimelineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVideoTimelineViewModel.swift; sourceTree = "<group>"; };
+		18259C6B2A331B9C0000CCA1 /* EditVideoTimelineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditVideoTimelineViewController.xib; sourceTree = "<group>"; };
 		1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		183B27C12A303D6400448624 /* ShortVideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewController.swift; sourceTree = "<group>"; };
 		183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewModel.swift; sourceTree = "<group>"; };
@@ -72,6 +78,16 @@
 				1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */,
 			);
 			path = "Create Short Video";
+			sourceTree = "<group>";
+		};
+		18259C682A331B5C0000CCA1 /* Edit Video Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				18259C692A331B9C0000CCA1 /* EditVideoTimelineViewController.swift */,
+				18259C6A2A331B9C0000CCA1 /* EditVideoTimelineViewModel.swift */,
+				18259C6B2A331B9C0000CCA1 /* EditVideoTimelineViewController.xib */,
+			);
+			path = "Edit Video Timeline";
 			sourceTree = "<group>";
 		};
 		1833D7652A32ED24006C5BF7 /* Custom View */ = {
@@ -138,6 +154,7 @@
 		18C163BE2A30394D00188D98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18259C682A331B5C0000CCA1 /* Edit Video Timeline */,
 				1808CA332A317D01009CA1EB /* Create Short Video */,
 				18C163BF2A30395E00188D98 /* Short Video List */,
 			);
@@ -238,6 +255,7 @@
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				18C163B22A30332400188D98 /* Main.storyboard in Resources */,
 				183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */,
+				18259C6E2A331B9C0000CCA1 /* EditVideoTimelineViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +310,7 @@
 			files = (
 				18C163AF2A30332400188D98 /* ViewController.swift in Sources */,
 				18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */,
+				18259C6D2A331B9C0000CCA1 /* EditVideoTimelineViewModel.swift in Sources */,
 				183B27C92A30418600448624 /* ShortVideoListCollectionViewCell.swift in Sources */,
 				18C163AD2A30332400188D98 /* SceneDelegate.swift in Sources */,
 				183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */,
@@ -301,6 +320,7 @@
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
 				1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */,
+				18259C6C2A331B9C0000CCA1 /* EditVideoTimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
