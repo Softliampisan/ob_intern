@@ -13,8 +13,6 @@ class EditShortVideoCoverCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        imageViewVideoCover.clipsToBounds = true
-
         // Initialization code
     }
 

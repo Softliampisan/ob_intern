@@ -84,13 +84,22 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w00-MQ-6Xh">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="64"/>
+                            <viewLayoutGuide key="contentLayoutGuide" id="m9Y-wQ-TsU"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="tW9-sS-9QA"/>
+                        </scrollView>
                     </subviews>
                     <color key="backgroundColor" red="0.65490196079999996" green="0.54901960780000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="w00-MQ-6Xh" firstAttribute="leading" secondItem="ERu-yF-qsy" secondAttribute="leading" id="Foh-Eu-PjL"/>
                         <constraint firstAttribute="height" constant="64" id="JAn-4r-y30"/>
                         <constraint firstAttribute="trailing" secondItem="TGB-7p-C7I" secondAttribute="trailing" id="Saa-eq-5Zp"/>
                         <constraint firstItem="TGB-7p-C7I" firstAttribute="top" secondItem="ERu-yF-qsy" secondAttribute="top" id="TuP-l8-FNw"/>
+                        <constraint firstItem="w00-MQ-6Xh" firstAttribute="top" secondItem="ERu-yF-qsy" secondAttribute="top" id="b5n-mI-h3b"/>
                         <constraint firstAttribute="bottom" secondItem="TGB-7p-C7I" secondAttribute="bottom" id="bOq-xT-ftQ"/>
+                        <constraint firstAttribute="bottom" secondItem="w00-MQ-6Xh" secondAttribute="bottom" id="iI8-e7-lto"/>
+                        <constraint firstAttribute="trailing" secondItem="w00-MQ-6Xh" secondAttribute="trailing" id="pih-zs-rYw"/>
                         <constraint firstItem="TGB-7p-C7I" firstAttribute="leading" secondItem="ERu-yF-qsy" secondAttribute="leading" id="uMR-oZ-KQ4"/>
                     </constraints>
                 </view>
@@ -116,7 +125,7 @@
                 <constraint firstItem="h9y-la-NYq" firstAttribute="top" secondItem="rKK-YA-DhN" secondAttribute="bottom" constant="24" id="u8V-2v-Ed1"/>
                 <constraint firstItem="rKK-YA-DhN" firstAttribute="top" secondItem="mfT-VP-K3i" secondAttribute="bottom" constant="30" id="uzX-wR-lQZ"/>
             </constraints>
-            <point key="canvasLocation" x="138" y="19"/>
+            <point key="canvasLocation" x="367" y="18"/>
         </view>
     </objects>
     <resources>

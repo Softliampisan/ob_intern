@@ -15,25 +15,24 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func buttonSVLAction(_ sender: Any) {
+    @IBAction func buttonToShortVideoList(_ sender: Any) {
         let controller = ShortVideoListViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
     }
     
     
-    @IBAction func buttonCSVAction(_ sender: Any) {
+    @IBAction func buttonToCreateShortVideo(_ sender: Any) {
         let controller = CreateShortVideoViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
     }
     
-    @IBAction func buttonEVTAction(_ sender: Any) {
+    @IBAction func buttonToEditShortVideoCover(_ sender: Any) {
         let controller = EditShortVideoCoverViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
     }
     
-    @IBAction func buttonPBAction(_ sender: Any) {
-//        let controller = TestPBViewController.newInstance()
-//        self.navigationController?.pushViewController(controller, animated: false)
+    @IBAction func buttonToTestProgressBar(_ sender: Any) {
+
     }
     
     

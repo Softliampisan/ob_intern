@@ -9,11 +9,11 @@ import UIKit
 import SDWebImage
 
 class EditShortVideoCoverViewController: UIViewController {
-
+    
     //MARK: - New Instance
     class func newInstance() -> EditShortVideoCoverViewController {
         let viewController = EditShortVideoCoverViewController(nibName: String(describing: EditShortVideoCoverViewController.self),
-                                                       bundle: nil)
+                                                               bundle: nil)
         
         let viewModel = EditShortVideoCoverViewModel(delegate: viewController)
         viewController.viewModel = viewModel
@@ -38,20 +38,25 @@ class EditShortVideoCoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.setData()
         collectionView.reloadData()
-
+        
     }
     
     //MARK: - Functions
     func setupView() {
         imageViewVideo.layer.cornerRadius = 21
         imageViewVideo.clipsToBounds = true
-        imageViewVideo.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/31/9f/f9/319ff939cbca334407451fa12613783e.jpg"))
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: String(describing: EditShortVideoCoverCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "EditShortVideoCoverCollectionViewCell")
-
+        let nibName = String(describing: EditShortVideoCoverCollectionViewCell.self)
+        collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
+        
+    }
+    
+    func setData() {
+        imageViewVideo.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/31/9f/f9/319ff939cbca334407451fa12613783e.jpg"))
     }
     
     //MARK: - Action

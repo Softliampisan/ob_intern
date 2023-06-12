@@ -44,7 +44,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Short Video List"/>
                                 <connections>
-                                    <action selector="buttonSVLAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eLa-c8-d2C"/>
+                                    <action selector="buttonToShortVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eLa-c8-d2C"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-xr-d1o">
@@ -53,7 +53,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Create Short Video"/>
                                 <connections>
-                                    <action selector="buttonCSVAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c5I-Rl-1rq"/>
+                                    <action selector="buttonToCreateShortVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c5I-Rl-1rq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1T-KZ-5jb">
@@ -62,7 +62,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Edit Short Video Cover"/>
                                 <connections>
-                                    <action selector="buttonEVTAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DCv-of-NiM"/>
+                                    <action selector="buttonToEditShortVideoCover:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DCv-of-NiM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNx-hM-X35">
@@ -71,7 +71,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Progress Bar"/>
                                 <connections>
-                                    <action selector="buttonPBAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IdI-PL-QDJ"/>
+                                    <action selector="buttonToTestProgressBar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IdI-PL-QDJ"/>
                                 </connections>
                             </button>
                         </subviews>
