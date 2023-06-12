@@ -22,7 +22,6 @@ class ShortVideoListViewController: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
-
     
     //MARK: - Parameters
     private var WIDTH_PER_ROW: CGFloat = 0
