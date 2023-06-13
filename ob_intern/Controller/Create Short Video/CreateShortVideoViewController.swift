@@ -62,8 +62,8 @@ class CreateShortVideoViewController: UIViewController {
      
     }
     
-    private func setSwitchStatus(sender: Any, label: UILabel, textSwitchOn: String, textSwitchOff: String){
-        if (sender as AnyObject).isOn {
+    private func setSwitchStatus(switchView: UISwitch, label: UILabel, textSwitchOn: String, textSwitchOff: String){
+        if switchView.isOn {
             label.text = textSwitchOn
         } else {
             label.text = textSwitchOff
@@ -74,27 +74,27 @@ class CreateShortVideoViewController: UIViewController {
     
     //MARK: - Action
     
-    @IBAction func buttonChooseFrontCoverAction(_ sender: Any) {
+    @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
     }
     
-    @IBAction func switchAllowCommentsAction(_ sender: Any) {
-        self.setSwitchStatus(sender: sender,
+    @IBAction func switchAllowCommentsAction(_ sender: UISwitch) {
+        self.setSwitchStatus(switchView: sender,
                              label: labelSwitchAllowComments,
                              textSwitchOn: "ได้",
                              textSwitchOff: "ไม่ได้")
     }
     
-    @IBAction func switchStatusAction(_ sender: Any) {
+    @IBAction func switchStatusAction(_ sender: UISwitch) {
 
-        self.setSwitchStatus(sender: sender,
+        self.setSwitchStatus(switchView: sender,
                              label: labelSwitchStatus,
                              textSwitchOn: "เผยแพร่",
                              textSwitchOff: "ซ่อน")
     }
     
     
-    @IBAction func switchReceiveGiftsAction(_ sender: Any) {
-        self.setSwitchStatus(sender: sender,
+    @IBAction func switchReceiveGiftsAction(_ sender: UISwitch) {
+        self.setSwitchStatus(switchView: sender,
                              label: labelSwitchReceiveGifts,
                              textSwitchOn: "รับ",
                              textSwitchOff: "ไม่รับ")
