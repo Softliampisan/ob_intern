@@ -63,12 +63,7 @@ class CreateShortVideoViewController: UIViewController {
     }
     
     private func setSwitchStatus(switchView: UISwitch, label: UILabel, textSwitchOn: String, textSwitchOff: String){
-        if switchView.isOn {
-            label.text = textSwitchOn
-        } else {
-            label.text = textSwitchOff
-        }
-        //label.text ? isOn textSwitchOn: textSwitchOff
+        label.text = switchView.isOn ? textSwitchOn : textSwitchOff
     }
     
 

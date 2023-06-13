@@ -44,7 +44,6 @@ class EditShortVideoCoverViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.setData()
-//        self.calculateWidth()
         collectionView.reloadData()
         viewTimeline.addSubview(viewPannable)
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
@@ -93,16 +92,13 @@ class EditShortVideoCoverViewController: UIViewController {
         let index = ceil(self.viewPannable.frame.midX/self.WIDTH) - 1
         guard index >= 0 else { return }
         let indexPath = IndexPath(item: Int(index), section: 0)
-        if let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell {
-            if let imageURL = cell.imageViewVideoCover.sd_imageURL {
-                self.imageViewFrame.sd_setImage(with: imageURL)
-                self.imageViewVideo.sd_setImage(with: imageURL)
-            }
-        }
-
+        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell, let imageURL = cell.imageViewVideoCover.sd_imageURL else { return }
+        
+        self.imageViewFrame.sd_setImage(with: imageURL)
+        self.imageViewVideo.sd_setImage(with: imageURL)
+        
     }
-    
-    
     
     //MARK: - Action
     @IBAction func buttonCancelAction(_ sender: Any) {
