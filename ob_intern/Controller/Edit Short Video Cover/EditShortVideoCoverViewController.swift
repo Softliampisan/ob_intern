@@ -55,16 +55,7 @@ class EditShortVideoCoverViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let cell = self.collectionView.cellForItem(at: IndexPath(index: 0)) as? EditShortVideoCoverCollectionViewCell {
-//            if let imageURL = cell.imageViewVideoCover.sd_imageURL {
-//                self.imageViewFrame.sd_setImage(with: URL(string: current))
-//                self.imageViewVideo.sd_setImage(with: imageURL)
-//            }
-            if let currentVideo = self.viewModel?.currentList.takeSafe(index: 0) {
-                self.imageViewFrame.sd_setImage(with: URL(string: currentVideo.videoImage))
-                self.imageViewVideo.sd_setImage(with: URL(string: currentVideo.videoImage))
-            }
-        }
+        self.setFirstFrame()
     }
    
     //MARK: - Functions
@@ -76,7 +67,6 @@ class EditShortVideoCoverViewController: UIViewController {
         collectionView.dataSource = self
         let nibName = String(describing: EditShortVideoCoverCollectionViewCell.self)
         collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
-        
         viewPannable.layer.borderColor = UIColor.red.cgColor
         viewPannable.layer.borderWidth = 2.0
         viewPannable.backgroundColor = .clear
@@ -87,9 +77,29 @@ class EditShortVideoCoverViewController: UIViewController {
         imageViewVideo.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/31/9f/f9/319ff939cbca334407451fa12613783e.jpg"))
     }
     
+    func setFirstFrame() {
+        if let currentVideo = self.viewModel?.currentList.takeSafe(index: 0) {
+            self.imageViewFrame.sd_setImage(with: URL(string: currentVideo.videoImage))
+            self.imageViewVideo.sd_setImage(with: URL(string: currentVideo.videoImage))
+        }
+    }
+    
     func calculateWidth() {
         WIDTH = collectionView.bounds.width / NUM_ITEMS
         HEIGHT = collectionView.bounds.height
+    }
+    
+    func setupFrame(){
+        let index = ceil(self.viewPannable.frame.midX/self.WIDTH) - 1
+        guard index >= 0 else { return }
+        let indexPath = IndexPath(item: Int(index), section: 0)
+        if let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell {
+            if let imageURL = cell.imageViewVideoCover.sd_imageURL {
+                self.imageViewFrame.sd_setImage(with: imageURL)
+                self.imageViewVideo.sd_setImage(with: imageURL)
+            }
+        }
+
     }
     
     
@@ -109,30 +119,13 @@ class EditShortVideoCoverViewController: UIViewController {
             guard initialCenter.x + translation.x + viewPannable.frame.width < viewContainer.bounds.width && initialCenter.x + translation.x > viewContainer.bounds.minX else { return }
             
             viewPannable.frame = CGRect(x: initialCenter.x + translation.x, y: 0, width: 50, height: 64)
-            
-            let index = ceil(self.viewPannable.frame.midX/self.WIDTH) - 1
-            guard index >= 0 else { return }
-            let indexPath = IndexPath(item: Int(index), section: 0)
-            if let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell {
-                if let imageURL = cell.imageViewVideoCover.sd_imageURL {
-                    self.imageViewFrame.sd_setImage(with: imageURL)
-                    self.imageViewVideo.sd_setImage(with: imageURL)
-                }
-            }
+            self.setupFrame()
             
         case .ended,
                 .cancelled:
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut]) {
-               
-                let index = ceil(self.viewPannable.frame.midX/self.WIDTH) - 1
-                guard index >= 0 else { return }
-                let indexPath = IndexPath(item: Int(index), section: 0)
-                if let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell {
-                    if let imageURL = cell.imageViewVideoCover.sd_imageURL {
-                        self.imageViewFrame.sd_setImage(with: imageURL)
-                        self.imageViewVideo.sd_setImage(with: imageURL)
-                    }
-                }
+                self.setupFrame()
+
             }
         default:
             break
@@ -145,17 +138,16 @@ class EditShortVideoCoverViewController: UIViewController {
         print("touch location \(location)")
         
         initialCenter.x = location.x - 25
-        viewPannable.frame = CGRect(x: initialCenter.x , y: 0, width: 50, height: 64)
-
-        let index = ceil(self.viewPannable.frame.midX/self.WIDTH) - 1
-        guard index >= 0 else { return }
-        let indexPath = IndexPath(item: Int(index), section: 0)
-        if let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell {
-            if let imageURL = cell.imageViewVideoCover.sd_imageURL {
-                self.imageViewFrame.sd_setImage(with: imageURL)
-                self.imageViewVideo.sd_setImage(with: imageURL)
-            }
+        if initialCenter.x < viewContainer.bounds.minX {
+            initialCenter.x = viewContainer.bounds.minX
         }
+        if initialCenter.x > viewContainer.bounds.maxX - 50 {
+            initialCenter.x = viewContainer.bounds.maxX - 50
+        }
+        
+        viewPannable.frame = CGRect(x: initialCenter.x, y: 0, width: 50, height: 64)
+
+        self.setupFrame()
     }
 
     

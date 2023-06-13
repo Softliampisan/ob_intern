@@ -68,6 +68,7 @@ class CreateShortVideoViewController: UIViewController {
         } else {
             label.text = textSwitchOff
         }
+        //label.text ? isOn textSwitchOn: textSwitchOff
     }
     
 
