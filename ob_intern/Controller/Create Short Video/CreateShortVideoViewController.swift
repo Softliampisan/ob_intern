@@ -45,6 +45,7 @@ class CreateShortVideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        
     }
     
     //MARK: - Functions
@@ -57,44 +58,40 @@ class CreateShortVideoViewController: UIViewController {
         imageViewVideo.sd_setImage(with: URL(string: "https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"))
         labelChooseFrontCover.layer.cornerRadius = 12
         labelChooseFrontCover.clipsToBounds = true
-        navigationItem.hidesBackButton = true
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
      
     }
     
-    private func setSwitchStatus(sender: Any, label: UILabel, textSwitchOn: String, textSwitchOff: String){
-        if (sender as AnyObject).isOn {
-            label.text = textSwitchOn
-        } else {
-            label.text = textSwitchOff
-        }
+    private func setSwitchStatus(switchView: UISwitch, label: UILabel, textSwitchOn: String, textSwitchOff: String){
+        label.text = switchView.isOn ? textSwitchOn : textSwitchOff
     }
     
 
     
     //MARK: - Action
     
-    @IBAction func buttonChooseFrontCoverAction(_ sender: Any) {
+    @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
     }
     
-    @IBAction func switchAllowCommentsAction(_ sender: Any) {
-        self.setSwitchStatus(sender: sender,
+    @IBAction func switchAllowCommentsAction(_ sender: UISwitch) {
+        self.setSwitchStatus(switchView: sender,
                              label: labelSwitchAllowComments,
                              textSwitchOn: "ได้",
                              textSwitchOff: "ไม่ได้")
     }
     
-    @IBAction func switchStatusAction(_ sender: Any) {
+    @IBAction func switchStatusAction(_ sender: UISwitch) {
 
-        self.setSwitchStatus(sender: sender,
+        self.setSwitchStatus(switchView: sender,
                              label: labelSwitchStatus,
                              textSwitchOn: "เผยแพร่",
                              textSwitchOff: "ซ่อน")
     }
     
     
-    @IBAction func switchReceiveGiftsAction(_ sender: Any) {
-        self.setSwitchStatus(sender: sender,
+    @IBAction func switchReceiveGiftsAction(_ sender: UISwitch) {
+        self.setSwitchStatus(switchView: sender,
                              label: labelSwitchReceiveGifts,
                              textSwitchOn: "รับ",
                              textSwitchOff: "ไม่รับ")

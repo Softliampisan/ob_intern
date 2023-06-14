@@ -25,14 +25,19 @@ class EditShortVideoCoverViewController: UIViewController {
     @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var buttonAgree: UIButton!
     @IBOutlet weak var labelSelectCover: UILabel!
-    @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet weak var viewTimeline: UIView!
+    @IBOutlet weak var viewPannable: UIView!
+    @IBOutlet weak var imageViewVideo: UIImageView!
+    @IBOutlet weak var imageViewFrame: UIImageView!
     
     //MARK: - Parameters
     private var WIDTH: CGFloat = 0
     private var HEIGHT: CGFloat = 0
     private let NUM_ITEMS: CGFloat = 8
     private var viewModel: EditShortVideoCoverViewModel?
+    private var initialCenter: CGPoint = .zero
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -40,9 +45,19 @@ class EditShortVideoCoverViewController: UIViewController {
         self.setupView()
         self.setData()
         collectionView.reloadData()
-        
+        viewTimeline.addSubview(viewPannable)
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+        viewPannable.addGestureRecognizer(panGestureRecognizer)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTouch(_:)))
+        viewTimeline.addGestureRecognizer(tapGestureRecognizer)
+      
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.setFirstFrame()
+    }
+   
     //MARK: - Functions
     func setupView() {
         imageViewVideo.layer.cornerRadius = 21
@@ -52,6 +67,9 @@ class EditShortVideoCoverViewController: UIViewController {
         collectionView.dataSource = self
         let nibName = String(describing: EditShortVideoCoverCollectionViewCell.self)
         collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
+        viewPannable.layer.borderColor = UIColor.red.cgColor
+        viewPannable.layer.borderWidth = 2.0
+        viewPannable.backgroundColor = .clear
         
     }
     
@@ -59,10 +77,75 @@ class EditShortVideoCoverViewController: UIViewController {
         imageViewVideo.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/31/9f/f9/319ff939cbca334407451fa12613783e.jpg"))
     }
     
+    func setFirstFrame() {
+        guard let currentVideo = self.viewModel?.currentList.takeSafe(index: 0) else { return }
+        self.imageViewFrame.sd_setImage(with: URL(string: currentVideo.videoImage))
+        self.imageViewVideo.sd_setImage(with: URL(string: currentVideo.videoImage))
+        
+    }
+    
+    func calculateWidth() {
+        WIDTH = collectionView.bounds.width / NUM_ITEMS
+        HEIGHT = collectionView.bounds.height
+    }
+    
+    func setupFrame(){
+        let index = ceil(self.viewPannable.frame.midX/self.WIDTH) - 1
+        guard index >= 0 else { return }
+        let indexPath = IndexPath(item: Int(index), section: 0)
+        
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell, let imageURL = cell.imageViewVideoCover.sd_imageURL else { return }
+        
+        self.imageViewFrame.sd_setImage(with: imageURL)
+        self.imageViewVideo.sd_setImage(with: imageURL)
+        
+    }
+    
     //MARK: - Action
     @IBAction func buttonCancelAction(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
+    @objc private func didPan(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            initialCenter = viewPannable.center
+          
+        case .changed:
+            let translation = sender.translation(in: view)
+            guard initialCenter.x + translation.x + viewPannable.frame.width < viewContainer.bounds.width && initialCenter.x + translation.x > viewContainer.bounds.minX else { return }
+            
+            viewPannable.frame = CGRect(x: initialCenter.x + translation.x, y: 0, width: 50, height: HEIGHT)
+            self.setupFrame()
+            
+        case .ended,
+                .cancelled:
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: [.curveEaseInOut]) {
+                self.setupFrame()
+
+            }
+        default:
+            break
+        }
+    }
+    
+    @objc private func didTouch(_ sender: UITapGestureRecognizer) {
+        
+        let location = sender.location(in: view)
+        
+        initialCenter.x = location.x - (WIDTH/2)
+        if initialCenter.x < viewContainer.bounds.minX {
+            initialCenter.x = viewContainer.bounds.minX
+        }
+        if initialCenter.x > viewContainer.bounds.maxX - WIDTH {
+            initialCenter.x = viewContainer.bounds.maxX - WIDTH
+        }
+        
+        viewPannable.frame = CGRect(x: initialCenter.x, y: 0, width: 50, height: HEIGHT)
+
+        self.setupFrame()
+    }
+
     
 }
 
@@ -116,4 +199,5 @@ extension EditShortVideoCoverViewController: UICollectionViewDelegateFlowLayout 
         return 0.0
     }
 }
+
 
