@@ -25,11 +25,11 @@ class EditShortVideoCoverViewController: UIViewController {
     @IBOutlet weak var buttonCancel: UIButton!
     @IBOutlet weak var buttonAgree: UIButton!
     @IBOutlet weak var labelSelectCover: UILabel!
-    @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var viewTimeline: UIView!
     @IBOutlet weak var viewPannable: UIView!
+    @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var imageViewFrame: UIImageView!
     
     //MARK: - Parameters
@@ -131,7 +131,6 @@ class EditShortVideoCoverViewController: UIViewController {
     @objc private func didTouch(_ sender: UITapGestureRecognizer) {
         
         let location = sender.location(in: view)
-        print("touch location \(location)")
         
         initialCenter.x = location.x - 25
         if initialCenter.x < viewContainer.bounds.minX {

@@ -45,6 +45,7 @@ class CreateShortVideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        
     }
     
     //MARK: - Functions
@@ -57,8 +58,8 @@ class CreateShortVideoViewController: UIViewController {
         imageViewVideo.sd_setImage(with: URL(string: "https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"))
         labelChooseFrontCover.layer.cornerRadius = 12
         labelChooseFrontCover.clipsToBounds = true
-        navigationItem.hidesBackButton = true
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
      
     }
     
