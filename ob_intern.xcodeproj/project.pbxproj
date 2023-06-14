@@ -21,10 +21,15 @@
 		183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */; };
 		183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CC2A305AC700448624 /* ShortVideoList.swift */; };
 		183B27D02A3081E100448624 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CF2A3081E100448624 /* Collection.swift */; };
-		186E08E42A36C9D900FDDCB6 /* ProgressBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186E08E32A36C9D900FDDCB6 /* ProgressBar.xib */; };
+		186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */; };
 		186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */; };
 		186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E08ED2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift */; };
 		186E08F02A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186E08EE2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib */; };
+		1883C7F92A39816900A3B168 /* TestProgressBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883C7F62A39816900A3B168 /* TestProgressBarViewController.swift */; };
+		1883C7FA2A39816900A3B168 /* TestProgressBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883C7F72A39816900A3B168 /* TestProgressBarViewModel.swift */; };
+		1883C7FB2A39816900A3B168 /* TestProgressBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1883C7F82A39816900A3B168 /* TestProgressBarViewController.xib */; };
+		1883C7FF2A399AFE00A3B168 /* InitializeXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883C7FE2A399AFE00A3B168 /* InitializeXibView.swift */; };
+		1883C8062A39AC4C00A3B168 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883C8052A39AC4C00A3B168 /* TabBarViewController.swift */; };
 		18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AA2A30332400188D98 /* AppDelegate.swift */; };
 		18C163AD2A30332400188D98 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AC2A30332400188D98 /* SceneDelegate.swift */; };
 		18C163AF2A30332400188D98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AE2A30332400188D98 /* ViewController.swift */; };
@@ -49,10 +54,15 @@
 		183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListCollectionViewCell.xib; sourceTree = "<group>"; };
 		183B27CC2A305AC700448624 /* ShortVideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoList.swift; sourceTree = "<group>"; };
 		183B27CF2A3081E100448624 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		186E08E32A36C9D900FDDCB6 /* ProgressBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressBar.xib; sourceTree = "<group>"; };
+		186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadVideoProgressbar.xib; sourceTree = "<group>"; };
 		186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoProgressbar.swift; sourceTree = "<group>"; };
 		186E08ED2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortVideoCoverCollectionViewCell.swift; sourceTree = "<group>"; };
 		186E08EE2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditShortVideoCoverCollectionViewCell.xib; sourceTree = "<group>"; };
+		1883C7F62A39816900A3B168 /* TestProgressBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressBarViewController.swift; sourceTree = "<group>"; };
+		1883C7F72A39816900A3B168 /* TestProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestProgressBarViewModel.swift; sourceTree = "<group>"; };
+		1883C7F82A39816900A3B168 /* TestProgressBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestProgressBarViewController.xib; sourceTree = "<group>"; };
+		1883C7FE2A399AFE00A3B168 /* InitializeXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializeXibView.swift; sourceTree = "<group>"; };
+		1883C8052A39AC4C00A3B168 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		18C163A72A30332400188D98 /* ob_intern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ob_intern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C163AA2A30332400188D98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C163AC2A30332400188D98 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				183B27CF2A3081E100448624 /* Collection.swift */,
+				1883C7FE2A399AFE00A3B168 /* InitializeXibView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -128,8 +139,12 @@
 		186E08E22A36C9C300FDDCB6 /* Progress Bar */ = {
 			isa = PBXGroup;
 			children = (
-				186E08E32A36C9D900FDDCB6 /* ProgressBar.xib */,
+				1883C8002A39A9D100A3B168 /* TabBar */,
+				186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */,
 				186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */,
+				1883C7F62A39816900A3B168 /* TestProgressBarViewController.swift */,
+				1883C7F72A39816900A3B168 /* TestProgressBarViewModel.swift */,
+				1883C7F82A39816900A3B168 /* TestProgressBarViewController.xib */,
 			);
 			path = "Progress Bar";
 			sourceTree = "<group>";
@@ -141,6 +156,14 @@
 				186E08EE2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		1883C8002A39A9D100A3B168 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1883C8052A39AC4C00A3B168 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		18C1639E2A30332400188D98 = {
@@ -280,12 +303,13 @@
 				18C163B72A30332600188D98 /* LaunchScreen.storyboard in Resources */,
 				1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */,
 				186E08F02A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib in Resources */,
-				186E08E42A36C9D900FDDCB6 /* ProgressBar.xib in Resources */,
+				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				18C163B22A30332400188D98 /* Main.storyboard in Resources */,
 				183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */,
 				18259C6E2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib in Resources */,
+				1883C7FB2A39816900A3B168 /* TestProgressBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,11 +372,15 @@
 				183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */,
 				1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */,
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
+				1883C7FA2A39816900A3B168 /* TestProgressBarViewModel.swift in Sources */,
 				186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
+				1883C8062A39AC4C00A3B168 /* TabBarViewController.swift in Sources */,
 				186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */,
+				1883C7FF2A399AFE00A3B168 /* InitializeXibView.swift in Sources */,
 				1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */,
 				18259C6C2A331B9C0000CCA1 /* EditShortVideoCoverViewController.swift in Sources */,
+				1883C7F92A39816900A3B168 /* TestProgressBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
