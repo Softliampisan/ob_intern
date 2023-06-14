@@ -54,6 +54,7 @@ class EditShortVideoCoverViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         self.setFirstFrame()
     }
    
@@ -77,10 +78,10 @@ class EditShortVideoCoverViewController: UIViewController {
     }
     
     func setFirstFrame() {
-        if let currentVideo = self.viewModel?.currentList.takeSafe(index: 0) {
-            self.imageViewFrame.sd_setImage(with: URL(string: currentVideo.videoImage))
-            self.imageViewVideo.sd_setImage(with: URL(string: currentVideo.videoImage))
-        }
+        guard let currentVideo = self.viewModel?.currentList.takeSafe(index: 0) else { return }
+        self.imageViewFrame.sd_setImage(with: URL(string: currentVideo.videoImage))
+        self.imageViewVideo.sd_setImage(with: URL(string: currentVideo.videoImage))
+        
     }
     
     func calculateWidth() {
@@ -114,7 +115,7 @@ class EditShortVideoCoverViewController: UIViewController {
             let translation = sender.translation(in: view)
             guard initialCenter.x + translation.x + viewPannable.frame.width < viewContainer.bounds.width && initialCenter.x + translation.x > viewContainer.bounds.minX else { return }
             
-            viewPannable.frame = CGRect(x: initialCenter.x + translation.x, y: 0, width: 50, height: 64)
+            viewPannable.frame = CGRect(x: initialCenter.x + translation.x, y: 0, width: 50, height: HEIGHT)
             self.setupFrame()
             
         case .ended,
@@ -132,15 +133,15 @@ class EditShortVideoCoverViewController: UIViewController {
         
         let location = sender.location(in: view)
         
-        initialCenter.x = location.x - 25
+        initialCenter.x = location.x - (WIDTH/2)
         if initialCenter.x < viewContainer.bounds.minX {
             initialCenter.x = viewContainer.bounds.minX
         }
-        if initialCenter.x > viewContainer.bounds.maxX - 50 {
-            initialCenter.x = viewContainer.bounds.maxX - 50
+        if initialCenter.x > viewContainer.bounds.maxX - WIDTH {
+            initialCenter.x = viewContainer.bounds.maxX - WIDTH
         }
         
-        viewPannable.frame = CGRect(x: initialCenter.x, y: 0, width: 50, height: 64)
+        viewPannable.frame = CGRect(x: initialCenter.x, y: 0, width: 50, height: HEIGHT)
 
         self.setupFrame()
     }
