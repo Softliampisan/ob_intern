@@ -32,6 +32,8 @@ class ShortVideoListViewModel {
         
 
     }
+   
+    // MARK: - Functions
     func addMockData(){
         let numberOfVideos: Int = 20
         for _ in 0..<numberOfVideos {
@@ -39,6 +41,18 @@ class ShortVideoListViewModel {
             self.currentList.append(user)
         }
     }
-    // MARK: - Functions
+    
+    func updateData() {
+        // Fetch or update the new data
+        let newData: [ShortVideoList] = [
+            ShortVideoList.mock(),
+            ShortVideoList.mock(),
+            ShortVideoList.mock()
+        ]
+        
+        // Replace the current data with the new data
+        currentList = newData
+        
+    }
     
 }

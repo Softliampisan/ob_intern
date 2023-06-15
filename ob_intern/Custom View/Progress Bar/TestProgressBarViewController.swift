@@ -42,6 +42,8 @@ class TestProgressBarViewController: UIViewController {
         print("containerview \(progressBar.containerView.bounds.width)")
         progressBar.layoutIfNeeded()
         self.view.addSubview(progressBar)
+        progressBar.state = .loading
+
     }
     
     //MARK: - Action
@@ -52,6 +54,11 @@ class TestProgressBarViewController: UIViewController {
     @IBAction func buttonTestFailAction(_ sender: Any) {
         progressBar.state = .fail
     }
+    
+    @IBAction func buttonTestLoadAction(_ sender: Any) {
+        progressBar.state = .loading
+    }
+    
     
     
     

@@ -17,9 +17,11 @@ class UploadVideoProgressbar: InitializeXibView {
     }
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var stackView: UIStackView!
-//    @IBOutlet weak var verticalStackView: UIStackView!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var viewContainImageLabel: UIView!
+    @IBOutlet weak var viewContainProgress: UIView!
+    @IBOutlet weak var horizontalStackView: UIStackView!
+    @IBOutlet weak var verticalStackView: UIStackView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageViewFail: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
@@ -34,6 +36,11 @@ class UploadVideoProgressbar: InitializeXibView {
             }
             if state == .fail {
                 setFailureLabel()
+            }
+            if state == .loading {
+                setLoadingLabel()
+                uploadVideo()
+
             }
         }
     }
@@ -50,23 +57,26 @@ class UploadVideoProgressbar: InitializeXibView {
     
     private func setUpValues() {
         setupContainerView()
-        setupLabel()
+        setupLabelandImage()
         setupProgressView()
     }
     
     private func setupContainerView() {
-//        containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.layer.borderColor = UIColor.systemGray4.cgColor
+
+        containerView.layer.borderColor = UIColor.systemGray5.cgColor
         containerView.layer.borderWidth = 1.0
         containerView.layer.cornerRadius = 10
         containerView.layer.masksToBounds = true
-        shadowView.layer.shadowColor = UIColor.systemGray4.cgColor
+        shadowView.layer.shadowColor = UIColor.systemGray5.cgColor
         shadowView.layer.shadowOffset = CGSize(width: 3, height: 3)
         shadowView.layer.shadowOpacity = 0.7
         shadowView.layer.shadowRadius = 10.0
+        
         self.addSubview(shadowView)
         shadowView.addSubview(containerView)
-        containerView.addSubview(stackView)
+        containerView.addSubview(verticalStackView)
+        verticalStackView.addSubview(viewContainImageLabel)
+        
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -75,47 +85,75 @@ class UploadVideoProgressbar: InitializeXibView {
         ])
     }
     
-    private func setupLabel() {
+    private func setupLabelandImage() {
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16.0)
-//        label.textAlignment = .center
-        stackView.addSubview(label)
-        stackView.addSubview(imageViewFail)
-//        verticalStackView.addSubview(horizontalStackView)
+        horizontalStackView.addSubview(label)
+        horizontalStackView.addSubview(imageViewFail)
+        viewContainImageLabel.addSubview(horizontalStackView)
         imageViewFail.isHidden = true
 
     }
     
     private func setSuccessLabel() {
-//        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Short VDO ของคุณอัปโหลดสำเร็จแล้ว"
         label.textColor = .black
-        //label.center = self.view.center
-        if progressView != nil && progressView.isDescendant(of: containerView) {
-            progressView.removeFromSuperview()
-        }
+        viewContainProgress.isHidden = true
         imageViewFail.isHidden = true
+    }
+    
+    private func setLoadingLabel() {
+        label.text = "กำลังอัปโหลด Short VDO ของคุณ"
+        label.textColor = .black
+        imageViewFail.isHidden = true
+        viewContainProgress.isHidden = false
+
     }
     
     private func setFailureLabel() {
         label.text = "Short VDO ของคุณอัปโหลดไม่สำเร็จ"
         label.textColor = .red
-        //label.center = self.view.center
-        if progressView != nil && progressView.isDescendant(of: containerView) {
-            progressView.removeFromSuperview()
-        }
+        viewContainProgress.isHidden = true
         imageViewFail.isHidden = false
 
     }
     
     private func setupProgressView() {
-//        progressView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(progressView)
+        viewContainProgress.addSubview(progressView)
+        verticalStackView.addSubview(viewContainProgress)
     }
     
-    
-    func setProgress(_ progress: Float) {
+    func uploadVideo() {
+        // Stop any existing timer
+        stopUpdatingProgress()
+        progress = 0.0
         progressView.progress = progress
+  
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
+    }
+    
+    func stopUpdatingProgress() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func handleFailure() {
+        stopUpdatingProgress()
+        setFailureLabel()
+    }
+    
+    @objc private func updateProgress() {
+        progress += 0.1
+        if progress > 1.0 {
+            progressView.progress = 1.0
+            stopUpdatingProgress()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.setSuccessLabel()
+            }
+            
+        } else {
+            progressView.progress = progress
+        }
     }
     
     

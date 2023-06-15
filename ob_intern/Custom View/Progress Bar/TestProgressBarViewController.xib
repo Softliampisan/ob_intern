@@ -43,6 +43,9 @@
                     <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="gray" title="Test Loading"/>
+                    <connections>
+                        <action selector="buttonTestLoadAction:" destination="-1" eventType="touchUpInside" id="eTE-VF-ZbV"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
