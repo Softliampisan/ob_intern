@@ -32,7 +32,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buttonToTestProgressBar(_ sender: Any) {
-
+//        let controller = TestProgressBarViewController.newInstance()
+//        self.navigationController?.pushViewController(controller, animated: false)
+        let vc = TabBarViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(vc, animated: true)
     }
     
     

@@ -22,6 +22,7 @@ class ShortVideoListViewController: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewEmptyState: UIView!
     
     //MARK: - Parameters
     private var WIDTH_PER_ROW: CGFloat = 0
@@ -31,13 +32,21 @@ class ShortVideoListViewController: UIViewController {
     private let ITEM_PER_ROW: Int = 3
     private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
     private var viewModel: ShortVideoListViewModel?
-    
+    private var refresher:UIRefreshControl!
+
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         calculateCollectionHeight()
         collectionView.reloadData()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.setCollectionViewEmptyState()
+        }
     }
     
     //MARK: - Functions
@@ -45,6 +54,12 @@ class ShortVideoListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
+        self.refresher = UIRefreshControl()
+        self.collectionView.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.red
+        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.collectionView.addSubview(refresher)
+        viewEmptyState.isHidden = true
     }
     
     
@@ -54,6 +69,22 @@ class ShortVideoListViewController: UIViewController {
         WIDTH_PER_ROW = availableWidth / CGFloat(ITEM_PER_ROW)
         HEIGHT_PER_ROW = WIDTH_PER_ROW * CELL_RATIO
         
+    }
+    
+    func setCollectionViewEmptyState(){
+        if collectionView.visibleCells.isEmpty{
+            viewEmptyState.isHidden = false
+        } else {
+            viewEmptyState.isHidden = true
+        }
+    }
+    
+    @objc func loadData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.viewModel?.updateData()
+            self.collectionView.reloadData()
+            self.refresher.endRefreshing()
+        }
     }
     
     //MARK: - Action
