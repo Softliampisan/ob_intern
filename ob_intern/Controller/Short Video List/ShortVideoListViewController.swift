@@ -32,7 +32,7 @@ class ShortVideoListViewController: UIViewController {
     private let ITEM_PER_ROW: Int = 3
     private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
     private var viewModel: ShortVideoListViewModel?
-    private var refresher:UIRefreshControl!
+    private var refresher: UIRefreshControl!
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -44,8 +44,9 @@ class ShortVideoListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.setCollectionViewEmptyState()
+        super.viewWillAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in 
+            self?.setCollectionViewEmptyState()
         }
     }
     
@@ -54,11 +55,11 @@ class ShortVideoListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
-        self.refresher = UIRefreshControl()
-        self.collectionView.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.red
-        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
-        self.collectionView.addSubview(refresher)
+        refresher = UIRefreshControl()
+        collectionView.alwaysBounceVertical = true
+        refresher.tintColor = UIColor.red
+        refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        collectionView.addSubview(refresher)
         viewEmptyState.isHidden = true
     }
     
@@ -72,11 +73,7 @@ class ShortVideoListViewController: UIViewController {
     }
     
     func setCollectionViewEmptyState(){
-        if collectionView.visibleCells.isEmpty{
-            viewEmptyState.isHidden = false
-        } else {
-            viewEmptyState.isHidden = true
-        }
+        viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
     
     @objc func loadData() {

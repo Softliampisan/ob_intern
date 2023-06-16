@@ -74,6 +74,15 @@
                                     <action selector="buttonToTestProgressBar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IdI-PL-QDJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5b-Ec-Bn7">
+                                <rect key="frame" x="59" y="397" width="275" height="35"/>
+                                <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Short Video Post"/>
+                                <connections>
+                                    <action selector="buttonToPost:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cDG-vX-VgQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -83,15 +92,18 @@
                             <constraint firstItem="t3f-TM-6Qm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Av-uh-HmA"/>
                             <constraint firstItem="GJ2-d4-CXT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C9D-Jy-Qh2"/>
                             <constraint firstItem="jNx-hM-X35" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HBu-JZ-TVw"/>
+                            <constraint firstItem="c5b-Ec-Bn7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K0T-Qn-d8X"/>
                             <constraint firstItem="t3f-TM-6Qm" firstAttribute="top" secondItem="GJ2-d4-CXT" secondAttribute="bottom" constant="50" id="Nsf-9x-agB"/>
                             <constraint firstItem="f1T-KZ-5jb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QMB-o0-eyN"/>
                             <constraint firstItem="jNx-hM-X35" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="YG0-bF-jQl"/>
                             <constraint firstItem="gMA-xr-d1o" firstAttribute="top" secondItem="t3f-TM-6Qm" secondAttribute="bottom" constant="20" id="ZpU-JX-dHs"/>
                             <constraint firstItem="t3f-TM-6Qm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="dhp-Dh-eg1"/>
+                            <constraint firstItem="c5b-Ec-Bn7" firstAttribute="top" secondItem="jNx-hM-X35" secondAttribute="bottom" constant="20" id="k2M-ae-RRJ"/>
                             <constraint firstItem="gMA-xr-d1o" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="piN-r2-14A"/>
                             <constraint firstItem="jNx-hM-X35" firstAttribute="top" secondItem="f1T-KZ-5jb" secondAttribute="bottom" constant="20" id="v9r-fw-SCR"/>
                             <constraint firstItem="GJ2-d4-CXT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="w1A-ew-Qlh"/>
                             <constraint firstItem="f1T-KZ-5jb" firstAttribute="top" secondItem="gMA-xr-d1o" secondAttribute="bottom" constant="20" id="wgt-M6-71C"/>
+                            <constraint firstItem="c5b-Ec-Bn7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="zbd-Np-QP5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MUg-Y2-DO5"/>

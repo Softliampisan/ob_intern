@@ -57,7 +57,7 @@ class UploadVideoProgressbar: InitializeXibView {
     
     private func setUpValues() {
         setupContainerView()
-        setupLabelandImage()
+        setupLabelAndImage()
         setupProgressView()
     }
     
@@ -85,7 +85,7 @@ class UploadVideoProgressbar: InitializeXibView {
         ])
     }
     
-    private func setupLabelandImage() {
+    private func setupLabelAndImage() {
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16.0)
         horizontalStackView.addSubview(label)
@@ -147,8 +147,8 @@ class UploadVideoProgressbar: InitializeXibView {
         if progress > 1.0 {
             progressView.progress = 1.0
             stopUpdatingProgress()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.setSuccessLabel()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                self?.setSuccessLabel()
             }
             
         } else {
