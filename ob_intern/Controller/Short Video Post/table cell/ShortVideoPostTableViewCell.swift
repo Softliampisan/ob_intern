@@ -21,8 +21,13 @@ class ShortVideoPostTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        setViewProfileDesign(colorOne: .black.withAlphaComponent(0.8), colorTwo: .clear)
+        setViewProfileDesign()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageViewPost.image = nil 
+        removeGradientBackground()
     }
     
     override func layoutSubviews() {
@@ -35,8 +40,8 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setViewProfileDesign(colorOne: UIColor, colorTwo: UIColor) {
-        let colors = [colorOne.cgColor, colorTwo.cgColor]
+    func setViewProfileDesign() {
+        let colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor]
         gradient.frame = viewProfile.bounds
         gradient.colors = colors
         viewProfile.layer.insertSublayer(gradient, at: 0)
