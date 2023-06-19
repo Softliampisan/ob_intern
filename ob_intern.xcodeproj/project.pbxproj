@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1802574A2A3FF7750057E850 /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180257492A3FF7750057E850 /* ProfileView.xib */; };
+		1802574C2A3FF7A90057E850 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1802574B2A3FF7A90057E850 /* ProfileView.swift */; };
+		1802574E2A4000740057E850 /* LikeCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802574D2A4000740057E850 /* LikeCommentView.xib */; };
+		180257502A40007D0057E850 /* LikeCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1802574F2A40007D0057E850 /* LikeCommentView.swift */; };
 		1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */; };
 		1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */; };
 		1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */; };
@@ -46,6 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180257492A3FF7750057E850 /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		1802574B2A3FF7A90057E850 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1802574D2A4000740057E850 /* LikeCommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeCommentView.xib; sourceTree = "<group>"; };
+		1802574F2A40007D0057E850 /* LikeCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCommentView.swift; sourceTree = "<group>"; };
 		1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewController.swift; sourceTree = "<group>"; };
 		1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewModel.swift; sourceTree = "<group>"; };
 		1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateShortVideoViewController.xib; sourceTree = "<group>"; };
@@ -100,6 +108,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180257482A3FF70B0057E850 /* Custom View */ = {
+			isa = PBXGroup;
+			children = (
+				180257492A3FF7750057E850 /* ProfileView.xib */,
+				1802574B2A3FF7A90057E850 /* ProfileView.swift */,
+				1802574D2A4000740057E850 /* LikeCommentView.xib */,
+				1802574F2A40007D0057E850 /* LikeCommentView.swift */,
+			);
+			path = "Custom View";
+			sourceTree = "<group>";
+		};
 		1808CA332A317D01009CA1EB /* Create Short Video */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +201,7 @@
 		1883C8072A3B02F800A3B168 /* Short Video Post */ = {
 			isa = PBXGroup;
 			children = (
+				180257482A3FF70B0057E850 /* Custom View */,
 				1883C8122A3B03DE00A3B168 /* table cell */,
 				1883C8082A3B031300A3B168 /* ShortVideoPostViewController.swift */,
 				1883C8092A3B031300A3B168 /* ShortVideoPostViewModel.swift */,
@@ -338,10 +358,12 @@
 				18C163B72A30332600188D98 /* LaunchScreen.storyboard in Resources */,
 				1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */,
 				186E08F02A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib in Resources */,
+				1802574E2A4000740057E850 /* LikeCommentView.xib in Resources */,
 				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				1883C80D2A3B031400A3B168 /* ShortVideoPostViewController.xib in Resources */,
+				1802574A2A3FF7750057E850 /* ProfileView.xib in Resources */,
 				18C163B22A30332400188D98 /* Main.storyboard in Resources */,
 				183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */,
 				18259C6E2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib in Resources */,
@@ -399,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C163AF2A30332400188D98 /* ViewController.swift in Sources */,
+				1802574C2A3FF7A90057E850 /* ProfileView.swift in Sources */,
 				1883C80B2A3B031400A3B168 /* ShortVideoPostViewController.swift in Sources */,
 				18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */,
 				18259C6D2A331B9C0000CCA1 /* EditShortVideoCoverModel.swift in Sources */,
@@ -415,6 +438,7 @@
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
 				1883C8102A3B039400A3B168 /* ShortVideoPostTableViewCell.swift in Sources */,
 				1883C8062A39AC4C00A3B168 /* TabBarViewController.swift in Sources */,
+				180257502A40007D0057E850 /* LikeCommentView.swift in Sources */,
 				186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */,
 				1883C7FF2A399AFE00A3B168 /* InitializeXibView.swift in Sources */,
 				1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */,
