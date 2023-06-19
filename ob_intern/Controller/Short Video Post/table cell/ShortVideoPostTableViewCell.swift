@@ -18,8 +18,8 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     @IBOutlet weak var labelCaption: UILabel!
 
     let gradient: CAGradientLayer = CAGradientLayer()
-    var profile: Profile!
-    var likeComment: LikeComment!
+    var profileView: ProfileView?
+    var likeCommentView: LikeCommentView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,20 +65,25 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     }
     
     func setProfile() {
-        profile = Profile(frame: viewProfile.bounds)
-        profile.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        profile.clipsToBounds = true
-        viewProfile.addSubview(profile)
+        profileView = ProfileView(frame: viewProfile.bounds)
+        profileView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        profileView?.clipsToBounds = true
+        if let profileView = profileView {
+            viewProfile.addSubview(profileView)
+        }
+        
     }
     
     func setLikeComment() {
-        likeComment = LikeComment(frame: viewLikeComment.bounds)
-        likeComment.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        likeComment.clipsToBounds = true
-        viewLikeComment.addSubview(likeComment)
+        likeCommentView = LikeCommentView(frame: viewLikeComment.bounds)
+        likeCommentView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        likeCommentView?.clipsToBounds = true
+        if let likeCommentView = likeCommentView {
+            viewLikeComment.addSubview(likeCommentView)
+        }
+
     }
  
-    
 }
 
 

@@ -44,7 +44,8 @@ class ShortVideoPostViewController: UIViewController {
     func setupView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: String(describing: ShortVideoPostTableViewCell.self), bundle: nil), forCellReuseIdentifier: "ShortVideoPostTableViewCell")
+        let nibName = String(describing: ShortVideoPostTableViewCell.self)
+        tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
 

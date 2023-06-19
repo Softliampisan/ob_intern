@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LikeComment: InitializeXibView {
+class LikeCommentView: InitializeXibView {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageLike: UIImageView!
@@ -18,15 +18,15 @@ class LikeComment: InitializeXibView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpValues()
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setUpValues()
+        setupView()
     }
     
-    private func setUpValues() {
+    private func setupView() {
         setupContainerView()
         setupLikeComment()
     }
