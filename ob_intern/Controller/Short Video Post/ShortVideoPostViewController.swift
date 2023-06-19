@@ -26,10 +26,12 @@ class ShortVideoPostViewController: UIViewController {
     //MARK: - Parameters
     private var viewModel: ShortVideoPostViewModel?
     var caption: [String] = ["Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo doloreeeeeeeeeeeeeeeee…", "ajdnklanfk kajndskcnkadsnc kjandckjandkjc nakjdcnkajndc naksdjcna  ncaskdjcna", ""]
-    var mockImageUrls: [String] = ["https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    "https://plus.unsplash.com/premium_photo-1679599983488-4968d587e00b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60", "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1609824462369-3d5b0a00fbdb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHN1bnNldCUyMGFlc3RoZXRpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60"]
+    var mockImageUrls: [String] = ["https://images3.alphacoders.com/110/1108129.jpg",
+                                   "https://wallpaperaccess.com/full/6193236.jpg",
+                                   "https://imgix.bustle.com/uploads/image/2022/2/11/c277a32f-c52c-4d7a-98ea-1a0bbec3cf2d-baby-yoda-use-the-force.jpg?w=1200&h=630&fit=crop&crop=focalpoint&fm=jpg&fp-x=0.4813&fp-y=0.3059",
+                                   "https://i.pinimg.com/originals/4e/52/2d/4e522df5de3a6903cf2272572eb471aa.jpg"]
     var hashtag: [Bool] = [true, false, true]
+    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -42,7 +44,7 @@ class ShortVideoPostViewController: UIViewController {
     func setupView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "ShortVideoPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ShortVideoPostTableViewCell")
+        tableView.register(UINib(nibName: String(describing: ShortVideoPostTableViewCell.self), bundle: nil), forCellReuseIdentifier: "ShortVideoPostTableViewCell")
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
 
@@ -74,7 +76,10 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ShortVideoPostTableViewCell") as! ShortVideoPostTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ShortVideoPostTableViewCell.self)) as? ShortVideoPostTableViewCell else {
+            return UITableViewCell()
+        }
+        
         cell.setData(caption: caption[indexPath.row], imageURL: mockImageUrls[indexPath.row], hashtag: hashtag[indexPath.row])
         cell.layoutIfNeeded()
         return cell

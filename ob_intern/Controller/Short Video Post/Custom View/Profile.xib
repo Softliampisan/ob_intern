@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Profile" customModule="ob_intern" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="N42-Jn-fHZ" id="2JD-zL-klA"/>
+                <outlet property="imageViewProfilePic" destination="IEn-ZV-dzZ" id="glC-rN-Lz2"/>
+                <outlet property="labelPostTime" destination="VXk-FK-eSJ" id="5eD-w2-bZi"/>
+                <outlet property="labelProfileName" destination="WaH-rW-1Ty" id="B2T-1s-TkT"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="485" height="193"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N42-Jn-fHZ">
+                    <rect key="frame" x="0.0" y="69" width="485" height="82"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="IEn-ZV-dzZ">
+                            <rect key="frame" x="16" y="17" width="50" height="48.666666666666671"/>
+                            <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="R9h-9J-Aqa"/>
+                                <constraint firstAttribute="height" constant="50" id="XlD-dh-DVz"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eewarnrak.rawee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WaH-rW-1Ty">
+                            <rect key="frame" x="82" y="19" width="123.66666666666669" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" systemColor="systemBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เมื่อสักครู่" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXk-FK-eSJ">
+                            <rect key="frame" x="82" y="47" width="62.333333333333343" height="19.333333333333329"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" systemColor="systemBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="IEn-ZV-dzZ" firstAttribute="leading" secondItem="N42-Jn-fHZ" secondAttribute="leading" constant="16" id="FiW-Q2-bIG"/>
+                        <constraint firstAttribute="height" constant="82" id="HOs-pt-Gxf"/>
+                        <constraint firstItem="VXk-FK-eSJ" firstAttribute="leading" secondItem="IEn-ZV-dzZ" secondAttribute="trailing" constant="16" id="c3C-cH-O0R"/>
+                        <constraint firstItem="WaH-rW-1Ty" firstAttribute="top" secondItem="N42-Jn-fHZ" secondAttribute="top" constant="19" id="e5G-qX-Jfg"/>
+                        <constraint firstItem="VXk-FK-eSJ" firstAttribute="top" secondItem="WaH-rW-1Ty" secondAttribute="bottom" constant="8" id="eAP-xr-npn"/>
+                        <constraint firstItem="WaH-rW-1Ty" firstAttribute="leading" secondItem="IEn-ZV-dzZ" secondAttribute="trailing" constant="16" id="kRL-PQ-Wb2"/>
+                        <constraint firstItem="IEn-ZV-dzZ" firstAttribute="centerY" secondItem="N42-Jn-fHZ" secondAttribute="centerY" id="ndk-mB-Vph"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="N42-Jn-fHZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="VL2-rR-2Kh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="N42-Jn-fHZ" secondAttribute="trailing" id="hkT-my-f6o"/>
+                <constraint firstItem="N42-Jn-fHZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="spW-jp-DCc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="135.1145038167939" y="-211.61971830985917"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
