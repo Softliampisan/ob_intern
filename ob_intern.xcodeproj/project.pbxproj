@@ -25,6 +25,11 @@
 		183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */; };
 		183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CC2A305AC700448624 /* ShortVideoList.swift */; };
 		183B27D02A3081E100448624 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CF2A3081E100448624 /* Collection.swift */; };
+		186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186DB2792A41489600027809 /* VideoInfoView.xib */; };
+		186DB27C2A4148D700027809 /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27B2A4148D700027809 /* VideoInfoView.swift */; };
+		186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */; };
+		186DB2822A41591B00027809 /* ShortVideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27F2A41591B00027809 /* ShortVideoPlayerViewModel.swift */; };
+		186DB2832A41591B00027809 /* ShortVideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186DB2802A41591B00027809 /* ShortVideoPlayerViewController.xib */; };
 		186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */; };
 		186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */; };
 		186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E08ED2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift */; };
@@ -68,6 +73,11 @@
 		183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListCollectionViewCell.xib; sourceTree = "<group>"; };
 		183B27CC2A305AC700448624 /* ShortVideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoList.swift; sourceTree = "<group>"; };
 		183B27CF2A3081E100448624 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		186DB2792A41489600027809 /* VideoInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoInfoView.xib; sourceTree = "<group>"; };
+		186DB27B2A4148D700027809 /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
+		186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPlayerViewController.swift; sourceTree = "<group>"; };
+		186DB27F2A41591B00027809 /* ShortVideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPlayerViewModel.swift; sourceTree = "<group>"; };
+		186DB2802A41591B00027809 /* ShortVideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoPlayerViewController.xib; sourceTree = "<group>"; };
 		186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadVideoProgressbar.xib; sourceTree = "<group>"; };
 		186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoProgressbar.swift; sourceTree = "<group>"; };
 		186E08ED2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortVideoCoverCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +153,7 @@
 		1833D7652A32ED24006C5BF7 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
+				186DB2782A41481100027809 /* Video Info */,
 				186E08E22A36C9C300FDDCB6 /* Progress Bar */,
 				1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */,
 			);
@@ -166,6 +177,25 @@
 				1883C8132A3B09A900A3B168 /* Gradient.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		186DB2782A41481100027809 /* Video Info */ = {
+			isa = PBXGroup;
+			children = (
+				186DB2792A41489600027809 /* VideoInfoView.xib */,
+				186DB27B2A4148D700027809 /* VideoInfoView.swift */,
+			);
+			path = "Video Info";
+			sourceTree = "<group>";
+		};
+		186DB27D2A4158DC00027809 /* Short Video Player */ = {
+			isa = PBXGroup;
+			children = (
+				186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */,
+				186DB27F2A41591B00027809 /* ShortVideoPlayerViewModel.swift */,
+				186DB2802A41591B00027809 /* ShortVideoPlayerViewController.xib */,
+			);
+			path = "Short Video Player";
 			sourceTree = "<group>";
 		};
 		186E08E22A36C9C300FDDCB6 /* Progress Bar */ = {
@@ -258,6 +288,7 @@
 		18C163BE2A30394D00188D98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				186DB27D2A4158DC00027809 /* Short Video Player */,
 				1883C8072A3B02F800A3B168 /* Short Video Post */,
 				18259C682A331B5C0000CCA1 /* Edit Short Video Cover */,
 				1808CA332A317D01009CA1EB /* Create Short Video */,
@@ -359,6 +390,7 @@
 				1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */,
 				186E08F02A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib in Resources */,
 				1802574E2A4000740057E850 /* LikeCommentView.xib in Resources */,
+				186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */,
 				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
@@ -367,6 +399,7 @@
 				18C163B22A30332400188D98 /* Main.storyboard in Resources */,
 				183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */,
 				18259C6E2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib in Resources */,
+				186DB2832A41591B00027809 /* ShortVideoPlayerViewController.xib in Resources */,
 				1883C7FB2A39816900A3B168 /* TestProgressBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,11 +453,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186DB27C2A4148D700027809 /* VideoInfoView.swift in Sources */,
 				18C163AF2A30332400188D98 /* ViewController.swift in Sources */,
 				1802574C2A3FF7A90057E850 /* ProfileView.swift in Sources */,
 				1883C80B2A3B031400A3B168 /* ShortVideoPostViewController.swift in Sources */,
 				18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */,
 				18259C6D2A331B9C0000CCA1 /* EditShortVideoCoverModel.swift in Sources */,
+				186DB2822A41591B00027809 /* ShortVideoPlayerViewModel.swift in Sources */,
 				183B27C92A30418600448624 /* ShortVideoListCollectionViewCell.swift in Sources */,
 				18C163AD2A30332400188D98 /* SceneDelegate.swift in Sources */,
 				183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */,
@@ -436,6 +471,7 @@
 				1883C7FA2A39816900A3B168 /* TestProgressBarViewModel.swift in Sources */,
 				186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
+				186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */,
 				1883C8102A3B039400A3B168 /* ShortVideoPostTableViewCell.swift in Sources */,
 				1883C8062A39AC4C00A3B168 /* TabBarViewController.swift in Sources */,
 				180257502A40007D0057E850 /* LikeCommentView.swift in Sources */,
@@ -600,6 +636,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,6 +666,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

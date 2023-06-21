@@ -44,5 +44,11 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func buttonToVideoPlayer(_ sender: Any) {
+        let controller = ShortVideoPlayerViewController.newInstance()
+        self.navigationController?.pushViewController(controller, animated: false)
+    }
+    
+    
 }
 
