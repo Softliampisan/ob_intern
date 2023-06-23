@@ -16,7 +16,7 @@
                 <outlet property="labelPostTime" destination="eg9-Zk-4aR" id="SkB-gi-t7J"/>
                 <outlet property="labelProfileName" destination="9lm-3D-rBL" id="whe-Id-pqq"/>
                 <outlet property="stackView" destination="fgS-ta-lgA" id="NUl-nG-cSA"/>
-                <outlet property="textViewInfo" destination="KWJ-zN-6C1" id="jSQ-Pw-4su"/>
+                <outlet property="textViewInfo" destination="KWJ-zN-6C1" id="i1j-gP-hGG"/>
                 <outlet property="viewHashtag" destination="Uat-qU-jYX" id="kZk-e9-5Xh"/>
             </connections>
         </placeholder>
@@ -66,7 +66,7 @@
                                 <constraint firstAttribute="height" constant="30" id="Hvb-SJ-4JR"/>
                             </constraints>
                         </stackView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KWJ-zN-6C1">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KWJ-zN-6C1" customClass="CustomTextView" customModule="ob_intern" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="30" width="480" height="170"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
