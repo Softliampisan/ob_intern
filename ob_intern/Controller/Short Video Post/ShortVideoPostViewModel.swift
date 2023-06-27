@@ -28,4 +28,8 @@ class ShortVideoPostViewModel {
     
     // MARK: - Functions
     
+    func test() {
+        delegate?.showLoading()
+    }
+    
 }

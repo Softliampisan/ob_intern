@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,7 +14,9 @@
                 <outlet property="imageViewVideo" destination="72k-jB-Lh8" id="6ms-JI-RH9"/>
                 <outlet property="view" destination="iN0-l3-epB" id="cZF-jF-rQz"/>
                 <outlet property="viewGradient" destination="Hss-sc-r3F" id="OIc-Wq-4nB"/>
+                <outlet property="viewGradientHeight" destination="T9F-TQ-2fi" id="Hs7-fT-M92"/>
                 <outlet property="viewVideoInfo" destination="Mff-k4-oAb" id="l2Q-y4-shq"/>
+                <outlet property="viewVideoInfoHeight" destination="58f-kO-5de" id="00l-gd-yR1"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,32 +29,30 @@
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hss-sc-r3F">
                     <rect key="frame" x="0.0" y="429" width="375" height="238"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-k4-oAb">
-                            <rect key="frame" x="16" y="0.0" width="316" height="228"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="316" id="brq-iF-h48"/>
-                            </constraints>
-                        </view>
-                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="Mff-k4-oAb" secondAttribute="bottom" constant="10" id="F73-sX-h1i"/>
                         <constraint firstAttribute="height" constant="238" id="T9F-TQ-2fi"/>
-                        <constraint firstItem="Mff-k4-oAb" firstAttribute="top" secondItem="Hss-sc-r3F" secondAttribute="top" id="YWF-sy-iF4"/>
-                        <constraint firstItem="Mff-k4-oAb" firstAttribute="leading" secondItem="Hss-sc-r3F" secondAttribute="leading" constant="16" id="zjk-nd-QO1"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-k4-oAb">
+                    <rect key="frame" x="16" y="393.5" width="316" height="238"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="238" id="58f-kO-5de"/>
+                        <constraint firstAttribute="width" constant="316" id="brq-iF-h48"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Mff-k4-oAb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0d0-SR-rKq"/>
                 <constraint firstItem="Hss-sc-r3F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6MB-is-TjE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="72k-jB-Lh8" secondAttribute="trailing" id="9YM-LF-xdk"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Mff-k4-oAb" secondAttribute="bottom" constant="35.5" id="LsJ-RJ-VWc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hss-sc-r3F" secondAttribute="trailing" id="NOh-ar-5c6"/>
                 <constraint firstItem="72k-jB-Lh8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Q9z-uC-cDU"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Hss-sc-r3F" secondAttribute="bottom" id="XZD-Di-WmM"/>
+                <constraint firstAttribute="bottom" secondItem="Hss-sc-r3F" secondAttribute="bottom" id="XZD-Di-WmM"/>
                 <constraint firstAttribute="bottom" secondItem="72k-jB-Lh8" secondAttribute="bottom" id="h76-Vv-9he"/>
                 <constraint firstItem="72k-jB-Lh8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yCm-C5-oCA"/>
             </constraints>

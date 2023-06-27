@@ -5,20 +5,31 @@
 //  Created by Soft Liampisan on 20/6/2566 BE.
 //
 
+import SDWebImage
 import Foundation
 import UIKit
+
+protocol VideoInfoViewModelDelegate: AnyObject {
+    func updateHeight(height: CGFloat)
+}
 
 class VideoInfoView: InitializeXibView {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var imageViewProfilePic: UIImageView!
-    @IBOutlet weak var labelProfileName: UIView!
+    @IBOutlet weak var labelProfileName: UILabel!
     @IBOutlet weak var labelPostTime: UILabel!
-    @IBOutlet weak var textViewInfo: CustomTextView!
-    @IBOutlet weak var viewHashtag: UIView!
+    @IBOutlet weak var viewHashtag: SocialPostHashTagView!
+    @IBOutlet weak var labelInfo: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    private var storedText: String = ""
+    private let numLinesCollapsed = 2
+    private var originalString: String!
+    private var isExpanded = false
+    private var labelPaddingTop = 8
+    weak var delegate: VideoInfoViewModelDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,59 +44,20 @@ class VideoInfoView: InitializeXibView {
     private func setupView() {
         setupContainerView()
         setupStackView()
-//        textViewInfo.delegate = self
-//        textViewInfo.isSelectable = true
-//        textViewInfo.isEditable = false
-//        textViewInfo.layoutIfNeeded()
-//        textViewInfo.translatesAutoresizingMaskIntoConstraints = true
-//        textViewInfo.sizeToFit()
-//        setPublicPrivateAttribute()
-        //textViewInfo = CustomTextView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-        let text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proid"
-        textViewInfo.setAttributedTextWithTruncation(text)
-    }
-
-
-    func setPublicPrivateAttribute() {
-        let mainThemeColorAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
-        let attributedMessage = NSMutableAttributedString()
-        let publicImageAttachment = NSTextAttachment()
-        let publicImage = UIImage(systemName: "globe.europe.africa.fill")?.withTintColor(.white)
-
-        publicImageAttachment.bounds = CGRect(x: 0, y: -4, width: 14, height: 14)
-        publicImageAttachment.image = publicImage
-
-        let publicImageAttributedMessage = NSAttributedString(attachment: publicImageAttachment)
-
-        let moreText = " more"
-        
-        if let fullText = textViewInfo.text {
-            let truncationResult = fullText.truncate(to: 94) // Truncate by characters
-            let trailing: String = "..."
-            let truncatedText = truncationResult.truncated
-            let remainingText = truncationResult.remaining
-
-            let text = NSMutableAttributedString(string: truncatedText + trailing, attributes: mainThemeColorAttributes)
-            let moreRange = NSRange(location: truncatedText.count, length: moreText.count)
-            let moreLink = NSAttributedString(string: moreText, attributes: [.link: URL(string: "more://")!])
-            text.append(moreLink)
-
-            attributedMessage.append(publicImageAttributedMessage)
-            attributedMessage.append(text)
-
-            textViewInfo.attributedText = attributedMessage
-            print(textViewInfo.attributedText.string)
-            
-            let storedTextWithoutEllipsis = truncatedText + remainingText
-            self.storedText = storedTextWithoutEllipsis
-           
+        setLabelInfo()
+        DispatchQueue.main.async {
+            self.collapse()
         }
+
     }
-    
+
+
     private func setupContainerView() {
         containerView.layer.masksToBounds = true
         self.addSubview(containerView)
-        containerView.addSubview(textViewInfo)
+        scrollView.contentOffset = .zero
+        containerView.addSubview(scrollView)
+        scrollView.addSubview(labelInfo)
         containerView.addSubview(viewHashtag)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor),
@@ -108,35 +80,82 @@ class VideoInfoView: InitializeXibView {
         imageViewProfilePic.layer.cornerRadius = imageViewProfilePic.frame.size.width / 2
         imageViewProfilePic.clipsToBounds = true
     }
-}
+    private func getHeightForString(str: String) -> CGFloat {
+        let labelWidth = labelInfo.frame.size.width
+        let labelFont = labelInfo.font
+        
+        let constraintRect = CGSize(width: labelWidth, height: .greatestFiniteMagnitude)
+        let boundingBox = str.boundingRect(with: constraintRect,
+                                           options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                           attributes: [NSAttributedString.Key.font: labelFont as Any],
+                                           context: nil)
+        return ceil(boundingBox.height)
+    }
+    
+    func config(profileImageURL: String,
+                profileName: String,
+                postTime: String,
+                caption: String?,
+                hashtag: [String]) {
+        self.imageViewProfilePic.sd_setImage(with: URL(string: profileImageURL))
+        self.labelProfileName.text = profileName
+        self.labelPostTime.text = postTime
+        self.labelInfo.text = caption
+        self.viewHashtag.setData(hashtags: hashtag)
+    
+    }
+    
+    func setLabelInfo() {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(systemName: "globe.europe.africa.fill")?.withTintColor(.white)
+        imageAttachment.bounds = CGRect(x: 0, y: -4, width: 14, height: 14)
 
-extension VideoInfoView: UITextViewDelegate {
+        let attributedString = NSMutableAttributedString(string: "")
+        let imageString = NSAttributedString(attachment: imageAttachment)
+        attributedString.append(imageString)
+
+        guard let labelText = labelInfo.text else { return }
+        let textString = NSAttributedString(string: " " + labelText)
+        attributedString.append(textString)
+
+        labelInfo.attributedText = attributedString
+    }
     
-//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-//        if URL.scheme == "more" {
-//            print("more is pressed")
-//            textViewInfo.text = storedText
-//
-//            return false
-//        }
-//        else {
-//            return true
-//        }
-//    }
-}
-extension String {
-    
-//    func attributed(using font: UIFont) -> NSAttributedString {
-//        return NSAttributedString(string: self, attributes: [.font: font])
-//    }
-    func truncate(to length: Int, trailing: String = "...") -> (truncated: String, remaining: String) {
-               guard self.count > length else {
-                   return (self, "")
-               }
-               let index = self.index(self.startIndex, offsetBy: length)
-               let truncated = String(self[..<index])
-               let remaining = String(self[index...])
-               return (truncated, remaining)
+    func toggleLabelLines() {
+        if isExpanded {
+            collapse()
+        } else {
+            expand()
         }
-      
+        isExpanded.toggle()
+    }
+    
+    private func collapse() {
+        labelInfo.numberOfLines = numLinesCollapsed
+        updateContentSize()
+    }
+    
+    private func expand() {
+        labelInfo.numberOfLines = 0
+        updateContentSize()
+    }
+    
+    private func updateContentSize() {
+        labelInfo.sizeToFit()
+        let containerHeight = stackView.frame.height + labelPaddingTop + labelInfo.frame.height + viewHashtag.frame.height + moreButton.frame.height
+        containerView.frame = CGRect(x: containerView.frame.origin.x, y: containerView.frame.origin.y, width: containerView.frame.height, height: containerHeight)
+        containerView.layoutIfNeeded()
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: labelInfo.frame.height)
+        delegate?.updateHeight(height: containerView.frame.height)
+
+    }
+
+
+    @IBAction func moreButtonAction(_ sender: Any) {
+        toggleLabelLines()
+        let newButtonTitle = self.isExpanded ? "ย่อ" : "เพิ่มเติม"
+        moreButton.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
+        moreButton.setTitle(newButtonTitle, for: .normal)
+    }
+    
 }
