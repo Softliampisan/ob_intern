@@ -9,7 +9,7 @@ import SDWebImage
 import Foundation
 import UIKit
 
-protocol VideoInfoViewModelDelegate: AnyObject {
+protocol VideoInfoViewDelegate: AnyObject {
     func updateHeight(height: CGFloat)
 }
 
@@ -28,8 +28,8 @@ class VideoInfoView: InitializeXibView {
     private let numLinesCollapsed = 2
     private var originalString: String!
     private var isExpanded = false
-    private var labelPaddingTop = 8
-    weak var delegate: VideoInfoViewModelDelegate?
+    private var labelPaddingTop: CGFloat = 8
+    weak var delegate: VideoInfoViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -92,11 +92,13 @@ class VideoInfoView: InitializeXibView {
         return ceil(boundingBox.height)
     }
     
-    func config(profileImageURL: String,
+    func config(delegate: VideoInfoViewDelegate,
+                profileImageURL: String,
                 profileName: String,
                 postTime: String,
                 caption: String?,
                 hashtag: [String]) {
+        self.delegate = delegate
         self.imageViewProfilePic.sd_setImage(with: URL(string: profileImageURL))
         self.labelProfileName.text = profileName
         self.labelPostTime.text = postTime
@@ -142,7 +144,8 @@ class VideoInfoView: InitializeXibView {
     
     private func updateContentSize() {
         labelInfo.sizeToFit()
-        let containerHeight = stackView.frame.height + labelPaddingTop + labelInfo.frame.height + viewHashtag.frame.height + moreButton.frame.height
+        let stackAndPaddingHeight = stackView.frame.height + labelPaddingTop
+        let containerHeight = stackAndPaddingHeight + labelInfo.frame.height + viewHashtag.frame.height + moreButton.frame.height
         containerView.frame = CGRect(x: containerView.frame.origin.x, y: containerView.frame.origin.y, width: containerView.frame.height, height: containerHeight)
         containerView.layoutIfNeeded()
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: labelInfo.frame.height)

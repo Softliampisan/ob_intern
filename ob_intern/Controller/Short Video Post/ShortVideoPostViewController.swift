@@ -38,7 +38,6 @@ class ShortVideoPostViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         tableView.reloadData()
-        viewModel?.test()
     }
     
     
