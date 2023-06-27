@@ -1,32 +1,31 @@
 //
-//  ShortVideoPostViewModel.swift
+//  ShortVideoPlayerViewModel.swift
 //  ob_intern
 //
-//  Created by Soft Liampisan on 15/6/2566 BE.
+//  Created by Soft Liampisan on 20/6/2566 BE.
 //  Copyright (c) 2566 BE ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import Foundation
 
-protocol ShortVideoPostViewModelDelegate: AnyObject {
+protocol ShortVideoPlayerViewModelDelegate: AnyObject {
     func showError(error: Error)
     func showLoading()
     func hideLoading()
 }
 
-class ShortVideoPostViewModel {
+class ShortVideoPlayerViewModel {
     
     // MARK: - Properties
-    weak var delegate: ShortVideoPostViewModelDelegate?
+    weak var delegate: ShortVideoPlayerViewModelDelegate?
     
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: ShortVideoPostViewModelDelegate) {
+    init(delegate: ShortVideoPlayerViewModelDelegate) {
         self.delegate = delegate
     }
     
     // MARK: - Functions
-    
     
 }

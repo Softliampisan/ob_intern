@@ -5,6 +5,7 @@
 //  Created by Soft Liampisan on 15/6/2566 BE.
 //
 
+import SDWebImage
 import UIKit
 
 class ShortVideoPostTableViewCell: UITableViewCell {

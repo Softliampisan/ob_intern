@@ -40,6 +40,7 @@ class ShortVideoPostViewController: UIViewController {
         tableView.reloadData()
     }
     
+    
     //MARK: - Functions
     func setupView() {
         tableView.dataSource = self

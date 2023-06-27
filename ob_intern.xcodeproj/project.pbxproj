@@ -25,6 +25,11 @@
 		183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */; };
 		183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CC2A305AC700448624 /* ShortVideoList.swift */; };
 		183B27D02A3081E100448624 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CF2A3081E100448624 /* Collection.swift */; };
+		186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186DB2792A41489600027809 /* VideoInfoView.xib */; };
+		186DB27C2A4148D700027809 /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27B2A4148D700027809 /* VideoInfoView.swift */; };
+		186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */; };
+		186DB2822A41591B00027809 /* ShortVideoPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27F2A41591B00027809 /* ShortVideoPlayerViewModel.swift */; };
+		186DB2832A41591B00027809 /* ShortVideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186DB2802A41591B00027809 /* ShortVideoPlayerViewController.xib */; };
 		186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */; };
 		186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */; };
 		186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186E08ED2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift */; };
@@ -46,6 +51,13 @@
 		18C163B22A30332400188D98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C163B02A30332400188D98 /* Main.storyboard */; };
 		18C163B42A30332600188D98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C163B32A30332600188D98 /* Assets.xcassets */; };
 		18C163B72A30332600188D98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C163B52A30332600188D98 /* LaunchScreen.storyboard */; };
+		18C654212A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6541F2A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.swift */; };
+		18C654222A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C654202A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.xib */; };
+		18C654252A4ACB4B00E3171C /* SocialPostHashTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C654232A4ACB4B00E3171C /* SocialPostHashTagView.xib */; };
+		18C654262A4ACB4B00E3171C /* SocialPostHashTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C654242A4ACB4B00E3171C /* SocialPostHashTagView.swift */; };
+		18C654282A4AD26200E3171C /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C654272A4AD26200E3171C /* LeftAlignedFlowLayout.swift */; };
+		18C6542A2A4AD5F700E3171C /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C654292A4AD5F700E3171C /* UICollectionView+Extension.swift */; };
+		18C6542C2A4ADF8B00E3171C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6542B2A4ADF8B00E3171C /* DateExtension.swift */; };
 		30981B7D3DC2F27CEFEF6212 /* Pods_ob_intern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722B11459BDA426B454507F2 /* Pods_ob_intern.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +80,11 @@
 		183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListCollectionViewCell.xib; sourceTree = "<group>"; };
 		183B27CC2A305AC700448624 /* ShortVideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoList.swift; sourceTree = "<group>"; };
 		183B27CF2A3081E100448624 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		186DB2792A41489600027809 /* VideoInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoInfoView.xib; sourceTree = "<group>"; };
+		186DB27B2A4148D700027809 /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
+		186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPlayerViewController.swift; sourceTree = "<group>"; };
+		186DB27F2A41591B00027809 /* ShortVideoPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPlayerViewModel.swift; sourceTree = "<group>"; };
+		186DB2802A41591B00027809 /* ShortVideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoPlayerViewController.xib; sourceTree = "<group>"; };
 		186E08E32A36C9D900FDDCB6 /* UploadVideoProgressbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadVideoProgressbar.xib; sourceTree = "<group>"; };
 		186E08E52A36CB5400FDDCB6 /* UploadVideoProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadVideoProgressbar.swift; sourceTree = "<group>"; };
 		186E08ED2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortVideoCoverCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +108,13 @@
 		18C163B32A30332600188D98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18C163B62A30332600188D98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18C163B82A30332600188D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C6541F2A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayHashTagCollectionViewCell.swift; path = "../../../../../../../Downloads/cell_hashtag 2/DisplayHashTagCollectionViewCell.swift"; sourceTree = "<group>"; };
+		18C654202A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DisplayHashTagCollectionViewCell.xib; path = "../../../../../../../Downloads/cell_hashtag 2/DisplayHashTagCollectionViewCell.xib"; sourceTree = "<group>"; };
+		18C654232A4ACB4B00E3171C /* SocialPostHashTagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SocialPostHashTagView.xib; path = ../../../../../../Downloads/hashtag_view/SocialPostHashTagView.xib; sourceTree = "<group>"; };
+		18C654242A4ACB4B00E3171C /* SocialPostHashTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocialPostHashTagView.swift; path = ../../../../../../Downloads/hashtag_view/SocialPostHashTagView.swift; sourceTree = "<group>"; };
+		18C654272A4AD26200E3171C /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
+		18C654292A4AD5F700E3171C /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		18C6542B2A4ADF8B00E3171C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		722B11459BDA426B454507F2 /* Pods_ob_intern.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ob_intern.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2891CAD7838F9872C169350 /* Pods-ob_intern.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ob_intern.debug.xcconfig"; path = "Target Support Files/Pods-ob_intern/Pods-ob_intern.debug.xcconfig"; sourceTree = "<group>"; };
 		E45927E6BAB06AA9A3A56770 /* Pods-ob_intern.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ob_intern.release.xcconfig"; path = "Target Support Files/Pods-ob_intern/Pods-ob_intern.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +167,7 @@
 		1833D7652A32ED24006C5BF7 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
+				186DB2782A41481100027809 /* Video Info */,
 				186E08E22A36C9C300FDDCB6 /* Progress Bar */,
 				1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */,
 			);
@@ -164,8 +189,31 @@
 				183B27CF2A3081E100448624 /* Collection.swift */,
 				1883C7FE2A399AFE00A3B168 /* InitializeXibView.swift */,
 				1883C8132A3B09A900A3B168 /* Gradient.swift */,
+				18C654272A4AD26200E3171C /* LeftAlignedFlowLayout.swift */,
+				18C654292A4AD5F700E3171C /* UICollectionView+Extension.swift */,
+				18C6542B2A4ADF8B00E3171C /* DateExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		186DB2782A41481100027809 /* Video Info */ = {
+			isa = PBXGroup;
+			children = (
+				186DB2792A41489600027809 /* VideoInfoView.xib */,
+				186DB27B2A4148D700027809 /* VideoInfoView.swift */,
+			);
+			path = "Video Info";
+			sourceTree = "<group>";
+		};
+		186DB27D2A4158DC00027809 /* Short Video Player */ = {
+			isa = PBXGroup;
+			children = (
+				18C654152A4ACA5E00E3171C /* Hashtag */,
+				186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */,
+				186DB27F2A41591B00027809 /* ShortVideoPlayerViewModel.swift */,
+				186DB2802A41591B00027809 /* ShortVideoPlayerViewController.xib */,
+			);
+			path = "Short Video Player";
 			sourceTree = "<group>";
 		};
 		186E08E22A36C9C300FDDCB6 /* Progress Bar */ = {
@@ -258,6 +306,7 @@
 		18C163BE2A30394D00188D98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				186DB27D2A4158DC00027809 /* Short Video Player */,
 				1883C8072A3B02F800A3B168 /* Short Video Post */,
 				18259C682A331B5C0000CCA1 /* Edit Short Video Cover */,
 				1808CA332A317D01009CA1EB /* Create Short Video */,
@@ -275,6 +324,25 @@
 				183B27C32A303D6400448624 /* ShortVideoListViewController.xib */,
 			);
 			path = "Short Video List";
+			sourceTree = "<group>";
+		};
+		18C654152A4ACA5E00E3171C /* Hashtag */ = {
+			isa = PBXGroup;
+			children = (
+				18C654242A4ACB4B00E3171C /* SocialPostHashTagView.swift */,
+				18C654232A4ACB4B00E3171C /* SocialPostHashTagView.xib */,
+				18C654162A4ACA6D00E3171C /* cell */,
+			);
+			path = Hashtag;
+			sourceTree = "<group>";
+		};
+		18C654162A4ACA6D00E3171C /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				18C6541F2A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.swift */,
+				18C654202A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		50B42A8B2DA1FF081A14875D /* Pods */ = {
@@ -359,14 +427,18 @@
 				1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */,
 				186E08F02A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib in Resources */,
 				1802574E2A4000740057E850 /* LikeCommentView.xib in Resources */,
+				186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */,
 				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				1883C80D2A3B031400A3B168 /* ShortVideoPostViewController.xib in Resources */,
+				18C654222A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.xib in Resources */,
 				1802574A2A3FF7750057E850 /* ProfileView.xib in Resources */,
 				18C163B22A30332400188D98 /* Main.storyboard in Resources */,
 				183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */,
 				18259C6E2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib in Resources */,
+				186DB2832A41591B00027809 /* ShortVideoPlayerViewController.xib in Resources */,
+				18C654252A4ACB4B00E3171C /* SocialPostHashTagView.xib in Resources */,
 				1883C7FB2A39816900A3B168 /* TestProgressBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,22 +492,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186DB27C2A4148D700027809 /* VideoInfoView.swift in Sources */,
+				18C6542C2A4ADF8B00E3171C /* DateExtension.swift in Sources */,
 				18C163AF2A30332400188D98 /* ViewController.swift in Sources */,
 				1802574C2A3FF7A90057E850 /* ProfileView.swift in Sources */,
 				1883C80B2A3B031400A3B168 /* ShortVideoPostViewController.swift in Sources */,
 				18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */,
 				18259C6D2A331B9C0000CCA1 /* EditShortVideoCoverModel.swift in Sources */,
+				186DB2822A41591B00027809 /* ShortVideoPlayerViewModel.swift in Sources */,
 				183B27C92A30418600448624 /* ShortVideoListCollectionViewCell.swift in Sources */,
 				18C163AD2A30332400188D98 /* SceneDelegate.swift in Sources */,
 				183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */,
 				1883C8142A3B09A900A3B168 /* Gradient.swift in Sources */,
+				18C654282A4AD26200E3171C /* LeftAlignedFlowLayout.swift in Sources */,
+				18C6542A2A4AD5F700E3171C /* UICollectionView+Extension.swift in Sources */,
 				183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */,
+				18C654212A4ACB2000E3171C /* DisplayHashTagCollectionViewCell.swift in Sources */,
 				183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */,
 				1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */,
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
+				18C654262A4ACB4B00E3171C /* SocialPostHashTagView.swift in Sources */,
 				1883C7FA2A39816900A3B168 /* TestProgressBarViewModel.swift in Sources */,
 				186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
+				186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */,
 				1883C8102A3B039400A3B168 /* ShortVideoPostTableViewCell.swift in Sources */,
 				1883C8062A39AC4C00A3B168 /* TabBarViewController.swift in Sources */,
 				180257502A40007D0057E850 /* LikeCommentView.swift in Sources */,
@@ -600,6 +680,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,6 +710,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
