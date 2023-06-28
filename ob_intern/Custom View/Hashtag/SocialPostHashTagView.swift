@@ -72,11 +72,6 @@ extension SocialPostHashTagView: UICollectionViewDataSource,
                                             UICollectionViewDelegate,
                                             UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let hashtag = hashtags.takeSafe(index: indexPath.row), !isGuest else { return }
-//        AppDirector.sharedInstance().displayUniversalSearch(text: hashtag)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hashtags.count
     }

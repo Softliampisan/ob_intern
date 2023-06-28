@@ -56,6 +56,8 @@ class ShortVideoListViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.delegate = self
         collectionView.dataSource = self
+        let nibName = String(describing: ShortVideoListCollectionViewCell.self)
+        collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
         collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
         refresher = UIRefreshControl()
         collectionView.alwaysBounceVertical = true
@@ -63,9 +65,8 @@ class ShortVideoListViewController: UIViewController {
         refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refresher)
         viewEmptyState.isHidden = true
-        setButtonImage(imageName: "chevron.left",
-                       iconColor: .black,
-                       button: buttonBack)
+        buttonBack.setButtonImage(imageName: "chevron.left",
+                                  iconColor: .black)
     }
     
     
@@ -79,19 +80,6 @@ class ShortVideoListViewController: UIViewController {
     
     func setCollectionViewEmptyState(){
         viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
-    }
-    
-    func setButtonImage(imageName: String? = nil,
-                        iconColor: UIColor,
-                        button: UIButton){
-        
-        if let imageName = imageName,
-           let image = UIImage(systemName: imageName) {
-            
-            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
-            button.setImage(colorImage, for: .normal)
-            
-        }
     }
     
     @objc func loadData() {

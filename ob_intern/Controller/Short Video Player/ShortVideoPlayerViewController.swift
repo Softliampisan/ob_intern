@@ -60,9 +60,8 @@ class ShortVideoPlayerViewController: UIViewController {
         setupVideoInfo()
         viewVideoInfo.backgroundColor = .clear
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        setButtonImage(imageName: "chevron.left",
-                       iconColor: .black,
-                       button: buttonBack)
+        buttonBack.setButtonImage(imageName: "chevron.left",
+                                  iconColor: .black)
     }
     
     func setupVideoInfo(){
@@ -88,19 +87,6 @@ class ShortVideoPlayerViewController: UIViewController {
         viewGradient.clipsToBounds = true
         viewGradient.layer.insertSublayer(gradient, at: 0)
         
-    }
-    
-    func setButtonImage(imageName: String? = nil,
-                        iconColor: UIColor,
-                        button: UIButton){
-        
-        if let imageName = imageName,
-           let image = UIImage(systemName: imageName) {
-            
-            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
-            button.setImage(colorImage, for: .normal)
-            
-        }
     }
     
     //MARK: - Action

@@ -32,6 +32,7 @@
 		1852BEE82A4C3470001C930C /* DisplayHashTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852BEE72A4C3470001C930C /* DisplayHashTagCollectionViewCell.swift */; };
 		1852BEEB2A4C34A5001C930C /* SocialPostHashTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852BEE92A4C34A5001C930C /* SocialPostHashTagView.swift */; };
 		1852BEEC2A4C34A5001C930C /* SocialPostHashTagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852BEEA2A4C34A5001C930C /* SocialPostHashTagView.xib */; };
+		1852BEF02A4C3F09001C930C /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852BEEF2A4C3F09001C930C /* ButtonExtension.swift */; };
 		186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186DB2792A41489600027809 /* VideoInfoView.xib */; };
 		186DB27C2A4148D700027809 /* VideoInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27B2A4148D700027809 /* VideoInfoView.swift */; };
 		186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */; };
@@ -90,6 +91,7 @@
 		1852BEE72A4C3470001C930C /* DisplayHashTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayHashTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		1852BEE92A4C34A5001C930C /* SocialPostHashTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialPostHashTagView.swift; sourceTree = "<group>"; };
 		1852BEEA2A4C34A5001C930C /* SocialPostHashTagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialPostHashTagView.xib; sourceTree = "<group>"; };
+		1852BEEF2A4C3F09001C930C /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		186DB2792A41489600027809 /* VideoInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoInfoView.xib; sourceTree = "<group>"; };
 		186DB27B2A4148D700027809 /* VideoInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoView.swift; sourceTree = "<group>"; };
 		186DB27E2A41591B00027809 /* ShortVideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPlayerViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				18C654292A4AD5F700E3171C /* UICollectionView+Extension.swift */,
 				18C6542B2A4ADF8B00E3171C /* DateExtension.swift */,
 				1852BEE32A4C2A3A001C930C /* RandomDate.swift */,
+				1852BEEF2A4C3F09001C930C /* ButtonExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
 				1852BEDF2A4C1685001C930C /* ShortVideoPost.swift in Sources */,
 				1883C7FA2A39816900A3B168 /* TestProgressBarViewModel.swift in Sources */,
+				1852BEF02A4C3F09001C930C /* ButtonExtension.swift in Sources */,
 				186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
 				186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */,

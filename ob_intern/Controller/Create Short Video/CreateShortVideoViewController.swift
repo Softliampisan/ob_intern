@@ -63,17 +63,19 @@ class CreateShortVideoViewController: UIViewController {
         textViewThoughts.delegate = self
         textViewThoughts.text = "Share your thoughts within 2000 characters"
         textViewThoughts.textColor = UIColor.lightGray
+        
         imageViewVideo.layer.cornerRadius = 16
         imageViewVideo.clipsToBounds = true
         imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
+        
         labelChooseFrontCover.layer.cornerRadius = 12
         labelChooseFrontCover.clipsToBounds = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        setButtonImage(imageName: "chevron.left",
-                       iconColor: .black,
-                       button: buttonBack)
+        buttonBack.setButtonImage(imageName: "chevron.left",
+                                  iconColor: .black)
+        buttonPost.layer.cornerRadius = 10
         buttonPost.setTitle("โพสต์", for: .normal)
-
+        buttonPost.setTitle("", for: .disabled)
         buttonPost.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -88,19 +90,19 @@ class CreateShortVideoViewController: UIViewController {
         if isLoading {
             spinner.startAnimating()
             buttonPost.isEnabled = false
-            buttonPost.setTitle(" ", for: .disabled)
+            buttonPost.backgroundColor = .systemGray4
         } else {
             spinner.stopAnimating()
             buttonPost.isEnabled = true
         }
     }
     
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+    @objc func handleTapDismiss(_ sender: UITapGestureRecognizer? = nil) {
         view.endEditing(true)
     }
     
     func dismissEditing() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTapDismiss(_:)))
         view.addGestureRecognizer(tap)
         view.isUserInteractionEnabled = true
     }
@@ -109,18 +111,6 @@ class CreateShortVideoViewController: UIViewController {
         label.text = switchView.isOn ? textSwitchOn : textSwitchOff
     }
     
-    func setButtonImage(imageName: String? = nil,
-                        iconColor: UIColor,
-                        button: UIButton){
-        
-        if let imageName = imageName,
-           let image = UIImage(systemName: imageName) {
-            
-            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
-            button.setImage(colorImage, for: .normal)
-            
-        }
-    }
     
 
     //MARK: - Action

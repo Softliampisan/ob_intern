@@ -44,23 +44,9 @@ class ShortVideoPostViewController: UIViewController {
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        setButtonImage(imageName: "chevron.left",
-                       iconColor: .black,
-                       button: buttonBack)
+        buttonBack.setButtonImage(imageName: "chevron.left",
+                                  iconColor: .black)
         
-    }
-    
-    func setButtonImage(imageName: String? = nil,
-                        iconColor: UIColor,
-                        button: UIButton){
-        
-        if let imageName = imageName,
-           let image = UIImage(systemName: imageName) {
-            
-            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
-            button.setImage(colorImage, for: .normal)
-            
-        }
     }
     
     //MARK: - Action
@@ -103,12 +89,11 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
                          caption: currentPost.caption,
                          postImageURL: currentPost.postImage,
                          hashtag: currentPost.hashtag,
-                         numLikes: currentPost.numLike,
-                         numComments: currentPost.numComment,
+                         numLikes: currentPost.numberOfLikes,
+                         numComments: currentPost.numberOfComments,
                          datePosted: currentPost.datePosted)
         }
         cell.layoutIfNeeded()
-        cell.selectionStyle = .none
         return cell
         
         

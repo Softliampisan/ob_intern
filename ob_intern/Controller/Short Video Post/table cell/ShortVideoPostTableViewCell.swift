@@ -29,6 +29,7 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         DispatchQueue.main.async {
             self.setViewProfileDesign()
         }
+        selectionStyle = .none
     }
     
     override func prepareForReuse() {

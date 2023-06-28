@@ -314,12 +314,10 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="HA1-1H-wuP"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="DEg-N9-waR"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1O-zI-f7O">
-                    <rect key="frame" x="21.333333333333343" y="841.66666666666663" width="385.33333333333326" height="34.333333333333371"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title=" ">
-                        <color key="baseBackgroundColor" red="1" green="0.20000000000000001" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </buttonConfiguration>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1O-zI-f7O">
+                    <rect key="frame" x="21.333333333333343" y="842" width="385.33333333333326" height="34"/>
+                    <color key="backgroundColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <connections>
                         <action selector="buttonPostAction:" destination="-1" eventType="touchUpInside" id="lFu-zW-0vc"/>
                     </connections>

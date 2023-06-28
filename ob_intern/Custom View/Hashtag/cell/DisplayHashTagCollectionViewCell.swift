@@ -27,12 +27,4 @@ class DisplayHashTagCollectionViewCell: UICollectionViewCell {
         
     }
 
-//    func setData(hashtag: String, isHighlight: Bool) {
-//        lblTitle.text = "#" + hashtag
-//        lblTitle.textColor = isHighlight ? .red : .lightGray
-//        hashtagView.layer.borderWidth = 1
-//        hashtagView.layer.cornerRadius = hashtagView.frame.height/2
-//        hashtagView.layer.borderColor = isHighlight ? UIColor.red.cgColor : UIColor.lightGray.cgColor
-//    }
-
 }

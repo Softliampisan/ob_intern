@@ -42,8 +42,8 @@ class ShortVideoPost {
     var hashtag: [String] = []
     var caption: String = ""
     var postImage: String = ""
-    var numLike: String = ""
-    var numComment: String = ""
+    var numberOfLikes: String = ""
+    var numberOfComments: String = ""
     var datePosted: String = ""
     
     init(user: User?,
@@ -57,8 +57,8 @@ class ShortVideoPost {
         self.hashtag = hashtag
         self.caption = caption
         self.postImage = postImage
-        self.numLike = numLike
-        self.numComment = numComment
+        self.numberOfLikes = numLike
+        self.numberOfComments = numComment
         self.datePosted = datedPosted
         
     }
@@ -75,8 +75,8 @@ class ShortVideoPost {
         post.hashtag = mockHashtag.randomElement() ?? []
         post.caption = mockCaption.randomElement() ?? ""
         post.postImage = mockImagePostUrls.randomElement() ?? ""
-        post.numLike = numFormat() ?? ""
-        post.numComment = numFormat() ?? ""
+        post.numberOfLikes = numFormat() ?? ""
+        post.numberOfComments = numFormat() ?? ""
         let ogDate = Date.randomBetween(start: mockDate1, end: mockDate2)
         post.datePosted = ogDate.timeAgo
         print("og date \(ogDate)")
