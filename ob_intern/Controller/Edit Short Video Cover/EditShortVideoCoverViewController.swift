@@ -103,7 +103,8 @@ class EditShortVideoCoverViewController: UIViewController {
     
     //MARK: - Action
     @IBAction func buttonCancelAction(_ sender: Any) {
-        self.dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc private func didPan(_ sender: UIPanGestureRecognizer) {

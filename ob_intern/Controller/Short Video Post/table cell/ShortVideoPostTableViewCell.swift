@@ -13,7 +13,7 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     @IBOutlet weak var imageViewPost: UIImageView!
     @IBOutlet weak var viewVDO: UIView!
     @IBOutlet weak var viewProfile: UIView!
-    @IBOutlet weak var viewHashtag: UIView!
+    @IBOutlet weak var viewHashtag: SocialPostHashTagView!
     @IBOutlet weak var viewLikeComment: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var labelCaption: UILabel!
@@ -24,9 +24,11 @@ class ShortVideoPostTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setViewProfileDesign()
         setProfile()
         setLikeComment()
+        DispatchQueue.main.async {
+            self.setViewProfileDesign()
+        }
     }
     
     override func prepareForReuse() {
@@ -53,16 +55,27 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         
     }
     
-    func setData(caption: String,
-                 imageURL: String,
-                 hashtag: Bool){
-        
-        labelCaption.text = caption
-        imageViewPost.sd_setImage(with: URL(string: imageURL))
-        viewHashtag.isHidden = !hashtag
+    func setData(profilePicURL: String,
+                 profileName: String,
+                 caption: String,
+                 postImageURL: String,
+                 hashtag: [String],
+                 numLikes: String,
+                 numComments: String,
+                 datePosted: String){
+        profileView?.imageViewProfilePic.sd_setImage(with: URL(string: profilePicURL))
+        profileView?.labelProfileName.text = profileName
+        profileView?.labelPostTime.text = datePosted
+        imageViewPost.sd_setImage(with: URL(string: postImageURL))
+        viewHashtag.setData(hashtags: hashtag)
+        viewHashtag.isHidden = hashtag.isEmpty
         viewHashtag.layoutIfNeeded()
+        labelCaption.text = caption
         labelCaption.sizeToFit()
         labelCaption.isHidden = caption.isEmpty
+        likeCommentView?.labelNumLikes.text = numLikes
+        likeCommentView?.labelNumComments.text = numComments
+
     }
     
     func setProfile() {

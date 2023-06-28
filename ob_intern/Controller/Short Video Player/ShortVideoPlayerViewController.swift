@@ -26,6 +26,7 @@ class ShortVideoPlayerViewController: UIViewController {
     @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var viewVideoInfoHeight: NSLayoutConstraint!
     @IBOutlet weak var viewGradientHeight: NSLayoutConstraint!
+    @IBOutlet weak var buttonBack: UIButton!
     
     //MARK: - Parameters
     private var viewModel: ShortVideoPlayerViewModel?
@@ -58,7 +59,10 @@ class ShortVideoPlayerViewController: UIViewController {
     func setupView() {
         setupVideoInfo()
         viewVideoInfo.backgroundColor = .clear
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setButtonImage(imageName: "chevron.left",
+                       iconColor: .black,
+                       button: buttonBack)
     }
     
     func setupVideoInfo(){
@@ -84,6 +88,25 @@ class ShortVideoPlayerViewController: UIViewController {
         viewGradient.clipsToBounds = true
         viewGradient.layer.insertSublayer(gradient, at: 0)
         
+    }
+    
+    func setButtonImage(imageName: String? = nil,
+                        iconColor: UIColor,
+                        button: UIButton){
+        
+        if let imageName = imageName,
+           let image = UIImage(systemName: imageName) {
+            
+            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
+            button.setImage(colorImage, for: .normal)
+            
+        }
+    }
+    
+    //MARK: - Action
+    @IBAction func buttonBackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+
     }
     
    

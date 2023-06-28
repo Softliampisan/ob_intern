@@ -14,21 +14,28 @@ let mockImageUrls: [String] = ["https://images.unsplash.com/photo-1609171712489-
 
 var previousNumber: UInt32? // used in randomNumber()
 
-func randomNumber() -> UInt32 {
-    var randomNumber = arc4random_uniform(1000)
+func randomNumber() -> UInt32? {
+    var randomNumber = arc4random_uniform(1000000)
     while previousNumber == randomNumber {
-        randomNumber = arc4random_uniform(1000)
+        randomNumber = arc4random_uniform(1000000)
     }
     previousNumber = randomNumber
     return randomNumber
 }
 
+func numberFormat() -> String? {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    let formattedNumber = numberFormatter.string(from: NSNumber(value: Int(randomNumber() ?? 0)))
+    return formattedNumber
+}
+
 class ShortVideoList {
     
-    var numViews: Int = 0
+    var numViews: String = "0"
     var videoImage: String = ""
     
-    init(numViews: Int,
+    init(numViews: String,
          videoImage: String) {
         self.numViews = numViews
         self.videoImage = videoImage
@@ -43,7 +50,7 @@ class ShortVideoList {
         
         let video = ShortVideoList.init()
         
-        video.numViews = Int(randomNumber())
+        video.numViews = numberFormat() ?? "0"
         video.videoImage = mockImageUrls.randomElement() ?? ""
         
         return video

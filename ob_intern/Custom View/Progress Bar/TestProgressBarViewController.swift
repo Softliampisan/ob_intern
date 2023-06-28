@@ -39,7 +39,6 @@ class TestProgressBarViewController: UIViewController {
     //MARK: - Functions
     func setupView() {
         progressBar = UploadVideoProgressbar(frame: .init(x: 8, y: 70, width: self.view.bounds.width, height: 56))
-        print("containerview \(progressBar.containerView.bounds.width)")
         progressBar.layoutIfNeeded()
         self.view.addSubview(progressBar)
         progressBar.state = .loading

@@ -22,16 +22,10 @@ class ShortVideoPostViewController: UIViewController {
     
     //MARK: - IBOutlet
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var buttonBack: UIButton!
     
     //MARK: - Parameters
     private var viewModel: ShortVideoPostViewModel?
-    var caption: [String] = ["Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo doloreeeeeeeeeeeeeeeee…", "ajdnklanfk kajndskcnkadsnc kjandckjandkjc nakjdcnkajndc naksdjcna  ncaskdjcna", ""]
-    var mockImageUrls: [String] = ["https://images3.alphacoders.com/110/1108129.jpg",
-                                   "https://wallpaperaccess.com/full/6193236.jpg",
-                                   "https://imgix.bustle.com/uploads/image/2022/2/11/c277a32f-c52c-4d7a-98ea-1a0bbec3cf2d-baby-yoda-use-the-force.jpg?w=1200&h=630&fit=crop&crop=focalpoint&fm=jpg&fp-x=0.4813&fp-y=0.3059",
-                                   "https://i.pinimg.com/originals/4e/52/2d/4e522df5de3a6903cf2272572eb471aa.jpg"]
-    var hashtag: [Bool] = [true, false, true]
-    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -49,10 +43,31 @@ class ShortVideoPostViewController: UIViewController {
         tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
-
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setButtonImage(imageName: "chevron.left",
+                       iconColor: .black,
+                       button: buttonBack)
+        
+    }
+    
+    func setButtonImage(imageName: String? = nil,
+                        iconColor: UIColor,
+                        button: UIButton){
+        
+        if let imageName = imageName,
+           let image = UIImage(systemName: imageName) {
+            
+            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
+            button.setImage(colorImage, for: .normal)
+            
+        }
     }
     
     //MARK: - Action
+    @IBAction func buttonBackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+
+    }
     
 }
 
@@ -74,17 +89,28 @@ extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
 
 extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return caption.count
+        return viewModel?.currentList.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ShortVideoPostTableViewCell.self)) as? ShortVideoPostTableViewCell else {
             return UITableViewCell()
         }
-        
-        cell.setData(caption: caption[indexPath.row], imageURL: mockImageUrls[indexPath.row], hashtag: hashtag[indexPath.row])
+    
+        if let currentPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
+            cell.setData(profilePicURL: currentPost.user?.profilePic ?? "",
+                         profileName: currentPost.user?.profileName ?? "",
+                         caption: currentPost.caption,
+                         postImageURL: currentPost.postImage,
+                         hashtag: currentPost.hashtag,
+                         numLikes: currentPost.numLike,
+                         numComments: currentPost.numComment,
+                         datePosted: currentPost.datePosted)
+        }
         cell.layoutIfNeeded()
+        cell.selectionStyle = .none
         return cell
+        
         
     }
     

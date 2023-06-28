@@ -32,14 +32,24 @@ class CreateShortVideoViewController: UIViewController {
     @IBOutlet weak var labelReceiveGifts: UILabel!
     @IBOutlet weak var labelChooseFrontCover: PaddingLabel!
     @IBOutlet weak var buttonChooseFrontCover: UIButton!
+    @IBOutlet weak var buttonBack: UIButton!
+    @IBOutlet weak var buttonPost: UIButton!
     @IBOutlet weak var switchAllowComments: UISwitch!
     @IBOutlet weak var switchStatus: UISwitch!
     @IBOutlet weak var switchReceiveGifts: UISwitch!
+    
     
     //MARK: - Parameters
     private var viewModel: CreateShortVideoViewModel?
     private let MAX_CHARACTERS = 2000
     private var PLACEHOLDER_TEXT_COLOR: UIColor = .lightGray
+    var spinner = UIActivityIndicatorView()
+    var isLoading = false {
+        didSet {
+            // whenever `isLoading` state is changed, update the view
+            updateLoadingIndicator()
+        }
+    }
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -55,24 +65,80 @@ class CreateShortVideoViewController: UIViewController {
         textViewThoughts.textColor = UIColor.lightGray
         imageViewVideo.layer.cornerRadius = 16
         imageViewVideo.clipsToBounds = true
-        imageViewVideo.sd_setImage(with: URL(string: "https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"))
+        imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
         labelChooseFrontCover.layer.cornerRadius = 12
         labelChooseFrontCover.clipsToBounds = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setButtonImage(imageName: "chevron.left",
+                       iconColor: .black,
+                       button: buttonBack)
+        buttonPost.setTitle("โพสต์", for: .normal)
 
+        buttonPost.addSubview(spinner)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            spinner.centerXAnchor.constraint(equalTo: buttonPost.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: buttonPost.centerYAnchor)
+        ])
+        dismissEditing()
      
+    }
+    
+    func updateLoadingIndicator() {
+        if isLoading {
+            spinner.startAnimating()
+            buttonPost.isEnabled = false
+            buttonPost.setTitle(" ", for: .disabled)
+        } else {
+            spinner.stopAnimating()
+            buttonPost.isEnabled = true
+        }
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        view.endEditing(true)
+    }
+    
+    func dismissEditing() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        view.addGestureRecognizer(tap)
+        view.isUserInteractionEnabled = true
     }
     
     private func setSwitchStatus(switchView: UISwitch, label: UILabel, textSwitchOn: String, textSwitchOff: String){
         label.text = switchView.isOn ? textSwitchOn : textSwitchOff
     }
     
+    func setButtonImage(imageName: String? = nil,
+                        iconColor: UIColor,
+                        button: UIButton){
+        
+        if let imageName = imageName,
+           let image = UIImage(systemName: imageName) {
+            
+            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
+            button.setImage(colorImage, for: .normal)
+            
+        }
+    }
+    
 
-    
     //MARK: - Action
-    
     @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
     }
+    
+    @IBAction func buttonBackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func buttonPostAction(_ sender: Any) {
+        self.isLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.navigationController?.popViewController(animated: true)
+            self.isLoading = false
+        }
+    }
+    
     
     @IBAction func switchAllowCommentsAction(_ sender: UISwitch) {
         self.setSwitchStatus(switchView: sender,

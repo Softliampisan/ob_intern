@@ -23,6 +23,7 @@ class ShortVideoListViewController: UIViewController {
     //MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewEmptyState: UIView!
+    @IBOutlet weak var buttonBack: UIButton!
     
     //MARK: - Parameters
     private var WIDTH_PER_ROW: CGFloat = 0
@@ -52,6 +53,7 @@ class ShortVideoListViewController: UIViewController {
     
     //MARK: - Functions
     func setupView() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
@@ -61,6 +63,9 @@ class ShortVideoListViewController: UIViewController {
         refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refresher)
         viewEmptyState.isHidden = true
+        setButtonImage(imageName: "chevron.left",
+                       iconColor: .black,
+                       button: buttonBack)
     }
     
     
@@ -76,6 +81,19 @@ class ShortVideoListViewController: UIViewController {
         viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
     
+    func setButtonImage(imageName: String? = nil,
+                        iconColor: UIColor,
+                        button: UIButton){
+        
+        if let imageName = imageName,
+           let image = UIImage(systemName: imageName) {
+            
+            let colorImage = image.withTintColor(iconColor, renderingMode: .alwaysOriginal)
+            button.setImage(colorImage, for: .normal)
+            
+        }
+    }
+    
     @objc func loadData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.viewModel?.updateData()
@@ -85,6 +103,10 @@ class ShortVideoListViewController: UIViewController {
     }
     
     //MARK: - Action
+    @IBAction func buttonBackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+
+    }
     
 }
 
