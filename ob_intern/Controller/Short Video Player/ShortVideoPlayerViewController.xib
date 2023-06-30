@@ -48,9 +48,18 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hss-sc-r3F">
                     <rect key="frame" x="0.0" y="429" width="375" height="238"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="0hv-Zo-gbN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="0hv-Zo-gbN" firstAttribute="leading" secondItem="Hss-sc-r3F" secondAttribute="leading" id="Cgm-8R-3jg"/>
                         <constraint firstAttribute="height" constant="238" id="T9F-TQ-2fi"/>
+                        <constraint firstAttribute="trailing" secondItem="0hv-Zo-gbN" secondAttribute="trailing" id="gr3-I8-ozZ"/>
+                        <constraint firstAttribute="bottom" secondItem="0hv-Zo-gbN" secondAttribute="bottom" id="myQ-8j-WDl"/>
+                        <constraint firstItem="0hv-Zo-gbN" firstAttribute="top" secondItem="Hss-sc-r3F" secondAttribute="top" id="wbt-IM-zn6"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-k4-oAb">
@@ -78,10 +87,11 @@
                 <constraint firstItem="72k-jB-Lh8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yCm-C5-oCA"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z9q-qx-fXJ" secondAttribute="trailing" id="zyI-bC-0f0"/>
             </constraints>
-            <point key="canvasLocation" x="73" y="19"/>
+            <point key="canvasLocation" x="72.799999999999997" y="18.440779610194905"/>
         </view>
     </objects>
     <resources>
+        <image name="gradient_bottom" width="414" height="380.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

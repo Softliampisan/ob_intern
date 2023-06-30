@@ -40,10 +40,11 @@ class SocialPostHashTagView: InitializeXibView {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cell: DisplayHashTagCollectionViewCell.self)
-
+        collectionView.reloadData()
         
         let layout = LeftAlignedFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         
     }
@@ -81,7 +82,6 @@ extension SocialPostHashTagView: UICollectionViewDataSource,
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisplayHashTagCollectionViewCell", for: indexPath) as? DisplayHashTagCollectionViewCell else { return UICollectionViewCell() }
         
         cell.setData(hashtag: hashtags[indexPath.row])
-            
         return cell
     }
     
@@ -92,9 +92,9 @@ extension SocialPostHashTagView: UICollectionViewDataSource,
             label.font = UIFont.systemFont(ofSize: 14)
             label.text = hashtags
         }
-        label.sizeToFit()
         
-        return CGSize(width: label.frame.width + 20, height: 26)
+        label.sizeToFit()
+        return CGSize(width: label.frame.width + 30, height: 26)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

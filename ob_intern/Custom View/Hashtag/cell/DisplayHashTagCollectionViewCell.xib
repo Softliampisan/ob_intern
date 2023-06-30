@@ -31,6 +31,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qS1-Qx-2TH" firstAttribute="leading" secondItem="M6f-nn-Cav" secondAttribute="leading" constant="10" id="36U-eb-iBM"/>
+                            <constraint firstAttribute="width" constant="111" id="6kq-xs-yQv"/>
                             <constraint firstItem="qS1-Qx-2TH" firstAttribute="centerY" secondItem="M6f-nn-Cav" secondAttribute="centerY" id="PcW-ng-zO6"/>
                             <constraint firstAttribute="height" constant="26" id="aTS-nd-Wee"/>
                             <constraint firstAttribute="trailing" secondItem="qS1-Qx-2TH" secondAttribute="trailing" constant="10" id="gXI-MN-cyk"/>

@@ -11,6 +11,7 @@ import UIKit
 class ProfileView: InitializeXibView {
     
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var imageViewGradient: UIImageView!
     @IBOutlet weak var imageViewProfilePic: UIImageView!
     @IBOutlet weak var labelProfileName: UILabel!
     @IBOutlet weak var labelPostTime: UILabel!
@@ -32,6 +33,7 @@ class ProfileView: InitializeXibView {
     private func setupContainerView() {
         containerView.layer.masksToBounds = true
         self.addSubview(containerView)
+        containerView.addSubview(imageViewGradient)
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor),
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),

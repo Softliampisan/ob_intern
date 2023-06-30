@@ -68,13 +68,6 @@
                                 <constraint firstAttribute="height" constant="30" id="Hvb-SJ-4JR"/>
                             </constraints>
                         </stackView>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uat-qU-jYX" customClass="SocialPostHashTagView" customModule="ob_intern" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="121.33333333333334" width="480" height="30"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="uno-xZ-BQv"/>
-                            </constraints>
-                        </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRY-mZ-4Yo">
                             <rect key="frame" x="0.0" y="32" width="480" height="58"/>
                             <subviews>
@@ -104,6 +97,10 @@
                                 <action selector="moreButtonAction:" destination="-1" eventType="touchUpInside" id="4xc-RV-ZTb"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uat-qU-jYX" customClass="SocialPostHashTagView" customModule="ob_intern" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="121" width="480" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

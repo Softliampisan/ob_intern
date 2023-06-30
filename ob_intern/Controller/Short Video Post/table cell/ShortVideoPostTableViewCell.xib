@@ -20,18 +20,9 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbB-oy-SMX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DzC-5y-TRd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="DzC-5y-TRd" secondAttribute="bottom" id="Pav-b9-IBN"/>
-                            <constraint firstAttribute="trailing" secondItem="DzC-5y-TRd" secondAttribute="trailing" id="RRM-qu-Qdr"/>
                             <constraint firstAttribute="width" secondItem="pbB-oy-SMX" secondAttribute="height" multiplier="414:552" id="Xrg-XQ-SYI"/>
-                            <constraint firstItem="DzC-5y-TRd" firstAttribute="top" secondItem="pbB-oy-SMX" secondAttribute="top" id="zLX-F3-JV4"/>
-                            <constraint firstItem="DzC-5y-TRd" firstAttribute="leading" secondItem="pbB-oy-SMX" secondAttribute="leading" id="zho-Ud-7aJ"/>
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utt-1Z-21b">
@@ -101,7 +92,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imageViewPost" destination="DzC-5y-TRd" id="hbh-5E-ygC"/>
                 <outlet property="labelCaption" destination="oN6-o9-T9p" id="fYf-rp-7Xg"/>
                 <outlet property="stackView" destination="utt-1Z-21b" id="Y2k-H7-YeN"/>
                 <outlet property="viewHashtag" destination="ZEt-Yz-H09" id="DSK-p8-08C"/>
@@ -115,6 +105,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

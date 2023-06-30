@@ -6,6 +6,7 @@
 //  Copyright (c) 2566 BE ___ORGANIZATIONNAME___. All rights reserved.
 
 import UIKit
+import AVFoundation
 
 class ShortVideoPostViewController: UIViewController {
 
@@ -31,6 +32,7 @@ class ShortVideoPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.viewModel?.getVideoPost()
         tableView.reloadData()
     }
     
@@ -58,6 +60,10 @@ class ShortVideoPostViewController: UIViewController {
 }
 
 extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
+    func updateData() {
+        tableView.reloadData()
+    }
+    
     
     func showError(error: Error) {
         
@@ -86,12 +92,13 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
         if let currentPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
             cell.setData(profilePicURL: currentPost.user?.profilePic ?? "",
                          profileName: currentPost.user?.profileName ?? "",
-                         caption: currentPost.caption,
-                         postImageURL: currentPost.postImage,
+                         caption: currentPost.media?.caption ?? "",
+                         postImageURL: currentPost.media?.coverImage ?? "",
+                         videoURL: currentPost.media?.video ?? "",
                          hashtag: currentPost.hashtag,
                          numLikes: currentPost.numberOfLikes,
                          numComments: currentPost.numberOfComments,
-                         datePosted: currentPost.datePosted)
+                         datePosted: currentPost.media?.datePosted ?? "")
         }
         cell.layoutIfNeeded()
         return cell
