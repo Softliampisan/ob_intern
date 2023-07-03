@@ -55,6 +55,7 @@ class CreateShortVideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        self.setData()
         
     }
     
@@ -66,13 +67,10 @@ class CreateShortVideoViewController: UIViewController {
         
         imageViewVideo.layer.cornerRadius = 16
         imageViewVideo.clipsToBounds = true
-        imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
         
         labelChooseFrontCover.layer.cornerRadius = 12
         labelChooseFrontCover.clipsToBounds = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        buttonBack.setButtonImage(imageName: "chevron.left",
-                                  iconColor: .black)
         buttonPost.layer.cornerRadius = 10
         buttonPost.setTitle("โพสต์", for: .normal)
         buttonPost.setTitle("", for: .disabled)
@@ -84,6 +82,10 @@ class CreateShortVideoViewController: UIViewController {
         ])
         dismissEditing()
      
+    }
+    
+    func setData() {
+        imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
     }
     
     func updateLoadingIndicator() {

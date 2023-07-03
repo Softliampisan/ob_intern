@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 let mockImageUrls: [String] = ["https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
     "https://plus.unsplash.com/premium_photo-1679599983488-4968d587e00b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60", "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
@@ -32,15 +33,22 @@ func numberFormat() -> String? {
 
 class ShortVideoList {
     
-    var numViews: String = "0"
+    var numberOfViews: String = "0"
+    var media: MediaModel?
     var videoImage: String = ""
     
-    init(numViews: String,
-         videoImage: String) {
-        self.numViews = numViews
-        self.videoImage = videoImage
+    init(numberOfViews: String,
+         media: MediaModel) {
+        self.numberOfViews = numberOfViews
+        self.media = MediaModel.mock()
         
     }
+    init(json: JSON) {
+        self.media = MediaModel.init(json: json["media"])
+        self.numberOfViews = numFormat(num: json["view"].stringValue) ?? ""
+        
+    }
+    
     init() {
     
     }
@@ -50,7 +58,7 @@ class ShortVideoList {
         
         let video = ShortVideoList.init()
         
-        video.numViews = numberFormat() ?? "0"
+        video.numberOfViews = numberFormat() ?? "0"
         video.videoImage = mockImageUrls.randomElement() ?? ""
         
         return video

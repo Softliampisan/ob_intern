@@ -34,9 +34,7 @@ class ShortVideoPostViewModel {
     func getVideoPost() {
         ShortVDOService().getShortVDOPost { [weak self] videoPosts in
             guard let self = self else { return}
-            print("video post \(videoPosts)")
             currentList = videoPosts
-            print("current list \(currentList)")
             guard let delegate = delegate else { return }
             delegate.updateData()
         } errorHandler: { error in
