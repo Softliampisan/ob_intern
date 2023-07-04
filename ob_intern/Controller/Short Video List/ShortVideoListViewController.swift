@@ -23,6 +23,7 @@ class ShortVideoListViewController: UIViewController {
     //MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewEmptyState: UIView!
+    @IBOutlet weak var buttonBack: UIButton!
     
     //MARK: - Parameters
     private var WIDTH_PER_ROW: CGFloat = 0
@@ -52,8 +53,11 @@ class ShortVideoListViewController: UIViewController {
     
     //MARK: - Functions
     func setupView() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.delegate = self
         collectionView.dataSource = self
+        let nibName = String(describing: ShortVideoListCollectionViewCell.self)
+        collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
         collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
         refresher = UIRefreshControl()
         collectionView.alwaysBounceVertical = true
@@ -61,6 +65,8 @@ class ShortVideoListViewController: UIViewController {
         refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refresher)
         viewEmptyState.isHidden = true
+        buttonBack.setButtonImage(imageName: "chevron.left",
+                                  iconColor: .black)
     }
     
     
@@ -85,6 +91,10 @@ class ShortVideoListViewController: UIViewController {
     }
     
     //MARK: - Action
+    @IBAction func buttonBackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+
+    }
     
 }
 

@@ -7,37 +7,36 @@
 
 import SDWebImage
 import UIKit
+import AVFoundation
+import AVKit
 
 class ShortVideoPostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imageViewPost: UIImageView!
     @IBOutlet weak var viewVDO: UIView!
     @IBOutlet weak var viewProfile: UIView!
-    @IBOutlet weak var viewHashtag: UIView!
+    @IBOutlet weak var viewHashtag: SocialPostHashTagView!
     @IBOutlet weak var viewLikeComment: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var labelCaption: UILabel!
 
-    let gradient: CAGradientLayer = CAGradientLayer()
     var profileView: ProfileView?
     var likeCommentView: LikeCommentView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setViewProfileDesign()
         setProfile()
-        setLikeComment()
+        setLikeComment()        
+        selectionStyle = .none
+        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageViewPost.image = nil 
-        removeGradientBackground()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradient.frame = viewProfile.bounds //if this is removed, the gradient doesn't fill the view
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,24 +44,39 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setViewProfileDesign() {
-        let colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor]
-        gradient.frame = viewProfile.bounds
-        gradient.colors = colors
-        viewProfile.layer.insertSublayer(gradient, at: 0)
-        
-    }
     
-    func setData(caption: String,
-                 imageURL: String,
-                 hashtag: Bool){
+    func setData(profilePicURL: String,
+                 profileName: String,
+                 caption: String,
+                 postImageURL: String,
+                 videoURL: String,
+                 hashtag: [String],
+                 numLikes: String,
+                 numComments: String,
+                 datePosted: String){
+        profileView?.imageViewProfilePic.sd_setImage(with: URL(string: profilePicURL))
+        profileView?.labelProfileName.text = profileName
+        profileView?.labelPostTime.text = datePosted
+        //imageViewPost.sd_setImage(with: URL(string: postImageURL))
         
-        labelCaption.text = caption
-        imageViewPost.sd_setImage(with: URL(string: imageURL))
-        viewHashtag.isHidden = !hashtag
+        let videoURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+        let player = AVPlayer(url: videoURL!)
+        print("vid url \(videoURL)")
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = viewVDO.bounds
+        viewVDO.layer.addSublayer(playerLayer)
+        player.play()
+      
+        
+        viewHashtag.setData(hashtags: hashtag)
+        viewHashtag.isHidden = hashtag.isEmpty
         viewHashtag.layoutIfNeeded()
+        labelCaption.text = caption
         labelCaption.sizeToFit()
         labelCaption.isHidden = caption.isEmpty
+        likeCommentView?.labelNumLikes.text = numLikes
+        likeCommentView?.labelNumComments.text = numComments
+
     }
     
     func setProfile() {

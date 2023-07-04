@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     
@@ -41,12 +41,14 @@ class ViewController: UIViewController {
     @IBAction func buttonToPost(_ sender: Any) {
         let controller = ShortVideoPostViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
+       
     }
     
     
     @IBAction func buttonToVideoPlayer(_ sender: Any) {
         let controller = ShortVideoPlayerViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
+        
     }
     
     

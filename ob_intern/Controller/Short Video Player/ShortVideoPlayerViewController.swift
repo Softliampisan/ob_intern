@@ -26,12 +26,12 @@ class ShortVideoPlayerViewController: UIViewController {
     @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var viewVideoInfoHeight: NSLayoutConstraint!
     @IBOutlet weak var viewGradientHeight: NSLayoutConstraint!
+    @IBOutlet weak var buttonBack: UIButton!
     
     //MARK: - Parameters
     private var viewModel: ShortVideoPlayerViewModel?
     private var videoInfoDelegate: VideoInfoViewDelegate?
     var videoInfoView: VideoInfoView?
-    private let gradient: CAGradientLayer = CAGradientLayer()
     let mockImageUrls: [String] = ["https://images3.alphacoders.com/110/1108129.jpg",
                                    "https://wallpaperaccess.com/full/6193236.jpg",
                                    "https://imgix.bustle.com/uploads/image/2022/2/11/c277a32f-c52c-4d7a-98ea-1a0bbec3cf2d-baby-yoda-use-the-force.jpg?w=1200&h=630&fit=crop&crop=focalpoint&fm=jpg&fp-x=0.4813&fp-y=0.3059",
@@ -45,20 +45,15 @@ class ShortVideoPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setGradient()
-    }
-    override func viewWillLayoutSubviews() {
-
-        DispatchQueue.main.async {
-            self.gradient.frame = self.viewGradient.bounds
-        }
     }
     
     //MARK: - Functions
     func setupView() {
         setupVideoInfo()
         viewVideoInfo.backgroundColor = .clear
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        buttonBack.setButtonImage(imageName: "chevron.left",
+                                  iconColor: .black)
     }
     
     func setupVideoInfo(){
@@ -77,13 +72,11 @@ class ShortVideoPlayerViewController: UIViewController {
         }
     }
     
-    func setGradient() {
-        let colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.6).cgColor]
-        gradient.frame = viewGradient.bounds
-        gradient.colors = colors
-        viewGradient.clipsToBounds = true
-        viewGradient.layer.insertSublayer(gradient, at: 0)
-        
+    
+    //MARK: - Action
+    @IBAction func buttonBackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+
     }
     
    
