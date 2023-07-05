@@ -52,8 +52,6 @@ class ShortVideoPlayerViewController: UIViewController {
         setupVideoInfo()
         viewVideoInfo.backgroundColor = .clear
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        buttonBack.setButtonImage(imageName: "chevron.left",
-                                  iconColor: .black)
     }
     
     func setupVideoInfo(){

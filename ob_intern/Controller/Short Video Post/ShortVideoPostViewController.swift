@@ -33,7 +33,7 @@ class ShortVideoPostViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.viewModel?.getVideoPost()
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     
@@ -46,8 +46,6 @@ class ShortVideoPostViewController: UIViewController {
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        buttonBack.setButtonImage(imageName: "chevron.left",
-                                  iconColor: .black)
         
     }
     
@@ -96,8 +94,8 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
                          postImageURL: currentPost.media?.coverImage ?? "",
                          videoURL: currentPost.media?.video ?? "",
                          hashtag: currentPost.hashtag,
-                         numLikes: currentPost.numberOfLikes,
-                         numComments: currentPost.numberOfComments,
+                         numberOfLikes: currentPost.numberOfLikes,
+                         numberOfComments: currentPost.numberOfComments,
                          datePosted: currentPost.media?.datePosted ?? "")
         }
         cell.layoutIfNeeded()
@@ -109,6 +107,13 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
 
+        
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? ShortVideoPostTableViewCell, let player = cell.player {
+            player.play()
+        }
         
     }
     

@@ -18,11 +18,11 @@ let mockDate1 = Date.parse("2023-06-27")
 let mockDate2 = Date.parse("2023-06-28")
 
 func dateFormat(postTime: String) -> Date? {
-    let orgDate = postTime
+    let originalDate = postTime
     let dateFormatter = DateFormatter()
     dateFormatter.timeZone = TimeZone.current
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-    guard let date = dateFormatter.date(from: orgDate) else { return nil }
+    guard let date = dateFormatter.date(from: originalDate) else { return nil }
     return date
 }
 
@@ -62,8 +62,8 @@ class MediaModel {
         media.caption = mockCaption.randomElement() ?? ""
         media.coverImage = coverImageUrls.randomElement() ?? ""
         media.video = videoUrls.randomElement() ?? ""
-        let orgDate = Date.randomBetween(start: mockDate1, end: mockDate2)
-        media.datePosted = orgDate.timeAgo
+        let randomDate = Date.randomBetween(start: mockDate1, end: mockDate2)
+        media.datePosted = randomDate.timeAgo
         
         return media
         

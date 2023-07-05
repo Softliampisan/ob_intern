@@ -40,6 +40,7 @@ class ShortVideoListViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         calculateCollectionHeight()
+        self.viewModel?.getVideoList()
         collectionView.reloadData()
         
     }
@@ -58,15 +59,12 @@ class ShortVideoListViewController: UIViewController {
         collectionView.dataSource = self
         let nibName = String(describing: ShortVideoListCollectionViewCell.self)
         collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
-        collectionView.register(UINib(nibName: String(describing: ShortVideoListCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "ShortVideoListCollectionViewCell")
         refresher = UIRefreshControl()
         collectionView.alwaysBounceVertical = true
         refresher.tintColor = UIColor.red
         refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         collectionView.addSubview(refresher)
         viewEmptyState.isHidden = true
-        buttonBack.setButtonImage(imageName: "chevron.left",
-                                  iconColor: .black)
     }
     
     
@@ -99,9 +97,17 @@ class ShortVideoListViewController: UIViewController {
 }
 
 extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func updateData() {
+        collectionView.reloadData()
+    }
+    
     
     func showError(error: Error) {
-        
+
     }
     
     func showLoading() {
@@ -127,7 +133,8 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
         }
         
         if let currentVideo = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-            cell.setData(imageURL: currentVideo.videoImage, label: "\(currentVideo.numViews)")
+            cell.setData(imageURL: currentVideo.media?.coverImage ?? "",
+                         label: "\(currentVideo.numberOfViews)")
         }
         
         return cell

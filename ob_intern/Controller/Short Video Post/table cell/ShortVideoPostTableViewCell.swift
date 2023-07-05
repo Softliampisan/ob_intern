@@ -22,7 +22,8 @@ class ShortVideoPostTableViewCell: UITableViewCell {
 
     var profileView: ProfileView?
     var likeCommentView: LikeCommentView?
-
+    var player: AVPlayer?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setProfile()
@@ -51,21 +52,22 @@ class ShortVideoPostTableViewCell: UITableViewCell {
                  postImageURL: String,
                  videoURL: String,
                  hashtag: [String],
-                 numLikes: String,
-                 numComments: String,
+                 numberOfLikes: String,
+                 numberOfComments: String,
                  datePosted: String){
         profileView?.imageViewProfilePic.sd_setImage(with: URL(string: profilePicURL))
         profileView?.labelProfileName.text = profileName
         profileView?.labelPostTime.text = datePosted
         //imageViewPost.sd_setImage(with: URL(string: postImageURL))
         
-        let videoURL = URL(string: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
-        let player = AVPlayer(url: videoURL!)
+        let videoURL = URL(string: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4")
+        player = AVPlayer(url: videoURL!)
         print("vid url \(videoURL)")
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = viewVDO.bounds
+        playerLayer.backgroundColor = UIColor.red.cgColor
         viewVDO.layer.addSublayer(playerLayer)
-        player.play()
+        player?.play()
       
         
         viewHashtag.setData(hashtags: hashtag)
@@ -74,8 +76,8 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         labelCaption.text = caption
         labelCaption.sizeToFit()
         labelCaption.isHidden = caption.isEmpty
-        likeCommentView?.labelNumLikes.text = numLikes
-        likeCommentView?.labelNumComments.text = numComments
+        likeCommentView?.labelNumLikes.text = numberOfLikes
+        likeCommentView?.labelNumComments.text = numberOfComments
 
     }
     
