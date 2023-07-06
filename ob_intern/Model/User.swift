@@ -16,18 +16,22 @@ let mockProfileName: [String] = ["soft.liampisan", "pi p", "pi benz", "pi goft"]
 
 class User {
     
+    var userID: Int = 0
     var profileName: String = ""
     var profilePic: String = ""
   
     
-    init(profileName: String,
+    init(userID: Int,
+         profileName: String,
          profilePic: String) {
+        self.userID = userID
         self.profileName = profileName
         self.profilePic = profilePic
       
         
     }
     init(json: JSON) {
+        self.userID = json["id"].intValue
         self.profileName = json["profileName"].stringValue
         self.profilePic = json["profileImageUrl"].stringValue
     }

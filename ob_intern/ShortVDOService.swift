@@ -13,8 +13,8 @@ class ShortVDOService {
     
     func getShortVDOPost(completion: @escaping ( ([ShortVideoPost]) -> Void),
                          errorHandler: @escaping ( (Error) -> Void)){
-        let request = AF.request("https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoPost",
-                                 method: .get)
+        let link = "https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoList"
+        let request = AF.request(link, method: .get)
         request.responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -32,8 +32,8 @@ class ShortVDOService {
     
     func getShortVDOList(completion: @escaping ( ([ShortVideoList]) -> Void),
                          errorHandler: @escaping ( (Error) -> Void)){
-        let request = AF.request("https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoPost",
-                                 method: .get)
+        let link = "https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoList"
+        let request = AF.request(link, method: .get)
         request.responseJSON { response in
             switch response.result {
             case .success(let value):
@@ -48,5 +48,24 @@ class ShortVDOService {
             }
         }
     }
+    func getShortVDO(completion: @escaping ( ([ShortVideo]) -> Void),
+                         errorHandler: @escaping ( (Error) -> Void)){
+        let link = "https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoPost"
+        let request = AF.request(link, method: .get)
+        request.responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                
+                let value = JSON(value)
+                let data = value["data"]
+                let videoList = data.arrayValue.map ({ return ShortVideo.init(json: $0)})
+                print(videoList)
+                completion(videoList)
+            case .failure(let error):
+                errorHandler(error)
+            }
+        }
+    }
+    
 }
 

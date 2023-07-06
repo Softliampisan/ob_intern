@@ -11,45 +11,59 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="683" id="KGk-i7-Jjw" customClass="ShortVideoPostTableViewCell" customModule="ob_intern" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="683"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="779" id="KGk-i7-Jjw" customClass="ShortVideoPostTableViewCell" customModule="ob_intern" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="779"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="683"/>
+                <rect key="frame" x="0.0" y="0.0" width="372" height="779"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbB-oy-SMX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="496"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="pbB-oy-SMX" secondAttribute="height" multiplier="414:552" id="Xrg-XQ-SYI"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7sK-Ki-aX5">
+                        <rect key="frame" x="332" y="456" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="NZz-Qq-sdu"/>
+                            <constraint firstAttribute="height" constant="24" id="Rwl-li-ia9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="speaker.wave.2" catalog="system"/>
+                        <connections>
+                            <action selector="buttonMuteAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8hE-KU-M6V"/>
+                        </connections>
+                    </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="utt-1Z-21b">
-                        <rect key="frame" x="16" y="500.00000000000006" width="343" height="135.66666666666669"/>
+                        <rect key="frame" x="16" y="496.00000000000006" width="340" height="235.66666666666669"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deI-jc-Qs1">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="16"/>
+                                <rect key="frame" x="0.0" y="0.0" width="340" height="16"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="yOQ-Sb-9PF"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN6-o9-T9p">
-                                <rect key="frame" x="0.0" y="15.999999999999996" width="343" height="62.666666666666657"/>
+                                <rect key="frame" x="0.0" y="16" width="340" height="162.66666666666666"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PiE-my-Aws">
-                                <rect key="frame" x="0.0" y="78.666666666666629" width="343" height="17"/>
+                                <rect key="frame" x="0.0" y="178.66666666666663" width="340" height="17"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="hvE-hp-hNn"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEt-Yz-H09" customClass="SocialPostHashTagView" customModule="ob_intern" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="95.666666666666629" width="343" height="40"/>
+                                <rect key="frame" x="0.0" y="195.66666666666663" width="340" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ZoU-9t-FvF"/>
@@ -58,14 +72,14 @@
                         </subviews>
                     </stackView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIr-kb-x2C">
-                        <rect key="frame" x="16" y="635.66666666666663" width="343" height="30"/>
+                        <rect key="frame" x="16" y="731.66666666666663" width="340" height="30"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="ejB-WF-Xz8"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PsJ-dx-x5o">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="82"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="82" id="xgs-td-laE"/>
@@ -79,6 +93,7 @@
                     <constraint firstItem="pbB-oy-SMX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="K6u-EH-4a1"/>
                     <constraint firstItem="PsJ-dx-x5o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LkE-Rf-dMj"/>
                     <constraint firstItem="sIr-kb-x2C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Qtt-pK-ONO"/>
+                    <constraint firstItem="7sK-Ki-aX5" firstAttribute="bottom" secondItem="pbB-oy-SMX" secondAttribute="bottom" constant="-16" id="Rqm-O7-tc4"/>
                     <constraint firstAttribute="bottom" secondItem="sIr-kb-x2C" secondAttribute="bottom" constant="17.5" id="SZ9-6Q-FEd"/>
                     <constraint firstItem="utt-1Z-21b" firstAttribute="top" secondItem="pbB-oy-SMX" secondAttribute="bottom" id="Ud6-rq-pra"/>
                     <constraint firstAttribute="trailing" secondItem="sIr-kb-x2C" secondAttribute="trailing" constant="16" id="WaL-km-cgG"/>
@@ -86,12 +101,14 @@
                     <constraint firstItem="utt-1Z-21b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="caj-tP-OGh"/>
                     <constraint firstItem="pbB-oy-SMX" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="cnd-2X-pWV"/>
                     <constraint firstAttribute="trailing" secondItem="PsJ-dx-x5o" secondAttribute="trailing" id="hd8-hU-Fpp"/>
+                    <constraint firstAttribute="trailing" secondItem="7sK-Ki-aX5" secondAttribute="trailing" constant="16" id="lHX-9z-uD4"/>
                     <constraint firstItem="PsJ-dx-x5o" firstAttribute="width" secondItem="pbB-oy-SMX" secondAttribute="width" id="qh0-Hy-Acc"/>
                     <constraint firstItem="sIr-kb-x2C" firstAttribute="top" secondItem="utt-1Z-21b" secondAttribute="bottom" id="y0f-qw-8Z6"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="buttonMute" destination="7sK-Ki-aX5" id="9LE-G1-baq"/>
                 <outlet property="labelCaption" destination="oN6-o9-T9p" id="fYf-rp-7Xg"/>
                 <outlet property="stackView" destination="utt-1Z-21b" id="Y2k-H7-YeN"/>
                 <outlet property="viewHashtag" destination="ZEt-Yz-H09" id="DSK-p8-08C"/>
@@ -99,15 +116,16 @@
                 <outlet property="viewProfile" destination="PsJ-dx-x5o" id="lz1-L7-GN3"/>
                 <outlet property="viewVDO" destination="pbB-oy-SMX" id="obk-l5-Mbw"/>
             </connections>
-            <point key="canvasLocation" x="167.17557251908397" y="244.71830985915494"/>
+            <point key="canvasLocation" x="164.8854961832061" y="278.52112676056339"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="speaker.wave.2" catalog="system" width="128" height="88"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

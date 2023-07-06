@@ -27,6 +27,7 @@ class ShortVideoPostViewController: UIViewController {
     
     //MARK: - Parameters
     private var viewModel: ShortVideoPostViewModel?
+    private var activityView = UIActivityIndicatorView(style: .large)
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -35,6 +36,14 @@ class ShortVideoPostViewController: UIViewController {
         self.viewModel?.getVideoPost()
         self.tableView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ShortVideoManager.isMute = false
+        ShortVideoManager.isFirstLoad = true
+        
+    }
+    
     
     
     //MARK: - Functions
@@ -49,6 +58,21 @@ class ShortVideoPostViewController: UIViewController {
         
     }
     
+    func showActivityIndicator() {
+        self.activityView = UIActivityIndicatorView(style: .large)
+        self.activityView.center = self.view.center
+        self.view.addSubview(self.activityView)
+        self.activityView.startAnimating()
+        
+    }
+    
+    func hideActivityIndicator() {
+        self.activityView.stopAnimating()
+        self.activityView.removeFromSuperview()
+    }
+    
+
+    
     //MARK: - Action
     @IBAction func buttonBackAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -58,6 +82,10 @@ class ShortVideoPostViewController: UIViewController {
 }
 
 extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func updateData() {
         tableView.reloadData()
     }
@@ -68,16 +96,16 @@ extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
     }
     
     func showLoading() {
-        
+        self.showActivityIndicator()
     }
     
     func hideLoading() {
-        
+        self.hideActivityIndicator()
     }
     
 }
 
-extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate{
+extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.currentList.count ?? 0
     }
@@ -88,15 +116,7 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
         }
     
         if let currentPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-            cell.setData(profilePicURL: currentPost.user?.profilePic ?? "",
-                         profileName: currentPost.user?.profileName ?? "",
-                         caption: currentPost.media?.caption ?? "",
-                         postImageURL: currentPost.media?.coverImage ?? "",
-                         videoURL: currentPost.media?.video ?? "",
-                         hashtag: currentPost.hashtag,
-                         numberOfLikes: currentPost.numberOfLikes,
-                         numberOfComments: currentPost.numberOfComments,
-                         datePosted: currentPost.media?.datePosted ?? "")
+            cell.setData(shortVDOPost: currentPost)
         }
         cell.layoutIfNeeded()
         return cell
@@ -109,14 +129,31 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
 
         
     }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = cell as? ShortVideoPostTableViewCell, let player = cell.player {
-            player.play()
-        }
-        
+            if let cell = cell as? ShortVideoPostTableViewCell {
+                cell.checkFirstLoad()
+                cell.checkMuteState()
+                
+            }
     }
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
+            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
+                cell.player?.play()
+                
+            }
+            if let videoPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
+                let userID = videoPost.postID
+                let userInfo: [AnyHashable: Any] = ["postID": userID]
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("stopVideo"),
+                    object: nil,
+                    userInfo: userInfo
+                )
+            }
+        }
+    }
     
 }
 

@@ -39,35 +39,43 @@ class ShortVideoPlayerViewController: UIViewController {
     let profileName: [String] = ["eewarnruk", "soft.liampisan", "goft"]
     var caption: [String] = ["Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum", "Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text ", "Lorem Ipsum is"]
     private let MAX_SCREEN_RATIO = 0.4
-   
+    private var activityView = UIActivityIndicatorView(style: .large)
+
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        self.viewModel?.getVideo()
+        setupVideoInfo()
     }
     
     //MARK: - Functions
     func setupView() {
-        setupVideoInfo()
         viewVideoInfo.backgroundColor = .clear
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func setupVideoInfo(){
-        imageViewVideo.sd_setImage(with: URL(string: "https://imgix.bustle.com/uploads/image/2022/2/11/c277a32f-c52c-4d7a-98ea-1a0bbec3cf2d-baby-yoda-use-the-force.jpg?w=1200&h=630&fit=crop&crop=focalpoint&fm=jpg&fp-x=0.4813&fp-y=0.3059"))
         videoInfoView = VideoInfoView(frame: viewVideoInfo.bounds)
-        videoInfoView?.config(delegate: self,
-                              profileImageURL: mockImageUrls.randomElement() ?? "",
-                              profileName: profileName.randomElement() ?? "",
-                              postTime: "just now",
-                              caption: caption.randomElement(),
-                              hashtag: ["netflix", "movie", "music"])
         videoInfoView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         videoInfoView?.clipsToBounds = true
         if let videoInfoView = videoInfoView {
             viewVideoInfo.addSubview(videoInfoView)
         }
+    }
+    
+    func showActivityIndicator() {
+        self.activityView = UIActivityIndicatorView(style: .large)
+        self.activityView.center = self.view.center
+        self.view.addSubview(self.activityView)
+        self.activityView.startAnimating()
+        
+    }
+    
+    func hideActivityIndicator() {
+        self.activityView.stopAnimating()
+        self.activityView.removeFromSuperview()
     }
     
     
@@ -82,17 +90,33 @@ class ShortVideoPlayerViewController: UIViewController {
 }
 
 extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+   
+    
+    func updateData(video: ShortVideo) {
+        videoInfoView?.config(delegate: self,
+                              profileImageURL: video.user?.profilePic ?? "",
+                              profileName: video.user?.profileName ?? "",
+                              postTime: video.media?.datePosted ?? "",
+                              caption: video.media?.caption ?? "",
+                              hashtag: video.hashtag)
+        imageViewVideo.sd_setImage(with: URL(string: video.media?.coverImage ?? ""))
+    }
+    
     
     func showError(error: Error) {
         
     }
     
     func showLoading() {
-        
+        self.showActivityIndicator()
     }
     
     func hideLoading() {
-        
+        self.hideActivityIndicator()
     }
     
 }

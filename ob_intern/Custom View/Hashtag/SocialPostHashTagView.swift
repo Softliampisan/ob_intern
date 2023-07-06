@@ -52,7 +52,7 @@ class SocialPostHashTagView: InitializeXibView {
     func setData(hashtags: [String]) {
         self.hashtags = hashtags
         
-        collectionView.reloadData()
+        self.collectionView.reloadData()
         self.collectionView.setNeedsLayout()
         self.collectionView.layoutIfNeeded()
         let height = self.collectionView.contentSize.height
@@ -60,7 +60,7 @@ class SocialPostHashTagView: InitializeXibView {
         delegate?.setHeightConstraint(viewHeight: height)
         
         if self.hashtags.count <= 0 {
-            delegate?.setViewHidden(isHidden: true)
+            delegate?.setViewHidden(isHidden: self.hashtags.count <= 0)
         } else {
             delegate?.setViewHidden(isHidden: false)
         }
