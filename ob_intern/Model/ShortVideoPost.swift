@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-let mockHashtag: [String] = ["music", "basketball", "movies", "basketball", "lifestyle", ""]
+let mockHashtag: [String] = ["music", "basketball", "movies", "basketball", "lifestyle"]
 
 var prevNumber: UInt32? // used in randomNumber()
 
