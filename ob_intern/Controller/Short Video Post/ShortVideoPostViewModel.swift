@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ShortVideoPostViewModelDelegate: AnyObject {
     func showError(error: Error)
     func showLoading()
     func hideLoading()
     func updateData()
+    func showAlert(alert: UIAlertController)
+
 }
 
 class ShortVideoPostViewModel {
@@ -32,13 +35,17 @@ class ShortVideoPostViewModel {
     
     // MARK: - Functions
     func getVideoPost() {
+        delegate?.showLoading()
         ShortVDOService().getShortVDOPost { [weak self] videoPosts in
             guard let self = self else { return}
             currentList = videoPosts
             guard let delegate = delegate else { return }
             delegate.updateData()
+            delegate.hideLoading()
         } errorHandler: { error in
-            
+            let alert = UIAlertController(title: "Error", message: "Oops, something went wrong. Please try again later.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.delegate?.showAlert(alert: alert)
         }
     }
     

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 extension UIView {
 
@@ -17,4 +18,14 @@ extension UIView {
             }
         }
     }
+    
+ 
+    func removePlayerLayer() {
+        self.layer.sublayers?.forEach {
+            if $0.isKind(of: AVPlayerLayer.self) {
+                $0.removeFromSuperlayer()
+            }
+        }
+    }
+
 }

@@ -34,6 +34,7 @@ class ShortVideoListViewController: UIViewController {
     private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
     private var viewModel: ShortVideoListViewModel?
     private var refresher: UIRefreshControl!
+    private var activityView = UIActivityIndicatorView(style: .large)
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -80,6 +81,19 @@ class ShortVideoListViewController: UIViewController {
         viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
     
+    func showActivityIndicatory() {
+        self.activityView = UIActivityIndicatorView(style: .large)
+        self.activityView.center = self.view.center
+        self.view.addSubview(self.activityView)
+        self.activityView.startAnimating()
+        
+    }
+    
+    func hideActivityIndicatory() {
+        self.activityView.stopAnimating()
+        self.activityView.removeFromSuperview()
+    }
+    
     @objc func loadData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.viewModel?.updateData()
@@ -111,11 +125,11 @@ extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
     }
     
     func showLoading() {
-        
+        self.showActivityIndicatory()
     }
     
     func hideLoading() {
-        
+        self.hideActivityIndicatory()
     }
     
 }

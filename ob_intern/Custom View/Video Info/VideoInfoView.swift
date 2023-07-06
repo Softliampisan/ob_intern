@@ -103,14 +103,15 @@ class VideoInfoView: InitializeXibView {
         self.labelProfileName.text = profileName
         self.labelPostTime.text = postTime
         self.labelInfo.text = caption
+        self.setLabelInfo()
         self.viewHashtag.setData(hashtags: hashtag)
-    
+        self.updateContentSize()
     }
     
     func setLabelInfo() {
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = UIImage(systemName: "globe.europe.africa.fill")?.withTintColor(.white)
-        imageAttachment.bounds = CGRect(x: 0, y: -4, width: 14, height: 14)
+        imageAttachment.bounds = CGRect(x: 0, y: -3, width: 14, height: 14)
 
         let attributedString = NSMutableAttributedString(string: "")
         let imageString = NSAttributedString(attachment: imageAttachment)
