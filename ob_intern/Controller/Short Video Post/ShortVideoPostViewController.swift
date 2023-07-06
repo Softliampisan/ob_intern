@@ -58,7 +58,7 @@ class ShortVideoPostViewController: UIViewController {
         
     }
     
-    func showActivityIndicatory() {
+    func showActivityIndicator() {
         self.activityView = UIActivityIndicatorView(style: .large)
         self.activityView.center = self.view.center
         self.view.addSubview(self.activityView)
@@ -66,7 +66,7 @@ class ShortVideoPostViewController: UIViewController {
         
     }
     
-    func hideActivityIndicatory() {
+    func hideActivityIndicator() {
         self.activityView.stopAnimating()
         self.activityView.removeFromSuperview()
     }
@@ -96,11 +96,11 @@ extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
     }
     
     func showLoading() {
-        self.showActivityIndicatory()
+        self.showActivityIndicator()
     }
     
     func hideLoading() {
-        self.hideActivityIndicatory()
+        self.hideActivityIndicator()
     }
     
 }

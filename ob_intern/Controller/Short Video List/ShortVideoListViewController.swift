@@ -81,7 +81,7 @@ class ShortVideoListViewController: UIViewController {
         viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
     
-    func showActivityIndicatory() {
+    func showActivityIndicator() {
         self.activityView = UIActivityIndicatorView(style: .large)
         self.activityView.center = self.view.center
         self.view.addSubview(self.activityView)
@@ -89,7 +89,7 @@ class ShortVideoListViewController: UIViewController {
         
     }
     
-    func hideActivityIndicatory() {
+    func hideActivityIndicator() {
         self.activityView.stopAnimating()
         self.activityView.removeFromSuperview()
     }
@@ -125,11 +125,11 @@ extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
     }
     
     func showLoading() {
-        self.showActivityIndicatory()
+        self.showActivityIndicator()
     }
     
     func hideLoading() {
-        self.hideActivityIndicatory()
+        self.hideActivityIndicator()
     }
     
 }

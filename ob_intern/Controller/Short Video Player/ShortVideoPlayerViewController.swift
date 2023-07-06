@@ -65,7 +65,7 @@ class ShortVideoPlayerViewController: UIViewController {
         }
     }
     
-    func showActivityIndicatory() {
+    func showActivityIndicator() {
         self.activityView = UIActivityIndicatorView(style: .large)
         self.activityView.center = self.view.center
         self.view.addSubview(self.activityView)
@@ -73,7 +73,7 @@ class ShortVideoPlayerViewController: UIViewController {
         
     }
     
-    func hideActivityIndicatory() {
+    func hideActivityIndicator() {
         self.activityView.stopAnimating()
         self.activityView.removeFromSuperview()
     }
@@ -112,11 +112,11 @@ extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
     }
     
     func showLoading() {
-        self.showActivityIndicatory()
+        self.showActivityIndicator()
     }
     
     func hideLoading() {
-        self.hideActivityIndicatory()
+        self.hideActivityIndicator()
     }
     
 }

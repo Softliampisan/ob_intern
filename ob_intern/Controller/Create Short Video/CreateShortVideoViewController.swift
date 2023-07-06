@@ -124,11 +124,12 @@ class CreateShortVideoViewController: UIViewController {
     }
     
     @IBAction func buttonPostAction(_ sender: Any) {
-        self.isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.navigationController?.popViewController(animated: true)
-            self.isLoading = false
-        }
+        viewModel?.createShortVDO(coverImageURL: "",
+                                  caption: textViewThoughts.text,
+                                  isAllowComments: switchAllowComments.isOn,
+                                  isPublic: switchStatus.isOn,
+                                  isAllowGifts: switchReceiveGifts.isOn)
+
     }
     
     
@@ -159,17 +160,24 @@ class CreateShortVideoViewController: UIViewController {
 }
 
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
+    func isPostSuccess() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAlert(alert: UIAlertController) {
+        self.present(alert, animated: true, completion: nil)
+    }
     
     func showError(error: Error) {
         
     }
     
     func showLoading() {
-        
+        self.isLoading = true
     }
     
     func hideLoading() {
-        
+        self.isLoading = false
     }
     
 }
