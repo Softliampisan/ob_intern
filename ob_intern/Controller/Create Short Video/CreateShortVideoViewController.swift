@@ -164,12 +164,18 @@ extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func showAlert(alert: UIAlertController) {
+    func showSuccessPost() {
+        let alert = UIAlertController(title: "Success", message: "Your post has been uploaded", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self]
+            (action) in
+            self?.isPostSuccess()
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
     func showError(error: Error) {
-        
+        let alert = UIAlertController(title: "Error", message: "Oops, something went wrong. Please try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     }
     
     func showLoading() {
