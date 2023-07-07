@@ -27,6 +27,8 @@
 		183B27D02A3081E100448624 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CF2A3081E100448624 /* Collection.swift */; };
 		18430B832A53DA7B001DB9CD /* ShortVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18430B822A53DA7B001DB9CD /* ShortVideo.swift */; };
 		184918E22A5663DA000832B5 /* ShortVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184918E12A5663DA000832B5 /* ShortVideoManager.swift */; };
+		184918EC2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184918EA2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift */; };
+		184918ED2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184918EB2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib */; };
 		1852BEDF2A4C1685001C930C /* ShortVideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852BEDE2A4C1685001C930C /* ShortVideoPost.swift */; };
 		1852BEE12A4C1D4C001C930C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852BEE02A4C1D4C001C930C /* User.swift */; };
 		1852BEE42A4C2A3A001C930C /* RandomDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852BEE32A4C2A3A001C930C /* RandomDate.swift */; };
@@ -91,6 +93,8 @@
 		183B27CF2A3081E100448624 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		18430B822A53DA7B001DB9CD /* ShortVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideo.swift; sourceTree = "<group>"; };
 		184918E12A5663DA000832B5 /* ShortVideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoManager.swift; sourceTree = "<group>"; };
+		184918EA2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		184918EB2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
 		1852BEDE2A4C1685001C930C /* ShortVideoPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPost.swift; sourceTree = "<group>"; };
 		1852BEE02A4C1D4C001C930C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1852BEE32A4C2A3A001C930C /* RandomDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomDate.swift; sourceTree = "<group>"; };
@@ -216,6 +220,15 @@
 				18B48A252A55232300EC2B8D /* CGRectExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		184918E92A56B983000832B5 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				184918EA2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift */,
+				184918EB2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib */,
+			);
+			path = header;
 			sourceTree = "<group>";
 		};
 		1852BEE22A4C1D66001C930C /* Model */ = {
@@ -372,6 +385,7 @@
 		18C163BF2A30395E00188D98 /* Short Video List */ = {
 			isa = PBXGroup;
 			children = (
+				184918E92A56B983000832B5 /* header */,
 				183B27CB2A30448C00448624 /* cell */,
 				183B27C12A303D6400448624 /* ShortVideoListViewController.swift */,
 				183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */,
@@ -465,6 +479,7 @@
 				186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */,
 				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
+				184918ED2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				1883C80D2A3B031400A3B168 /* ShortVideoPostViewController.xib in Resources */,
 				1852BEE62A4C3459001C930C /* DisplayHashTagCollectionViewCell.xib in Resources */,
@@ -554,6 +569,7 @@
 				18430B832A53DA7B001DB9CD /* ShortVideo.swift in Sources */,
 				1852BEF02A4C3F09001C930C /* ButtonExtension.swift in Sources */,
 				186E08EF2A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.swift in Sources */,
+				184918EC2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift in Sources */,
 				184918E22A5663DA000832B5 /* ShortVideoManager.swift in Sources */,
 				183B27D02A3081E100448624 /* Collection.swift in Sources */,
 				186DB2812A41591B00027809 /* ShortVideoPlayerViewController.swift in Sources */,
