@@ -66,6 +66,35 @@ class ShortVDOService {
             }
         }
     }
+    func createShortVDO(coverImageURL: String,
+                        caption: String,
+                        isAllowComments: Bool,
+                        isPublic: Bool,
+                        isAllowGifts: Bool,
+                        completion: @escaping ( () -> Void),
+                        errorHandler: @escaping ( (Error) -> Void)){
+        let link = "https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/createShortVideo"
+        var param: Parameters = ["coverImageURL": coverImageURL,
+                                 "caption": caption,
+                                 "isAllowComments": isAllowComments,
+                                 "isPublic": isPublic,
+                                 "isAllowGifts": isAllowGifts]
+     
+        let request = AF.request(link, method: .post, parameters: param)
+        request.responseJSON { response in
+            print("response \(response)")
+            switch response.result {
+            case .success(let value):
+                let isSuccess = JSON(value)["isSuccess"].boolValue
+                if isSuccess {
+                    completion()
+                }
+            case .failure(let error):
+                errorHandler(error)
+            }
+        }
+        
+    }
     
 }
 

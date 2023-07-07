@@ -124,11 +124,12 @@ class CreateShortVideoViewController: UIViewController {
     }
     
     @IBAction func buttonPostAction(_ sender: Any) {
-        self.isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.navigationController?.popViewController(animated: true)
-            self.isLoading = false
-        }
+        viewModel?.createShortVDO(coverImageURL: "",
+                                  caption: textViewThoughts.text,
+                                  isAllowComments: switchAllowComments.isOn,
+                                  isPublic: switchStatus.isOn,
+                                  isAllowGifts: switchReceiveGifts.isOn)
+
     }
     
     
@@ -159,17 +160,30 @@ class CreateShortVideoViewController: UIViewController {
 }
 
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
+    func isPostSuccess() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showSuccessPost() {
+        let alert = UIAlertController(title: "Success", message: "Your post has been uploaded", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self]
+            (action) in
+            self?.isPostSuccess()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     func showError(error: Error) {
-        
+        let alert = UIAlertController(title: "Error", message: "Oops, something went wrong. Please try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     }
     
     func showLoading() {
-        
+        self.isLoading = true
     }
     
     func hideLoading() {
-        
+        self.isLoading = false
     }
     
 }
