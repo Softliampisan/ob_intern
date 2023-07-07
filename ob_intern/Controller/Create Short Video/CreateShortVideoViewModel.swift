@@ -43,17 +43,17 @@ class CreateShortVideoViewModel {
                                          isAllowGifts: isAllowGifts) {
             self.delegate?.hideLoading()
             let alert = UIAlertController(title: "Success", message: "Your post has been uploaded", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self]
                 (action) in
-                self.delegate?.isPostSuccess()
+                self?.delegate?.isPostSuccess()
             }))
             self.delegate?.showAlert(alert: alert)
             
             
-        } errorHandler: { error in
+        } errorHandler: { [weak self] error in
             let alert = UIAlertController(title: "Error", message: "Oops, something went wrong. Please try again later.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.delegate?.showAlert(alert: alert)
+            self?.delegate?.showAlert(alert: alert)
         }
     }
 }
