@@ -11,6 +11,7 @@ import UIKit
 
 protocol VideoInfoViewDelegate: AnyObject {
     func updateHeight(height: CGFloat)
+    func tapProfile()
 }
 
 class VideoInfoView: InitializeXibView {
@@ -23,6 +24,7 @@ class VideoInfoView: InitializeXibView {
     @IBOutlet weak var viewHashtag: SocialPostHashTagView!
     @IBOutlet weak var labelInfo: UILabel!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var buttonToProfile: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
     private let numLinesCollapsed = 2
@@ -30,6 +32,7 @@ class VideoInfoView: InitializeXibView {
     private var isExpanded = false
     private var labelPaddingTop: CGFloat = 8
     weak var delegate: VideoInfoViewDelegate?
+    var post: ShortVideoPost?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +47,7 @@ class VideoInfoView: InitializeXibView {
     private func setupView() {
         setupContainerView()
         setupStackView()
+        setUpButtons()
         setLabelInfo()
         DispatchQueue.main.async {
             self.collapse()
@@ -74,6 +78,11 @@ class VideoInfoView: InitializeXibView {
         stackView.addSubview(imageViewProfilePic)
         stackView.addSubview(labelProfileName)
         stackView.addSubview(labelPostTime)
+    }
+    
+    private func setUpButtons() {
+        containerView.addSubview(buttonToProfile)
+        containerView.addSubview(moreButton)
     }
     
     private func setupImageAndLabel() {
@@ -161,5 +170,11 @@ class VideoInfoView: InitializeXibView {
         moreButton.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .bold)
         moreButton.setTitle(newButtonTitle, for: .normal)
     }
+    
+    
+    @IBAction func tapProfile(_ sender: Any) {
+        delegate?.tapProfile()
+    }
+    
     
 }

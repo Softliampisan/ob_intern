@@ -12,12 +12,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    
-    @IBAction func buttonToShortVideoList(_ sender: Any) {
-        let controller = ShortVideoListViewController.newInstance()
-        self.navigationController?.pushViewController(controller, animated: true)
+        let vc = TabBarViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(vc, animated: false)
+        
     }
     
     
@@ -42,13 +40,6 @@ class ViewController: UIViewController {
         let controller = ShortVideoPostViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: true)
        
-    }
-    
-    
-    @IBAction func buttonToVideoPlayer(_ sender: Any) {
-        let controller = ShortVideoPlayerViewController.newInstance()
-        self.navigationController?.pushViewController(controller, animated: true)
-        
     }
     
     

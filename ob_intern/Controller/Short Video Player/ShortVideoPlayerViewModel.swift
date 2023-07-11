@@ -14,6 +14,7 @@ protocol ShortVideoPlayerViewModelDelegate: AnyObject {
     func showLoading()
     func hideLoading()
     func updateData(video: ShortVideo)
+    func updateData()
     func showAlert(alert: UIAlertController)
 }
 
@@ -22,12 +23,14 @@ class ShortVideoPlayerViewModel {
     // MARK: - Properties
     weak var delegate: ShortVideoPlayerViewModelDelegate?
     var currentList: [ShortVideo] = []
+    var post: ShortVideoPost?
 
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: ShortVideoPlayerViewModelDelegate) {
+    init(delegate: ShortVideoPlayerViewModelDelegate, post: ShortVideoPost) {
         self.delegate = delegate
+        self.post = post
     }
     
     // MARK: - Functions
@@ -47,5 +50,9 @@ class ShortVideoPlayerViewModel {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.delegate?.showAlert(alert: alert)
         }
+    }
+    
+    func getVideoFromPost() {
+        delegate?.updateData()
     }
 }

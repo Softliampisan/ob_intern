@@ -59,7 +59,11 @@
 		1883C8102A3B039400A3B168 /* ShortVideoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883C80E2A3B039400A3B168 /* ShortVideoPostTableViewCell.swift */; };
 		1883C8112A3B039400A3B168 /* ShortVideoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1883C80F2A3B039400A3B168 /* ShortVideoPostTableViewCell.xib */; };
 		1883C8142A3B09A900A3B168 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1883C8132A3B09A900A3B168 /* ViewExtension.swift */; };
+		189B906A2A5D033900683325 /* ShortVideoPostViewController+VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B90692A5D033900683325 /* ShortVideoPostViewController+VideoPlayer.swift */; };
+		189B906C2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B906B2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift */; };
 		18B48A262A55232300EC2B8D /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48A252A55232300EC2B8D /* CGRectExtension.swift */; };
+		18B4D9102A5BE26E00DE1728 /* CreatePostButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B4D90F2A5BE26E00DE1728 /* CreatePostButtonView.xib */; };
+		18B4D9122A5BE28F00DE1728 /* CreatePostButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4D9112A5BE28F00DE1728 /* CreatePostButtonView.swift */; };
 		18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AA2A30332400188D98 /* AppDelegate.swift */; };
 		18C163AD2A30332400188D98 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AC2A30332400188D98 /* SceneDelegate.swift */; };
 		18C163AF2A30332400188D98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C163AE2A30332400188D98 /* ViewController.swift */; };
@@ -125,7 +129,11 @@
 		1883C80E2A3B039400A3B168 /* ShortVideoPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoPostTableViewCell.swift; sourceTree = "<group>"; };
 		1883C80F2A3B039400A3B168 /* ShortVideoPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoPostTableViewCell.xib; sourceTree = "<group>"; };
 		1883C8132A3B09A900A3B168 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		189B90692A5D033900683325 /* ShortVideoPostViewController+VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShortVideoPostViewController+VideoPlayer.swift"; sourceTree = "<group>"; };
+		189B906B2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShortVideoPostViewController+CreatePostButton.swift"; sourceTree = "<group>"; };
 		18B48A252A55232300EC2B8D /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
+		18B4D90F2A5BE26E00DE1728 /* CreatePostButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostButtonView.xib; sourceTree = "<group>"; };
+		18B4D9112A5BE28F00DE1728 /* CreatePostButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostButtonView.swift; sourceTree = "<group>"; };
 		18C163A72A30332400188D98 /* ob_intern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ob_intern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C163AA2A30332400188D98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C163AC2A30332400188D98 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +197,7 @@
 		1833D7652A32ED24006C5BF7 /* Custom View */ = {
 			isa = PBXGroup;
 			children = (
+				18B4D90E2A5BE22A00DE1728 /* Create Post Button */,
 				1852BEED2A4C3506001C930C /* Hashtag */,
 				186DB2782A41481100027809 /* Video Info */,
 				186E08E22A36C9C300FDDCB6 /* Progress Bar */,
@@ -318,6 +327,8 @@
 				180257482A3FF70B0057E850 /* Custom View */,
 				1883C8122A3B03DE00A3B168 /* table cell */,
 				1883C8082A3B031300A3B168 /* ShortVideoPostViewController.swift */,
+				189B90692A5D033900683325 /* ShortVideoPostViewController+VideoPlayer.swift */,
+				189B906B2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift */,
 				1883C8092A3B031300A3B168 /* ShortVideoPostViewModel.swift */,
 				1883C80A2A3B031300A3B168 /* ShortVideoPostViewController.xib */,
 			);
@@ -331,6 +342,15 @@
 				1883C80F2A3B039400A3B168 /* ShortVideoPostTableViewCell.xib */,
 			);
 			path = "table cell";
+			sourceTree = "<group>";
+		};
+		18B4D90E2A5BE22A00DE1728 /* Create Post Button */ = {
+			isa = PBXGroup;
+			children = (
+				18B4D90F2A5BE26E00DE1728 /* CreatePostButtonView.xib */,
+				18B4D9112A5BE28F00DE1728 /* CreatePostButtonView.swift */,
+			);
+			path = "Create Post Button";
 			sourceTree = "<group>";
 		};
 		18C1639E2A30332400188D98 = {
@@ -477,6 +497,7 @@
 				186E08F02A36E2E800FDDCB6 /* EditShortVideoCoverCollectionViewCell.xib in Resources */,
 				1802574E2A4000740057E850 /* LikeCommentView.xib in Resources */,
 				186DB27A2A41489600027809 /* VideoInfoView.xib in Resources */,
+				18B4D9102A5BE26E00DE1728 /* CreatePostButtonView.xib in Resources */,
 				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				184918ED2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib in Resources */,
@@ -559,11 +580,13 @@
 				18C654282A4AD26200E3171C /* LeftAlignedFlowLayout.swift in Sources */,
 				1852BEE12A4C1D4C001C930C /* User.swift in Sources */,
 				18C6542A2A4AD5F700E3171C /* UICollectionViewExtension.swift in Sources */,
+				189B906C2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift in Sources */,
 				183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */,
 				183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */,
 				1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */,
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,
 				1852BEDF2A4C1685001C930C /* ShortVideoPost.swift in Sources */,
+				18B4D9122A5BE28F00DE1728 /* CreatePostButtonView.swift in Sources */,
 				1883C7FA2A39816900A3B168 /* TestProgressBarViewModel.swift in Sources */,
 				1852BEF42A4D7D29001C930C /* ShortVDOService.swift in Sources */,
 				18430B832A53DA7B001DB9CD /* ShortVideo.swift in Sources */,
@@ -580,6 +603,7 @@
 				186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */,
 				1883C7FF2A399AFE00A3B168 /* InitializeXibView.swift in Sources */,
 				1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */,
+				189B906A2A5D033900683325 /* ShortVideoPostViewController+VideoPlayer.swift in Sources */,
 				18259C6C2A331B9C0000CCA1 /* EditShortVideoCoverViewController.swift in Sources */,
 				1852BEF22A4D7610001C930C /* MediaModel.swift in Sources */,
 				1883C80C2A3B031400A3B168 /* ShortVideoPostViewModel.swift in Sources */,
