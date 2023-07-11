@@ -87,7 +87,9 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(shortVDOPost: ShortVideoPost){
+    func setData(delegate: ShortVideoPostTableViewCellDelegate,
+                 shortVDOPost: ShortVideoPost){
+        self.delegate = delegate
         self.post = shortVDOPost
         
         profileView?.imageViewProfilePic.sd_setImage(with: URL(string: post?.user?.profilePic ?? "" ))
@@ -152,6 +154,15 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         if ShortVideoManager.isFirstLoad == true {
             player?.play()
         }
+    }
+    
+    func setPlayerTime(time: CMTime) {
+        player?.seek(to: time)
+        player?.play()
+    }
+    
+    func pauseVideo() {
+        player?.pause()
     }
     
     

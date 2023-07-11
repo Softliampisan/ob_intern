@@ -14,8 +14,7 @@ extension ShortVideoPostViewController: ShortVideoPlayerDelegate {
     func updateCurrentTime(currentTime: CMTime) {
         if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
             if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
-                cell.player?.seek(to: currentTime)
-                cell.player?.play()
+                cell.setPlayerTime(time: currentTime)
             }
         }
     }

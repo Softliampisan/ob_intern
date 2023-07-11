@@ -85,7 +85,7 @@ class ShortVideoPostViewController: UIViewController {
     func pauseVideo() {
         if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
             if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
-                cell.player?.pause()
+                cell.pauseVideo()
             }
         }
     }
@@ -153,9 +153,8 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
         }
     
         if let currentPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-            cell.setData(shortVDOPost: currentPost)
+            cell.setData(delegate: self, shortVDOPost: currentPost)
         }
-        cell.delegate = self
         cell.layoutIfNeeded()
         return cell
         
