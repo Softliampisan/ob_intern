@@ -60,6 +60,9 @@ class ShortVideoListViewController: UIViewController {
         collectionView.dataSource = self
         let nibName = String(describing: ShortVideoListCollectionViewCell.self)
         collectionView.register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: nibName)
+        let headerNibName = String(describing: ProfileHeaderCollectionReusableView.self)
+        collectionView.register(UINib(nibName: headerNibName, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeaderCollectionReusableView.identifier)
+
         refresher = UIRefreshControl()
         collectionView.alwaysBounceVertical = true
         refresher.tintColor = UIColor.red
@@ -161,6 +164,19 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
                 viewModel?.addMockData()
                 collectionView.reloadData()
             }
+    }
+ 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeaderCollectionReusableView.identifier, for: indexPath) as! ProfileHeaderCollectionReusableView
+        profileHeader.setData(imageURLProfilePic: "https://www.unisoftbank.com/wp-content/uploads/2022/12/aesthetic-cute-discord-pfp-2.jpg",
+                              imageURLFrontCover: "https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNpdHklMjB3YWxscGFwZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+                              label: "Karnrawee Wongtrakulkarn")
+        return profileHeader
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 350)
     }
     
 }
