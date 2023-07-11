@@ -22,17 +22,14 @@ class ShortVideoListViewModel {
     // MARK: - Properties
     weak var delegate: ShortVideoListViewModelDelegate?
     var currentList: [ShortVideoList] = []
+    var post: ShortVideoPost?
 
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: ShortVideoListViewModelDelegate) {
+    init(delegate: ShortVideoListViewModelDelegate, post: ShortVideoPost) {
         self.delegate = delegate
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        
+        self.post = post
 
     }
    

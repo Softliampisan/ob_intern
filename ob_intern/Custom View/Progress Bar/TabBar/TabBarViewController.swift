@@ -20,7 +20,7 @@ class TabBarViewController: UITabBarController {
         self.tabBar.isHidden = false
         
 
-        let controller = TestProgressBarViewController.newInstance()
+        let controller = ShortVideoPostViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
         controller.tabBarItem.image = UIImage(systemName: "house.fill")
         
@@ -29,7 +29,8 @@ class TabBarViewController: UITabBarController {
         controller2.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
 
         
-        viewControllers = [UINavigationController(rootViewController: controller), UINavigationController(rootViewController: controller2)]
+        viewControllers = [UINavigationController(rootViewController: controller),
+                           UINavigationController(rootViewController: controller2)]
     }
 
     /*

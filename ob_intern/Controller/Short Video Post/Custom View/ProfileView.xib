@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView" customModule="ob_intern" customModuleProvider="target">
             <connections>
+                <outlet property="buttonToProfile" destination="KD1-JE-HFz" id="40C-Se-Omx"/>
                 <outlet property="containerView" destination="N42-Jn-fHZ" id="2JD-zL-klA"/>
                 <outlet property="imageViewGradient" destination="8FZ-gy-RYv" id="gL0-am-FaY"/>
                 <outlet property="imageViewProfilePic" destination="IEn-ZV-dzZ" id="glC-rN-Lz2"/>
@@ -49,16 +50,27 @@
                             <color key="textColor" systemColor="systemBackgroundColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KD1-JE-HFz">
+                            <rect key="frame" x="16" y="16" width="50" height="50"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="tapProfile:" destination="-1" eventType="touchUpInside" id="uOs-y9-xG9"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="KD1-JE-HFz" firstAttribute="width" secondItem="IEn-ZV-dzZ" secondAttribute="width" id="DJn-Ci-2Lm"/>
                         <constraint firstItem="IEn-ZV-dzZ" firstAttribute="leading" secondItem="N42-Jn-fHZ" secondAttribute="leading" constant="16" id="FiW-Q2-bIG"/>
                         <constraint firstAttribute="height" constant="82" id="HOs-pt-Gxf"/>
+                        <constraint firstItem="KD1-JE-HFz" firstAttribute="centerY" secondItem="N42-Jn-fHZ" secondAttribute="centerY" id="JSw-oP-lhl"/>
                         <constraint firstItem="8FZ-gy-RYv" firstAttribute="top" secondItem="N42-Jn-fHZ" secondAttribute="top" id="OkD-Dc-tfh"/>
+                        <constraint firstItem="KD1-JE-HFz" firstAttribute="leading" secondItem="N42-Jn-fHZ" secondAttribute="leading" constant="16" id="PIB-mT-8sL"/>
                         <constraint firstItem="VXk-FK-eSJ" firstAttribute="leading" secondItem="IEn-ZV-dzZ" secondAttribute="trailing" constant="16" id="c3C-cH-O0R"/>
                         <constraint firstItem="WaH-rW-1Ty" firstAttribute="top" secondItem="N42-Jn-fHZ" secondAttribute="top" constant="19" id="e5G-qX-Jfg"/>
                         <constraint firstItem="VXk-FK-eSJ" firstAttribute="top" secondItem="WaH-rW-1Ty" secondAttribute="bottom" constant="8" id="eAP-xr-npn"/>
                         <constraint firstAttribute="bottom" secondItem="8FZ-gy-RYv" secondAttribute="bottom" id="hcc-Hm-hKR"/>
+                        <constraint firstItem="KD1-JE-HFz" firstAttribute="height" secondItem="IEn-ZV-dzZ" secondAttribute="height" id="jRP-eO-AhB"/>
                         <constraint firstItem="WaH-rW-1Ty" firstAttribute="leading" secondItem="IEn-ZV-dzZ" secondAttribute="trailing" constant="16" id="kRL-PQ-Wb2"/>
                         <constraint firstItem="8FZ-gy-RYv" firstAttribute="leading" secondItem="N42-Jn-fHZ" secondAttribute="leading" id="nA7-Wn-zJI"/>
                         <constraint firstItem="IEn-ZV-dzZ" firstAttribute="centerY" secondItem="N42-Jn-fHZ" secondAttribute="centerY" id="ndk-mB-Vph"/>

@@ -33,17 +33,22 @@ func numberFormat() -> String? {
 
 class ShortVideoList {
     
+
     var numberOfViews: String = "0"
+    var user: User?
     var media: MediaModel?
     var videoImage: String = ""
     
-    init(numberOfViews: String,
+    init(user: User?,
+         numberOfViews: String,
          media: MediaModel) {
+        self.user = User.mock()
         self.numberOfViews = numberOfViews
         self.media = MediaModel.mock()
         
     }
     init(json: JSON) {
+        self.user = User.init(json: json["owner"])
         self.media = MediaModel.init(json: json["media"])
         self.numberOfViews = numFormat(num: json["view"].stringValue) ?? ""
         

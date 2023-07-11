@@ -11,10 +11,10 @@ import SDWebImage
 class ShortVideoListViewController: UIViewController {
     
     //MARK: - New Instance
-    class func newInstance() -> ShortVideoListViewController {
+    class func newInstance(post: ShortVideoPost) -> ShortVideoListViewController {
         let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self), bundle: nil)
         
-        let viewModel = ShortVideoListViewModel(delegate: viewController)
+        let viewModel = ShortVideoListViewModel(delegate: viewController, post: post)
         viewController.viewModel = viewModel
         
         return viewController
@@ -81,7 +81,7 @@ class ShortVideoListViewController: UIViewController {
     }
     
     func setCollectionViewEmptyState(){
-        viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
+//        viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
     
     func showActivityIndicator() {
@@ -168,9 +168,9 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
  
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeaderCollectionReusableView.identifier, for: indexPath) as! ProfileHeaderCollectionReusableView
-        profileHeader.setData(imageURLProfilePic: "https://www.unisoftbank.com/wp-content/uploads/2022/12/aesthetic-cute-discord-pfp-2.jpg",
-                              imageURLFrontCover: "https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNpdHklMjB3YWxscGFwZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-                              label: "Karnrawee Wongtrakulkarn")
+        profileHeader.setData(imageURLProfilePic: viewModel?.post?.user?.profilePic ?? "",
+                              imageURLFrontCover: viewModel?.post?.media?.coverImage ?? "",
+                              label: viewModel?.post?.user?.profileName ?? "")
         return profileHeader
     }
     

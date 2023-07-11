@@ -40,19 +40,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wUS-T8-xy4">
-                                <rect key="frame" x="59" y="227" width="275" height="306"/>
+                                <rect key="frame" x="59" y="227" width="275" height="197.33333333333337"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t3f-TM-6Qm">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="34.333333333333336"/>
-                                        <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Short Video List"/>
-                                        <connections>
-                                            <action selector="buttonToShortVideoList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eLa-c8-d2C"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gMA-xr-d1o">
-                                        <rect key="frame" x="0.0" y="54.333333333333314" width="275" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="34.333333333333336"/>
                                         <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Create Short Video"/>
@@ -61,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1T-KZ-5jb">
-                                        <rect key="frame" x="0.0" y="108.66666666666669" width="275" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="54.333333333333314" width="275" height="34.333333333333343"/>
                                         <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Edit Short Video Cover"/>
@@ -70,7 +61,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNx-hM-X35">
-                                        <rect key="frame" x="0.0" y="163" width="275" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="108.66666666666669" width="275" height="34.333333333333343"/>
                                         <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Progress Bar"/>
@@ -79,21 +70,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5b-Ec-Bn7">
-                                        <rect key="frame" x="0.0" y="217.33333333333331" width="275" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="163" width="275" height="34.333333333333343"/>
                                         <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" title="Short Video Post"/>
                                         <connections>
                                             <action selector="buttonToPost:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cDG-vX-VgQ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPT-WE-3tK">
-                                        <rect key="frame" x="0.0" y="271.66666666666669" width="275" height="34.333333333333314"/>
-                                        <color key="tintColor" red="0.99888855219999995" green="0.2013595104" blue="0.46880644560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Short Video Player"/>
-                                        <connections>
-                                            <action selector="buttonToVideoPlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mts-yM-abc"/>
                                         </connections>
                                     </button>
                                 </subviews>

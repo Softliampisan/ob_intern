@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoInfoView" customModule="ob_intern" customModuleProvider="target">
             <connections>
+                <outlet property="buttonToProfile" destination="Ddo-OK-QCx" id="KBz-EZ-5NA"/>
                 <outlet property="containerView" destination="nMc-ql-6lu" id="J0H-ya-xho"/>
                 <outlet property="imageViewProfilePic" destination="gLt-JO-GMi" id="5jJ-xX-DyT"/>
                 <outlet property="labelInfo" destination="6Ln-WB-vPp" id="7gA-0r-cyt"/>
@@ -101,6 +102,13 @@
                             <rect key="frame" x="0.0" y="121" width="480" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddo-OK-QCx">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="tapProfile:" destination="-1" eventType="touchUpInside" id="NgN-l2-lrj"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -108,12 +116,16 @@
                         <constraint firstItem="fgS-ta-lgA" firstAttribute="top" secondItem="nMc-ql-6lu" secondAttribute="top" id="8UO-GA-FgG"/>
                         <constraint firstAttribute="trailing" secondItem="Uat-qU-jYX" secondAttribute="trailing" id="8fv-hi-wSK"/>
                         <constraint firstItem="Uat-qU-jYX" firstAttribute="top" secondItem="6kD-oq-Hri" secondAttribute="bottom" id="KXE-Cn-TmQ"/>
+                        <constraint firstItem="Ddo-OK-QCx" firstAttribute="width" secondItem="gLt-JO-GMi" secondAttribute="width" id="MEc-25-nQG"/>
                         <constraint firstItem="6kD-oq-Hri" firstAttribute="top" secondItem="gRY-mZ-4Yo" secondAttribute="bottom" id="UYq-Ap-qT9"/>
                         <constraint firstItem="gRY-mZ-4Yo" firstAttribute="leading" secondItem="nMc-ql-6lu" secondAttribute="leading" id="WnB-DB-u8a"/>
                         <constraint firstItem="fgS-ta-lgA" firstAttribute="leading" secondItem="nMc-ql-6lu" secondAttribute="leading" id="ZPb-rg-brk"/>
                         <constraint firstAttribute="trailing" secondItem="gRY-mZ-4Yo" secondAttribute="trailing" id="bT0-TI-T4F"/>
                         <constraint firstItem="gRY-mZ-4Yo" firstAttribute="top" secondItem="fgS-ta-lgA" secondAttribute="bottom" constant="8" id="ffO-nA-ZwN"/>
+                        <constraint firstItem="Ddo-OK-QCx" firstAttribute="leading" secondItem="nMc-ql-6lu" secondAttribute="leading" id="g8h-6j-nwj"/>
+                        <constraint firstItem="Ddo-OK-QCx" firstAttribute="height" secondItem="gLt-JO-GMi" secondAttribute="height" id="iU4-0a-8os"/>
                         <constraint firstAttribute="trailing" secondItem="fgS-ta-lgA" secondAttribute="trailing" id="ivQ-hP-gZf"/>
+                        <constraint firstItem="Ddo-OK-QCx" firstAttribute="top" secondItem="nMc-ql-6lu" secondAttribute="top" id="n9U-Te-gDw"/>
                         <constraint firstAttribute="bottom" secondItem="Uat-qU-jYX" secondAttribute="bottom" id="r41-PR-P16"/>
                         <constraint firstItem="6kD-oq-Hri" firstAttribute="leading" secondItem="nMc-ql-6lu" secondAttribute="leading" id="sLo-To-Nwx"/>
                     </constraints>
