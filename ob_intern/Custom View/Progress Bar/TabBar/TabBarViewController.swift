@@ -24,7 +24,7 @@ class TabBarViewController: UITabBarController {
         self.navigationController?.pushViewController(controller, animated: false)
         controller.tabBarItem.image = UIImage(systemName: "house.fill")
         
-        let controller2 = EditShortVideoCoverViewController.newInstance()
+        let controller2 = CreateShortVideoViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: false)
         controller2.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
 

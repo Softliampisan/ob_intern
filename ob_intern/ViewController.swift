@@ -12,15 +12,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        let vc = TabBarViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.present(vc, animated: false)
+//        let vc = TabBarViewController()
+//        vc.modalPresentationStyle = .fullScreen
+//        self.navigationController?.present(vc, animated: false)
         
     }
     
     
     @IBAction func buttonToCreateShortVideo(_ sender: Any) {
-        let controller = CreateShortVideoViewController.newInstance()
+        let controller = StampLogoVideoViewController.newInstance()
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

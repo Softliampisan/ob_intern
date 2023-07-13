@@ -173,6 +173,7 @@ class CreateShortVideoViewController: UIViewController {
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func isPostSuccess() {
         self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
     }
     
     func showSuccessPost() {
