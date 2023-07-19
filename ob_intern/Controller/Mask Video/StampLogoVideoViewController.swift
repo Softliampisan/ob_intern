@@ -39,6 +39,7 @@ class StampLogoVideoViewController: UIViewController {
     var playerLayer = AVPlayerLayer()
     var videoURL: NSURL?
     var composition = AVMutableVideoComposition()
+    var customText: CIImage?
     private var isAssetLoaded = false
     let playerViewController = AVPlayerViewController()
 
@@ -59,6 +60,8 @@ class StampLogoVideoViewController: UIViewController {
         buttonConfirm.layer.cornerRadius = buttonConfirm.frame.width/2
         viewButton.isHidden = true
         buttonConfirm.isHidden = true
+        playerViewController.delegate = self
+
     }
     
     func setupVideoPicker() {
@@ -101,19 +104,33 @@ class StampLogoVideoViewController: UIViewController {
         }
     }
     
-    func addComposition(asset: AVAsset, image: UIImage, url: URL){
-       
+    func addComposition(asset: AVAsset, image: UIImage, url: URL) {
+    
         composition = AVMutableVideoComposition(asset: asset) { request in
-            print("request is entered")
+//            let sourceImage = request.sourceImage.clampedToExtent()
+            self.customText = CIImage(image: image)
+            
+            let positionedText = self.customText?.transformed(by: .init(translationX: 70, y: -60), highQualityDownsample: true)
+            
+            let backgroundColorFilter = CIFilter(name: "CIConstantColorGenerator")!
+            let backgroundColor = CIColor(cgColor: UIColor.red.cgColor) // Replace with your desired background color
+            backgroundColorFilter.setValue(backgroundColor, forKey: kCIInputColorKey)
+            let background = backgroundColorFilter.outputImage!.cropped(to: request.sourceImage.extent)
+            
+            //let videoSize = asset.tracks(withMediaType: .video).first?.naturalSize ?? CGSize.zero
+            let videoPosition = CGAffineTransform(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2)
+            
+            //let positionedVideo = request.sourceImage.transformed(by: videoPosition)
+            let positionedVideo = request.sourceImage.transformed(by: .init(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2), highQualityDownsample: true)
+            //let combinedImage = positionedVideo.composited(over: background)
+            let combinedImage = positionedText?.composited(over: positionedVideo.composited(over: background)) ?? request.sourceImage
 
-            //UIImage(systemName: "globe.europe.africa.fill")
-            let textImage = image
-            let imageExample = CIImage(image: textImage)
-
-            let positionedText = imageExample?.transformed(by: CGAffineTransform(translationX: request.renderSize.width/2, y: 200))
-            request.finish(with: (positionedText?.composited(over: request.sourceImage))!, context: nil)
+            
+            request.finish(with: combinedImage, context: nil)
         }
-     
+        print("render size \(composition.renderSize)")
+        composition.renderSize = CGSize(width: 1080, height: 1920)
+        
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality)
         exporter?.outputFileType = .mov
         exporter?.outputURL = url
@@ -126,7 +143,7 @@ class StampLogoVideoViewController: UIViewController {
             
             switch export.status {
             case  .failed:
-                print("failed \(export.error)")
+                print("failed \(exporter?.error)")
                 break
             case .cancelled:
                 print("cancelled \(exporter?.error)")
@@ -142,6 +159,7 @@ class StampLogoVideoViewController: UIViewController {
                 print("default")
             }
         }
+        
     }
     
     
@@ -149,8 +167,7 @@ class StampLogoVideoViewController: UIViewController {
         
         let asset = AVAsset(url: url)
         addComposition(asset: asset, image: image, url: url)
-
-        
+    
     }
     
     //MARK: - Action
@@ -161,15 +178,15 @@ class StampLogoVideoViewController: UIViewController {
     }
     
     @IBAction func buttonConfirmAction(_ sender: Any) {
-        
-        if let customText = addTextView?.exportTextImage() {
-            print("exported image \(customText)")
-            createCustomText(url: videoURL! as URL, image: customText)
+        customText = nil
 
+        if let customText = addTextView?.exportTextImage() {
+            createCustomText(url: videoURL! as URL, image: customText)
+            
         }
         do { // delete old video
             try FileManager.default.removeItem(at: videoURL! as URL)
-            } catch { print(error.localizedDescription) }
+        } catch { print(error.localizedDescription) }
         
     }
     
@@ -201,6 +218,15 @@ extension StampLogoVideoViewController: StampLogoVideoViewModelDelegate {
         
     }
     
+}
+
+extension StampLogoVideoViewController: AVPlayerViewControllerDelegate {
+
+    func playerViewControllerDidFinishDismissal(_ playerViewController: AVPlayerViewController) {
+        print("dimissed")
+        customText = nil
+    }
+
 }
 
 extension StampLogoVideoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
