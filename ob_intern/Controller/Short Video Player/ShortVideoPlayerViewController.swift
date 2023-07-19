@@ -16,11 +16,11 @@ protocol ShortVideoPlayerDelegate: AnyObject {
 class ShortVideoPlayerViewController: UIViewController {
 
     //MARK: - New Instance
-    class func newInstance(post: ShortVideoPost) -> ShortVideoPlayerViewController {
+    class func newInstance(post: ShortVideoPost, textItem: AVPlayerItem? = nil) -> ShortVideoPlayerViewController {
         let viewController = ShortVideoPlayerViewController(nibName: String(describing: ShortVideoPlayerViewController.self),
                                                        bundle: nil)
         
-        let viewModel = ShortVideoPlayerViewModel(delegate: viewController, post: post)
+        let viewModel = ShortVideoPlayerViewModel(delegate: viewController, post: post, textItem: textItem)
         viewController.viewModel = viewModel
         
         return viewController
@@ -48,6 +48,7 @@ class ShortVideoPlayerViewController: UIViewController {
     private let MAX_SCREEN_RATIO = 0.4
     private var activityView = UIActivityIndicatorView(style: .large)
     var player: AVPlayer?
+    var textItem: AVPlayerItem?
     var playerLayer = AVPlayerLayer()
     var currentTime: CMTime?
     var post: ShortVideoPost?
@@ -81,8 +82,13 @@ class ShortVideoPlayerViewController: UIViewController {
         }
     }
     
-    func createVideoPlayer(url: URL) {
-        player = AVPlayer(url: url)
+    func createVideoPlayer(url: URL? = nil, textItem: AVPlayerItem? = nil) {
+        if let url = url {
+            player = AVPlayer(url: url)
+        }
+        if let textItem = textItem {
+            player = AVPlayer(playerItem: textItem)
+        }
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspectFill
         playerLayer.frame = viewVDO.bounds
@@ -93,6 +99,7 @@ class ShortVideoPlayerViewController: UIViewController {
         player?.play()
     }
     
+   
     func showActivityIndicator() {
         self.activityView = UIActivityIndicatorView(style: .large)
         self.activityView.center = self.view.center
@@ -121,6 +128,17 @@ class ShortVideoPlayerViewController: UIViewController {
 }
 
 extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
+    
+    func updateMockData() {
+        videoInfoView?.config(delegate: self,
+                              profileImageURL: viewModel?.post?.user?.profilePic ?? "",
+                              profileName: viewModel?.post?.user?.profileName ?? "",
+                              postTime: viewModel?.post?.media?.datePosted ?? "",
+                              caption: viewModel?.post?.media?.caption ?? "",
+                              hashtag: viewModel?.post?.hashtag ?? [])
+        createVideoPlayer(textItem: viewModel?.textItem)
+    }
+    
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
     }

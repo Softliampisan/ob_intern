@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 protocol ShortVideoPlayerViewModelDelegate: AnyObject {
     func showError(error: Error)
@@ -15,6 +16,7 @@ protocol ShortVideoPlayerViewModelDelegate: AnyObject {
     func hideLoading()
     func updateData(video: ShortVideo)
     func updateData()
+    func updateMockData()
     func showAlert(alert: UIAlertController)
 }
 
@@ -23,14 +25,17 @@ class ShortVideoPlayerViewModel {
     // MARK: - Properties
     weak var delegate: ShortVideoPlayerViewModelDelegate?
     var currentList: [ShortVideo] = []
+    var currentVideo: [ShortVideoPost] = []
     var post: ShortVideoPost?
+    var textItem: AVPlayerItem?
 
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: ShortVideoPlayerViewModelDelegate, post: ShortVideoPost) {
+    init(delegate: ShortVideoPlayerViewModelDelegate, post: ShortVideoPost, textItem: AVPlayerItem? = nil) {
         self.delegate = delegate
         self.post = post
+        self.textItem = textItem
     }
     
     // MARK: - Functions
@@ -53,6 +58,11 @@ class ShortVideoPlayerViewModel {
     }
     
     func getVideoFromPost() {
-        delegate?.updateData()
+        //delegate?.updateData()
+        delegate?.updateMockData()
+    }
+    
+    func addMockData() {
+        currentVideo.append(ShortVideoPost.mock())
     }
 }

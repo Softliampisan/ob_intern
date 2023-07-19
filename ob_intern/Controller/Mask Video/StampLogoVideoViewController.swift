@@ -89,7 +89,7 @@ class StampLogoVideoViewController: UIViewController {
     func createVideoPlayer(url: URL) {
         player = AVPlayer(url: url)
         playerLayer = AVPlayerLayer(player: player)
-        playerLayer.videoGravity = .resizeAspectFill
+//        playerLayer.videoGravity = .resizeAspectFill
         playerLayer.frame = viewVideo.bounds
         viewVideo.layer.addSublayer(playerLayer)
         
@@ -104,32 +104,6 @@ class StampLogoVideoViewController: UIViewController {
         }
     }
     
-    private class func squareVideoCompositionForAsset(_ asset: AVAsset) -> AVVideoComposition {
-        let track = asset.tracks(withMediaType: .video)[0]
-        let length = min(track.naturalSize.width, track.naturalSize.height)
-
-        var transform = track.preferredTransform
-
-        let size = track.naturalSize
-        let scale: CGFloat = (transform.a == -1 && transform.b == 0 && transform.c == 0 && transform.d == -1) ? -1 : 1 // check for inversion
-
-        transform = transform.translatedBy(x: scale * -(size.width - length) / 2, y: scale * -(size.height - length) / 2)
-
-        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: track)
-        transformer.setTransform(transform, at: .zero)
-
-        let instruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRange(start: .zero, duration: .positiveInfinity)
-        instruction.layerInstructions = [transformer]
-
-        let composition = AVMutableVideoComposition()
-        composition.frameDuration = CMTime(value: 1, timescale: 30)
-        composition.renderSize = CGSize(width: length, height: length)
-        composition.instructions = [instruction]
-
-        return composition
-    }
-    
     func addComposition(asset: AVAsset, image: UIImage, url: URL) {
     
         composition = AVMutableVideoComposition(asset: asset) { request in
@@ -139,21 +113,30 @@ class StampLogoVideoViewController: UIViewController {
             let positionedText = self.customText?.transformed(by: .init(translationX: 70, y: -60), highQualityDownsample: true)
             
             let backgroundColorFilter = CIFilter(name: "CIConstantColorGenerator")!
-            let backgroundColor = CIColor(cgColor: UIColor.red.cgColor) // Replace with your desired background color
+            let backgroundColor = CIColor(cgColor: UIColor.blue.cgColor)
             backgroundColorFilter.setValue(backgroundColor, forKey: kCIInputColorKey)
+            let screenSize = CGRect(x: 0, y: 0, width: 1080, height: 1920)
+            let background = backgroundColorFilter.outputImage!.cropped(to: screenSize)
             
-            let background = backgroundColorFilter.outputImage!.cropped(to: request.sourceImage.extent)
+            let videoTrack = asset.tracks(withMediaType: .video).first
+            let videoSize = videoTrack?.naturalSize ?? CGSize.zero
+            let videoAspectRatio = videoSize.width / videoSize.height
+            print("videoSize \(videoSize)")
+            print("video aspect ratio\(videoAspectRatio)")
+            let targetHeight = 1080 / 2.4
+                   
+            let videoTransform = request.sourceImage.transformed(by: .init(scaleX: targetHeight / 400, y: targetHeight / 400))
             
-            //let videoSize = asset.tracks(withMediaType: .video).first?.naturalSize ?? CGSize.zero
-            let videoPosition = CGAffineTransform(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2)
-            
-            
-//            let positionedVideo = request.sourceImage.transformed(by: .init(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2), highQualityDownsample: true)
-            let positionedVideo = request.sourceImage.transformed(by: .init(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2), highQualityDownsample: true)
-            //let combinedImage = positionedVideo.composited(over: background)
-            let combinedImage = positionedText?.composited(over: positionedVideo.composited(over: background)) ?? request.sourceImage
-//            let combinedImage = background.composited(over: positionedVideo.composited(over: positionedText ?? request.sourceImage))
+            //let positionedVideo = request.sourceImage.transformed(by: videoTransform, highQualityDownsample: true)
+            //print("y of positionedVideo \(positionedVideo.extent.height)")
+            //let positionedVideo = request.sourceImage.transformed(by: .init(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2), highQualityDownsample: true)
+            let positionedVideo = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
+         
+            // Apply the transforms to the video layer
+            let transformedVideo = videoTransform.transformed(by: positionedVideo, highQualityDownsample: true)
+            print("y\((background.extent.height - request.sourceImage.extent.size.height)/2)")
 
+            let combinedImage = positionedText?.composited(over: transformedVideo.composited(over: background)) ?? request.sourceImage
 
             
             request.finish(with: combinedImage, context: nil)
@@ -183,7 +166,9 @@ class StampLogoVideoViewController: UIViewController {
                 let textItem = AVPlayerItem(asset: export.asset)
                 textItem.videoComposition = self.composition
                 DispatchQueue.main.async { // Execute on main queue
-                    self.createVideoController(playerItem: textItem)
+                    let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(), textItem: textItem)
+                    self.navigationController?.pushViewController(controller, animated: true)
+                    //self.createVideoController(playerItem: textItem)
                 }
             default:
                 print("default")
