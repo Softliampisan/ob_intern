@@ -104,6 +104,32 @@ class StampLogoVideoViewController: UIViewController {
         }
     }
     
+    private class func squareVideoCompositionForAsset(_ asset: AVAsset) -> AVVideoComposition {
+        let track = asset.tracks(withMediaType: .video)[0]
+        let length = min(track.naturalSize.width, track.naturalSize.height)
+
+        var transform = track.preferredTransform
+
+        let size = track.naturalSize
+        let scale: CGFloat = (transform.a == -1 && transform.b == 0 && transform.c == 0 && transform.d == -1) ? -1 : 1 // check for inversion
+
+        transform = transform.translatedBy(x: scale * -(size.width - length) / 2, y: scale * -(size.height - length) / 2)
+
+        let transformer = AVMutableVideoCompositionLayerInstruction(assetTrack: track)
+        transformer.setTransform(transform, at: .zero)
+
+        let instruction = AVMutableVideoCompositionInstruction()
+        instruction.timeRange = CMTimeRange(start: .zero, duration: .positiveInfinity)
+        instruction.layerInstructions = [transformer]
+
+        let composition = AVMutableVideoComposition()
+        composition.frameDuration = CMTime(value: 1, timescale: 30)
+        composition.renderSize = CGSize(width: length, height: length)
+        composition.instructions = [instruction]
+
+        return composition
+    }
+    
     func addComposition(asset: AVAsset, image: UIImage, url: URL) {
     
         composition = AVMutableVideoComposition(asset: asset) { request in
@@ -115,15 +141,19 @@ class StampLogoVideoViewController: UIViewController {
             let backgroundColorFilter = CIFilter(name: "CIConstantColorGenerator")!
             let backgroundColor = CIColor(cgColor: UIColor.red.cgColor) // Replace with your desired background color
             backgroundColorFilter.setValue(backgroundColor, forKey: kCIInputColorKey)
+            
             let background = backgroundColorFilter.outputImage!.cropped(to: request.sourceImage.extent)
             
             //let videoSize = asset.tracks(withMediaType: .video).first?.naturalSize ?? CGSize.zero
             let videoPosition = CGAffineTransform(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2)
             
-            //let positionedVideo = request.sourceImage.transformed(by: videoPosition)
+            
+//            let positionedVideo = request.sourceImage.transformed(by: .init(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2), highQualityDownsample: true)
             let positionedVideo = request.sourceImage.transformed(by: .init(translationX: (background.extent.width - request.sourceImage.extent.size.width) / 2, y: (background.extent.height - request.sourceImage.extent.size.height) / 2), highQualityDownsample: true)
             //let combinedImage = positionedVideo.composited(over: background)
             let combinedImage = positionedText?.composited(over: positionedVideo.composited(over: background)) ?? request.sourceImage
+//            let combinedImage = background.composited(over: positionedVideo.composited(over: positionedText ?? request.sourceImage))
+
 
             
             request.finish(with: combinedImage, context: nil)
