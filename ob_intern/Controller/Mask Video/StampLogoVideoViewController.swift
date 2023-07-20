@@ -123,9 +123,9 @@ class StampLogoVideoViewController: UIViewController {
             let videoAspectRatio = videoSize.width / videoSize.height
             print("videoSize \(videoSize)")
             print("video aspect ratio\(videoAspectRatio)")
-            let targetHeight = 1080 / 2.4
+            let targetHeight = 1080 / videoAspectRatio
                    
-            let videoTransform = request.sourceImage.transformed(by: .init(scaleX: targetHeight / 400, y: targetHeight / 400))
+            let videoTransform = request.sourceImage.transformed(by: .init(scaleX: 1, y: targetHeight / videoSize.height))
             
             //let positionedVideo = request.sourceImage.transformed(by: videoTransform, highQualityDownsample: true)
             //print("y of positionedVideo \(positionedVideo.extent.height)")
@@ -166,9 +166,9 @@ class StampLogoVideoViewController: UIViewController {
                 let textItem = AVPlayerItem(asset: export.asset)
                 textItem.videoComposition = self.composition
                 DispatchQueue.main.async { // Execute on main queue
-                    let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(), textItem: textItem)
-                    self.navigationController?.pushViewController(controller, animated: true)
-                    //self.createVideoController(playerItem: textItem)
+//                    let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(), textItem: textItem)
+//                    self.navigationController?.pushViewController(controller, animated: true)
+                    self.createVideoController(playerItem: textItem)
                 }
             default:
                 print("default")
