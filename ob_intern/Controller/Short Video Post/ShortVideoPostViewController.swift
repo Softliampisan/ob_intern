@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 
+//ondismiss
 class ShortVideoPostViewController: UIViewController {
 
     //MARK: - New Instance
@@ -28,13 +29,17 @@ class ShortVideoPostViewController: UIViewController {
     //MARK: - Parameters
     private var viewModel: ShortVideoPostViewModel?
     private var activityView = UIActivityIndicatorView(style: .large)
+    var createButton: CreatePostButtonView?
+
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.viewModel?.getVideoPost()
+        print("view model list \(viewModel?.currentList)")
         self.tableView.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,8 +48,6 @@ class ShortVideoPostViewController: UIViewController {
         ShortVideoManager.isFirstLoad = true
         
     }
-    
-    
     
     //MARK: - Functions
     func setupView() {
@@ -55,6 +58,16 @@ class ShortVideoPostViewController: UIViewController {
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setupCreateButton()
+        
+    }
+    
+    func setupCreateButton() {
+        createButton = CreatePostButtonView(frame: .init(x: UIScreen.main.bounds.width - 50 - 16, y: UIScreen.main.bounds.height - 50 - 100, width: 50, height: 50))
+        if let createButton = createButton {
+            self.view.addSubview(createButton)
+        }
+        createButton?.delegate = self
         
     }
     
@@ -71,12 +84,20 @@ class ShortVideoPostViewController: UIViewController {
         self.activityView.removeFromSuperview()
     }
     
+    func pauseVideo() {
+        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
+            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
+                cell.pauseVideo()
+            }
+        }
+    }
+    
 
     
     //MARK: - Action
     @IBAction func buttonBackAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
@@ -105,7 +126,26 @@ extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
     
 }
 
-extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+extension ShortVideoPostViewController: ShortVideoPostTableViewCellDelegate {
+    func tapVideo(post: ShortVideoPost, currentTime: CMTime) {
+        let controller = ShortVideoPlayerViewController.newInstance(post: post)
+        controller.currentTime = currentTime
+        controller.delegate = self 
+        self.navigationController?.pushViewController(controller, animated: true)
+        pauseVideo()
+    }
+    
+    func tapProfileAction(post: ShortVideoPost) {
+        let controller = ShortVideoListViewController.newInstance(post: post)
+        self.navigationController?.pushViewController(controller, animated: true)
+        pauseVideo()
+
+    }
+    
+}
+
+extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate  {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.currentList.count ?? 0
     }
@@ -116,7 +156,7 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
         }
     
         if let currentPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-            cell.setData(shortVDOPost: currentPost)
+            cell.setData(delegate: self, shortVDOPost: currentPost)
         }
         cell.layoutIfNeeded()
         return cell
@@ -141,7 +181,6 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
         if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
             if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
                 cell.player?.play()
-                
             }
             if let videoPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
                 let userID = videoPost.postID
@@ -156,4 +195,5 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
     }
     
 }
+
 

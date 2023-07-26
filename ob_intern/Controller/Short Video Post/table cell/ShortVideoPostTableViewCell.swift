@@ -10,8 +10,14 @@ import UIKit
 import AVFoundation
 import AVKit
 
+protocol ShortVideoPostTableViewCellDelegate: AnyObject {
+    func tapProfileAction(post: ShortVideoPost)
+    func tapVideo(post: ShortVideoPost, currentTime: CMTime)
+}
+
 class ShortVideoPostTableViewCell: UITableViewCell {
 
+    
     @IBOutlet weak var imageViewPost: UIImageView!
     @IBOutlet weak var viewVDO: UIView!
     @IBOutlet weak var viewProfile: UIView!
@@ -26,19 +32,24 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     var player: AVPlayer?
     var playerLayer = AVPlayerLayer()
     var post: ShortVideoPost?
+    weak var delegate: ShortVideoPostTableViewCellDelegate?
     private let notificationCenter = NotificationCenter.default
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setProfile()
         setLikeComment()
         buttonMute.setButtonImage(imageName: "speaker.wave.2", iconColor: .white)
-        
         selectionStyle = .none
         notificationCenter.addObserver(self,
                                        selector: #selector(stopVideo(_:)),
                                        name: NSNotification.Name ("stopVideo"),
                                        object: nil)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapVideo))
+        self.viewVDO.addGestureRecognizer(gesture)
+        playerLayer.frame = viewVDO.bounds
+
     }
     
     override func layoutSubviews() {
@@ -49,18 +60,22 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-
-        player?.pause()//stop player
+        player?.pause()
         player = nil
         viewVDO.removePlayerLayer()
-     
-        
     }
     
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
+    }
+    
+    @objc func tapVideo(sender : UITapGestureRecognizer) {
+        guard let currentTime = player?.currentTime() else { return }
+        guard let post = post else { return }
+        delegate?.tapVideo(post: post, currentTime: currentTime)
+
     }
     
     @objc func stopVideo(_ notification: Notification){
@@ -73,7 +88,9 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(shortVDOPost: ShortVideoPost){
+    func setData(delegate: ShortVideoPostTableViewCellDelegate,
+                 shortVDOPost: ShortVideoPost){
+        self.delegate = delegate
         self.post = shortVDOPost
         
         profileView?.imageViewProfilePic.sd_setImage(with: URL(string: post?.user?.profilePic ?? "" ))
@@ -86,12 +103,12 @@ class ShortVideoPostTableViewCell: UITableViewCell {
             checkMuteState()
 
         }
-        //viewHashtag.isHidden = post?.hashtags.isEmpty
         viewHashtag.setData(hashtags: post?.hashtag ?? [])
+        viewHashtag.isHidden = (post?.hashtag == [])
         viewHashtag.layoutIfNeeded()
         labelCaption.text = post?.media?.caption
         labelCaption.sizeToFit()
-        //labelCaption.isHidden = ((post?.media?.caption.isEmpty) != nil)
+        labelCaption.isHidden = (post?.media?.caption == "")
         likeCommentView?.labelNumLikes.text = post?.numberOfLikes
         likeCommentView?.labelNumComments.text = post?.numberOfComments
 
@@ -112,6 +129,7 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         if let profileView = profileView {
             viewProfile.addSubview(profileView)
         }
+        profileView?.delegate = self
         
     }
     
@@ -139,6 +157,15 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         }
     }
     
+    func setPlayerTime(time: CMTime) {
+        player?.seek(to: time)
+        player?.play()
+    }
+    
+    func pauseVideo() {
+        player?.pause()
+    }
+    
     
     @IBAction func buttonMuteAction(_ sender: Any) {
         ShortVideoManager.isMute.toggle()
@@ -149,4 +176,11 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     
 }
 
-
+extension ShortVideoPostTableViewCell: ProfileViewDelegate {
+    func tapProfile() {
+        guard let post = post else { return }
+        delegate?.tapProfileAction(post: post)
+    }
+    
+    
+}

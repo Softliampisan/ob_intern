@@ -44,6 +44,7 @@ class CreateShortVideoViewController: UIViewController {
     private let MAX_CHARACTERS = 2000
     private var PLACEHOLDER_TEXT_COLOR: UIColor = .lightGray
     var spinner = UIActivityIndicatorView()
+    var progressBar: UploadVideoProgressbar?
     var isLoading = false {
         didSet {
             // whenever `isLoading` state is changed, update the view
@@ -84,6 +85,14 @@ class CreateShortVideoViewController: UIViewController {
      
     }
     
+    func setUpProgressbar(){
+        progressBar = UploadVideoProgressbar(frame: .init(x: 10, y: 70, width: UIScreen.main.bounds.width - 20, height: 56))
+        progressBar?.layoutIfNeeded()
+        guard let progressBar = progressBar else { return }
+        self.view.addSubview(progressBar)
+        progressBar.state = .loading
+    }
+    
     func setData() {
         imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
     }
@@ -117,6 +126,8 @@ class CreateShortVideoViewController: UIViewController {
 
     //MARK: - Action
     @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
+        let controller = EditShortVideoCoverViewController.newInstance()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func buttonBackAction(_ sender: Any) {
@@ -162,6 +173,7 @@ class CreateShortVideoViewController: UIViewController {
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func isPostSuccess() {
         self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
     }
     
     func showSuccessPost() {
@@ -180,10 +192,12 @@ extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     
     func showLoading() {
         self.isLoading = true
+        setUpProgressbar()
     }
     
     func hideLoading() {
         self.isLoading = false
+        progressBar?.state = .success
     }
     
 }

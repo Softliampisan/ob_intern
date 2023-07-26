@@ -22,17 +22,14 @@ class ShortVideoListViewModel {
     // MARK: - Properties
     weak var delegate: ShortVideoListViewModelDelegate?
     var currentList: [ShortVideoList] = []
+    var post: ShortVideoPost?
 
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: ShortVideoListViewModelDelegate) {
+    init(delegate: ShortVideoListViewModelDelegate, post: ShortVideoPost) {
         self.delegate = delegate
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        
+        self.post = post
 
     }
    
@@ -45,11 +42,11 @@ class ShortVideoListViewModel {
             guard let delegate = delegate else { return }
             delegate.updateData()
             delegate.hideLoading()
-        } errorHandler: { error in
-            self.delegate?.hideLoading()
+        } errorHandler: { [weak self] error in
+            self?.delegate?.hideLoading()
             let alert = UIAlertController(title: "Error", message: "Oops, something went wrong. Please try again later.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.delegate?.showAlert(alert: alert)
+            self?.delegate?.showAlert(alert: alert)
         }
     }
     

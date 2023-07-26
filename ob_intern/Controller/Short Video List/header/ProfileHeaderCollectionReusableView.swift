@@ -20,7 +20,6 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
         super.awakeFromNib()
         imageViewProfilePic.layer.cornerRadius = 42.5
         imageViewProfilePic.clipsToBounds = true
-      
     }
  
     func setData(imageURLProfilePic: String,
@@ -29,7 +28,6 @@ class ProfileHeaderCollectionReusableView: UICollectionReusableView {
         self.labelProfileName.text = label
         self.imageViewProfilePic.sd_setImage(with: URL(string: imageURLProfilePic))
         self.imageViewFrontCover.sd_setImage(with: URL(string: imageURLFrontCover))
-
     }
     
     

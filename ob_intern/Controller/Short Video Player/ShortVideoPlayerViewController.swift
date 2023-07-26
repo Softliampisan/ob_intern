@@ -6,15 +6,23 @@
 //  Copyright (c) 2566 BE ___ORGANIZATIONNAME___. All rights reserved.
 import SDWebImage
 import UIKit
+import AVFoundation
+import AVKit
+import Photos
+
+protocol ShortVideoPlayerDelegate: AnyObject {
+    func updateCurrentTime(currentTime: CMTime)
+}
 
 class ShortVideoPlayerViewController: UIViewController {
 
     //MARK: - New Instance
-    class func newInstance() -> ShortVideoPlayerViewController {
+    class func newInstance(post: ShortVideoPost,
+                           asset: AVAsset? = nil) -> ShortVideoPlayerViewController {
         let viewController = ShortVideoPlayerViewController(nibName: String(describing: ShortVideoPlayerViewController.self),
                                                        bundle: nil)
         
-        let viewModel = ShortVideoPlayerViewModel(delegate: viewController)
+        let viewModel = ShortVideoPlayerViewModel(delegate: viewController, post: post, asset: asset)
         viewController.viewModel = viewModel
         
         return viewController
@@ -24,9 +32,11 @@ class ShortVideoPlayerViewController: UIViewController {
     @IBOutlet weak var viewGradient: UIView!
     @IBOutlet weak var viewVideoInfo: UIView!
     @IBOutlet weak var imageViewVideo: UIImageView!
+    @IBOutlet weak var viewVDO: UIView!
     @IBOutlet weak var viewVideoInfoHeight: NSLayoutConstraint!
     @IBOutlet weak var viewGradientHeight: NSLayoutConstraint!
     @IBOutlet weak var buttonBack: UIButton!
+    @IBOutlet weak var buttonDownload: UIButton!
     
     //MARK: - Parameters
     private var viewModel: ShortVideoPlayerViewModel?
@@ -40,15 +50,23 @@ class ShortVideoPlayerViewController: UIViewController {
     var caption: [String] = ["Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum", "Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text ", "Lorem Ipsum is"]
     private let MAX_SCREEN_RATIO = 0.4
     private var activityView = UIActivityIndicatorView(style: .large)
-
+    var player: AVPlayer?
+    var playerLayer = AVPlayerLayer()
+    var currentTime: CMTime?
+    weak var delegate: ShortVideoPlayerDelegate?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        self.viewModel?.getVideo()
         setupVideoInfo()
+        viewModel?.getVideoFromPost()
+
     }
+    override func viewDidLayoutSubviews() {
+        playerLayer.frame = viewVDO.bounds
+    }
+
     
     //MARK: - Functions
     func setupView() {
@@ -65,6 +83,24 @@ class ShortVideoPlayerViewController: UIViewController {
         }
     }
     
+    func createVideoPlayer(url: URL? = nil, asset: AVAsset? = nil) {
+        
+        if let asset = viewModel?.asset as? AVURLAsset {
+            player = AVPlayer(url: asset.url)
+        } else if let url = url {
+            player = AVPlayer(url: url)
+        }
+        playerLayer = AVPlayerLayer(player: player)
+        playerLayer.videoGravity = .resizeAspectFill
+        playerLayer.frame = viewVDO.bounds
+        viewVDO.layer.addSublayer(playerLayer)
+        if let currentTime = currentTime {
+            player?.seek(to: currentTime)
+        }
+        player?.play()
+    }
+    
+   
     func showActivityIndicator() {
         self.activityView = UIActivityIndicatorView(style: .large)
         self.activityView.center = self.view.center
@@ -78,18 +114,87 @@ class ShortVideoPlayerViewController: UIViewController {
         self.activityView.removeFromSuperview()
     }
     
+    func downloadSuccessAlert() {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func downloadAssetVideo(asset: AVURLAsset) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: asset.url)
+        }) { [weak self] saved, error in
+            guard let self = self else { return }
+            if saved {
+                downloadSuccessAlert()
+            }
+        }
+    }
+    
+    func downloadVideo(url: URL) {
+        DispatchQueue.global(qos: .background).async {
+            guard let urlData = NSData(contentsOf: url) else { return }
+            
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
+            let filePath = "\(documentsPath)/tempFile.mov"
+            DispatchQueue.main.async {
+                urlData.write(toFile: filePath, atomically: true)
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(fileURLWithPath: filePath))
+                }) { [weak self] completed, error in
+                    guard let self = self else { return }
+                    if completed {
+                        downloadSuccessAlert()
+                    }
+                }
+            }
+        }
+    }
+    
     
     //MARK: - Action
     @IBAction func buttonBackAction(_ sender: Any) {
+        if let currentTime = player?.currentTime() {
+            delegate?.updateCurrentTime(currentTime: currentTime)
+        }
         self.navigationController?.popViewController(animated: true)
-
+        
     }
     
-   
+    
+    @IBAction func buttonDownloadAction(_ sender: Any) {
+        if let asset = viewModel?.asset as? AVURLAsset {
+            downloadAssetVideo(asset: asset)
+        } else if let url = URL(string: viewModel?.post?.media?.video ?? "") {
+            downloadVideo(url: url)
+        }
+        
+    }
+    
+    
     
 }
 
 extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
+    
+    func updateMockData() {
+        videoInfoView?.config(delegate: self,
+                              profileImageURL: viewModel?.post?.user?.profilePic ?? "",
+                              profileName: viewModel?.post?.user?.profileName ?? "",
+                              postTime: viewModel?.post?.media?.datePosted ?? "",
+                              caption: viewModel?.post?.media?.caption ?? "",
+                              hashtag: viewModel?.post?.hashtag ?? [])
+        if viewModel?.asset != nil {
+            createVideoPlayer()
+        } else {
+            createVideoPlayer(url: URL(string: viewModel?.post?.media?.video ?? ""))
+
+        }
+    }
+    
     func showAlert(alert: UIAlertController) {
         self.present(alert, animated: true, completion: nil)
     }
@@ -106,6 +211,18 @@ extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
         imageViewVideo.sd_setImage(with: URL(string: video.media?.coverImage ?? ""))
     }
     
+    func updateData() {
+        videoInfoView?.config(delegate: self,
+                              profileImageURL: viewModel?.post?.user?.profilePic ?? "",
+                              profileName: viewModel?.post?.user?.profileName ?? "",
+                              postTime: viewModel?.post?.media?.datePosted ?? "",
+                              caption: viewModel?.post?.media?.caption ?? "",
+                              hashtag: viewModel?.post?.hashtag ?? [])
+        imageViewVideo.sd_setImage(with: URL(string: viewModel?.post?.media?.coverImage ?? ""))
+        if let videoURL = URL(string: viewModel?.post?.media?.video ?? "") {
+            createVideoPlayer(url: videoURL)
+        }
+    }
     
     func showError(error: Error) {
         
@@ -122,6 +239,13 @@ extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
 }
 
 extension ShortVideoPlayerViewController: VideoInfoViewDelegate {
+    func tapProfile() {
+        player?.pause()
+        guard let post = viewModel?.post else { return }
+        let controller = ShortVideoListViewController.newInstance(post: post)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func updateHeight(height: CGFloat) {
         viewVideoInfoHeight.constant = height
         viewGradientHeight.constant = viewVideoInfoHeight.constant

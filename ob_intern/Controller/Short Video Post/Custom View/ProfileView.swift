@@ -8,13 +8,21 @@
 import Foundation
 import UIKit
 
+protocol ProfileViewDelegate: AnyObject {
+    func tapProfile()
+}
+
 class ProfileView: InitializeXibView {
     
+    // MARK: - Properties
+    weak var delegate: ProfileViewDelegate?
+
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageViewGradient: UIImageView!
     @IBOutlet weak var imageViewProfilePic: UIImageView!
     @IBOutlet weak var labelProfileName: UILabel!
     @IBOutlet weak var labelPostTime: UILabel!
+    @IBOutlet weak var buttonToProfile: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,7 +57,13 @@ class ProfileView: InitializeXibView {
         containerView.addSubview(imageViewProfilePic)
         containerView.addSubview(labelProfileName)
         containerView.addSubview(labelPostTime)
+        containerView.addSubview(buttonToProfile)
 
+    }
+    
+    
+    @IBAction func tapProfile(_ sender: Any) {
+        delegate?.tapProfile()
     }
     
 

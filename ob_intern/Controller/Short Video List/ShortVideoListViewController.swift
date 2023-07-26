@@ -10,11 +10,14 @@ import SDWebImage
 
 class ShortVideoListViewController: UIViewController {
     
+    deinit {
+        print("deinit ShortVideoListViewController")
+    }
     //MARK: - New Instance
-    class func newInstance() -> ShortVideoListViewController {
+    class func newInstance(post: ShortVideoPost) -> ShortVideoListViewController {
         let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self), bundle: nil)
         
-        let viewModel = ShortVideoListViewModel(delegate: viewController)
+        let viewModel = ShortVideoListViewModel(delegate: viewController, post: post)
         viewController.viewModel = viewModel
         
         return viewController
@@ -48,10 +51,11 @@ class ShortVideoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.setCollectionViewEmptyState()
         }
     }
+
     
     //MARK: - Functions
     func setupView() {
@@ -81,7 +85,7 @@ class ShortVideoListViewController: UIViewController {
     }
     
     func setCollectionViewEmptyState(){
-        viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
+//        viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
     
     func showActivityIndicator() {
@@ -133,6 +137,7 @@ extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
     
     func hideLoading() {
         self.hideActivityIndicator()
+        //view.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
 }
@@ -157,20 +162,20 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard !(viewModel?.currentList.isEmpty ?? false) else { return }
-        let lastElement = (self.viewModel?.currentList.count ?? 0) - 1
-            if indexPath.row == lastElement {
-                viewModel?.addMockData()
-                collectionView.reloadData()
-            }
-    }
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        guard !(viewModel?.currentList.isEmpty ?? false) else { return }
+//        let lastElement = (self.viewModel?.currentList.count ?? 0) - 1
+//            if indexPath.row == lastElement {
+//                viewModel?.addMockData()
+//                collectionView.reloadData()
+//            }
+//    }
  
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeaderCollectionReusableView.identifier, for: indexPath) as! ProfileHeaderCollectionReusableView
-        profileHeader.setData(imageURLProfilePic: "https://www.unisoftbank.com/wp-content/uploads/2022/12/aesthetic-cute-discord-pfp-2.jpg",
-                              imageURLFrontCover: "https://images.unsplash.com/photo-1541336032412-2048a678540d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNpdHklMjB3YWxscGFwZXJ8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
-                              label: "Karnrawee Wongtrakulkarn")
+        profileHeader.setData(imageURLProfilePic: viewModel?.post?.user?.profilePic ?? "",
+                              imageURLFrontCover: viewModel?.post?.media?.coverImage ?? "",
+                              label: viewModel?.post?.user?.profileName ?? "")
         return profileHeader
     }
     
