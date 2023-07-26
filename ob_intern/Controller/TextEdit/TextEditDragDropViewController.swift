@@ -5,7 +5,6 @@
 //  Created by Saharat Petcharayuttapan on 21/9/2565 BE.
 //
 
-//import IQKeyboardManagerSwift
 import UIKit
 
 protocol TextEditDragDropViewControllerDelegate: AnyObject {
@@ -166,10 +165,8 @@ class TextEditDragDropViewController: UIViewController {
         self.fontColorCollectionView.isHidden = true
 
         self.alignmentButton.setImage(UIImage(systemName: "text.aligncenter"), for: .normal)
-//        self.viewBackgroundColor.roundCorners()
         self.viewBackgroundColor.clipsToBounds = true
 
-//        self.viewFrontColor.roundCorners()
         self.viewFrontColor.layer.borderWidth = 1
         self.viewFrontColor.layer.borderColor = UIColor.black.cgColor
         self.viewFrontColor.clipsToBounds = true
@@ -178,7 +175,6 @@ class TextEditDragDropViewController: UIViewController {
         self.fontStyleCollectionView.backgroundColor = .clear
         self.fontColorCollectionView.backgroundColor = .clear
 
-//        self.viewCloseButton.roundCorners()
         self.viewCloseButton.clipsToBounds = true
 //        self.closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
 //        self.closeButton.tintColor = .white

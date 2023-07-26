@@ -10,17 +10,12 @@ import UIKit
 
 extension UIColor {
     static func colorWithHexString (_ hex:String) -> UIColor {
-        //var cString:String = hex.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercased()
         
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cString.hasPrefix("#")) {
             cString = (cString as NSString).substring(from: 1)
         }
-        
-        //        if (countElements(cString) != 6) {
-        //            return UIColor.grayColor()
-        //        }
         
         let rString = (cString as NSString).substring(to: 2)
         let gString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 2)

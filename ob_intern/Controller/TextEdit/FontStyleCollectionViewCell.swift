@@ -22,7 +22,6 @@ class FontStyleCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        //self.viewContainer.roundCorners()
         self.viewContainer.layer.borderColor = UIColor.clear.cgColor
         self.viewContainer.clipsToBounds = true
     }

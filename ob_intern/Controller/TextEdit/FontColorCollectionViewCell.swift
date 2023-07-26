@@ -22,7 +22,6 @@ class FontColorCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
 
-        //self.colorView.roundCorners()
         self.colorView.layer.borderWidth = 1
         self.colorView.layer.borderColor = UIColor.white.cgColor
         self.colorView.clipsToBounds = true
