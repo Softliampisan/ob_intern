@@ -76,7 +76,7 @@ class ShortVideoPost {
         post.postID = Int(Date().timeIntervalSince1970) + Int.random(in: 0...999)
         post.user = User.mock()
         post.media = MediaModel.mock()
-        //post.hashtag = mockHashtag.randomElement() ?? ""
+        post.hashtag = [mockHashtag.randomElement() ?? ""]
         post.numberOfLikes = numFormat(num: String(randomNum() ?? 0)) ?? ""
         post.numberOfComments = numFormat(num: String(randomNum() ?? 0)) ?? ""
         

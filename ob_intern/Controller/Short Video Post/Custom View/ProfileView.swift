@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-//import SkeletonView
 
 protocol ProfileViewDelegate: AnyObject {
     func tapProfile()

@@ -9,6 +9,7 @@ import UIKit
 import AVKit
 import AVFoundation
 import CoreImage.CIFilterBuiltins
+import Photos
 
 class StampLogoVideoViewController: UIViewController {
     
@@ -66,7 +67,6 @@ class StampLogoVideoViewController: UIViewController {
         buttonConfirm.layer.cornerRadius = buttonConfirm.frame.width/2
         viewButton.isHidden = true
         buttonConfirm.isHidden = true
-        playerViewController.delegate = self
         progressBar.setProgress(0.0, animated: false)
 
     }
@@ -100,9 +100,9 @@ class StampLogoVideoViewController: UIViewController {
     
     func setupDragAndDrop() {
         addTextView = TextEditDragDropViewController.init(nibName: "TextEditDragDropViewController", bundle: nil)
-        let width = UIScreen.main.bounds.width
-        let height = width * (16/9)
-        addTextView?.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+//        let width = UIScreen.main.bounds.width
+//        let height = width * (16/9)
+//        addTextView?.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
         addTextView?.delegate = self
         if let addTextView = self.addTextView {
             view.addSubview(addTextView.view)
@@ -133,33 +133,38 @@ class StampLogoVideoViewController: UIViewController {
             
             let positionedText = self.customText?.transformed(by: .identity, highQualityDownsample: true)
             
+            //background
             let backgroundColorFilter = CIFilter(name: "CIConstantColorGenerator")!
             let backgroundColor = CIColor(cgColor: UIColor.black.cgColor)
             backgroundColorFilter.setValue(backgroundColor, forKey: kCIInputColorKey)
             let screenSize = CGRect(x: 0, y: 0, width: 1080, height: 1920)
             let background = backgroundColorFilter.outputImage!.cropped(to: screenSize)
-            
+
+            //calculate video size
             let videoTrack = asset.tracks(withMediaType: .video).first
             let videoSize = videoTrack?.naturalSize ?? CGSize.zero
             let videoAspectRatio = videoSize.width / videoSize.height
             let targetHeight = 1080 / videoAspectRatio
-                   
+
+            //resize video
             let videoTransform = request.sourceImage.transformed(by: .init(scaleX: 1080 / videoSize.width, y: targetHeight / videoSize.height))
-                        
+            
+            //set video position
             let positionedVideo = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
             print("positionedText size \(positionedText?.extent.size)")
-
+            
+            //combine resize video and video position
             let transformedVideo = videoTransform.transformed(by: positionedVideo, highQualityDownsample: true)
             print("y\((background.extent.height - request.sourceImage.extent.size.height)/2)")
-
-            let combinedImage = positionedText?.composited(over: transformedVideo.composited(over: background)) ?? request.sourceImage
-
             
+            //combine text and video over background
+            let combinedImage = positionedText?.composited(over: transformedVideo.composited(over: background)) ?? request.sourceImage
             request.finish(with: combinedImage, context: nil)
         }
         composition.renderSize = CGSize(width: 1080, height: 1920)
         let outputURL = createOutputURL()
 
+        //export video
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality)
         self.exporter = exporter
         exporter?.outputFileType = .mov
@@ -167,7 +172,6 @@ class StampLogoVideoViewController: UIViewController {
         exporter?.videoComposition = composition
         exportProgressBarTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateExportDisplay(_:)), userInfo: progressBar, repeats: true)
         
-
         exporter?.exportAsynchronously { [weak exporter] in
             guard let export = exporter else {
                 return
@@ -182,14 +186,18 @@ class StampLogoVideoViewController: UIViewController {
                 break
             case .completed:
                 print("complete")
-                let textItem = AVPlayerItem(asset: export.asset)
-                textItem.videoComposition = composition
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in  
-
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
                     self?.progressBar.setProgress(1.0, animated: true)
-//                    let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(), textItem: textItem)
-//                    self?.navigationController?.pushViewController(controller, animated: true)
-                    self?.createVideoController(playerItem: textItem)
+                    
+                    if let url = outputURL {
+                        let outputAsset = AVURLAsset(url: url)
+                        let post = ShortVideoPost.mock()
+                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
+                                                                                    asset: outputAsset)
+                        self?.navigationController?.pushViewController(controller, animated: true)
+                    }
+                    
+//                    self?.createVideoController(asset: outputAsset)
                 }
             default:
                 print("default")
@@ -201,7 +209,17 @@ class StampLogoVideoViewController: UIViewController {
     
     func createCustomText(url: URL, image: UIImage) {
         let asset = AVAsset(url: url)
-        addComposition(asset: asset, image: image, url: url)
+        let videoTrack = asset.tracks(withMediaType: .video).first
+        let audioTrack = asset.tracks(withMediaType: .audio).first
+        let composition = AVMutableComposition()
+        
+        //combine video and audio track
+        let compositionCommentaryTrack: AVMutableCompositionTrack? = composition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid)
+        let compositionVideoTrack: AVMutableCompositionTrack? = composition.addMutableTrack(withMediaType: AVMediaType.video, preferredTrackID: kCMPersistentTrackID_Invalid)
+        try? compositionCommentaryTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: asset.duration), of: audioTrack!, at: CMTime.zero)
+        try? compositionVideoTrack?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: asset.duration), of: videoTrack!, at: CMTime.zero)
+        
+        addComposition(asset: composition, image: image, url: url)
     
     }
     
@@ -295,20 +313,10 @@ extension StampLogoVideoViewController: StampLogoVideoViewModelDelegate {
     
 }
 
-extension StampLogoVideoViewController: AVPlayerViewControllerDelegate {
-
-    func playerViewControllerDidFinishDismissal(_ playerViewController: AVPlayerViewController) {
-        print("dimissed")
-        customText = nil
-    }
-
-}
-
 extension StampLogoVideoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL{
             print("videourl: ", videoUrl)
-            //trying compression of video
             videoURL = videoUrl
             
             let data = NSData(contentsOf: videoUrl as URL)!

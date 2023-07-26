@@ -27,15 +27,15 @@ class ShortVideoPlayerViewModel {
     var currentList: [ShortVideo] = []
     var currentVideo: [ShortVideoPost] = []
     var post: ShortVideoPost?
-    var textItem: AVPlayerItem?
+    var asset: AVAsset?
 
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: ShortVideoPlayerViewModelDelegate, post: ShortVideoPost, textItem: AVPlayerItem? = nil) {
+    init(delegate: ShortVideoPlayerViewModelDelegate, post: ShortVideoPost, asset: AVAsset? = nil) {
         self.delegate = delegate
         self.post = post
-        self.textItem = textItem
+        self.asset = asset 
     }
     
     // MARK: - Functions
