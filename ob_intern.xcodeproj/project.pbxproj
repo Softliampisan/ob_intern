@@ -25,6 +25,7 @@
 		183B27CA2A30418600448624 /* ShortVideoListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */; };
 		183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CC2A305AC700448624 /* ShortVideoList.swift */; };
 		183B27D02A3081E100448624 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27CF2A3081E100448624 /* Collection.swift */; };
+		1841C20B2A70CC3F001F10A4 /* TextEditDragDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1841C2092A70BC0B001F10A4 /* TextEditDragDropViewController.xib */; };
 		18430B832A53DA7B001DB9CD /* ShortVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18430B822A53DA7B001DB9CD /* ShortVideo.swift */; };
 		184918E22A5663DA000832B5 /* ShortVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184918E12A5663DA000832B5 /* ShortVideoManager.swift */; };
 		184918EC2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184918EA2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift */; };
@@ -42,7 +43,6 @@
 		1862D6F02A5E5BE800FB8AD8 /* TextEditDragDropViewController+Gesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862D6E72A5E5BE800FB8AD8 /* TextEditDragDropViewController+Gesture.swift */; };
 		1862D6F12A5E5BE800FB8AD8 /* TextEditDragDropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862D6E82A5E5BE800FB8AD8 /* TextEditDragDropViewController.swift */; };
 		1862D6F22A5E5BE800FB8AD8 /* DisplayLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862D6E92A5E5BE800FB8AD8 /* DisplayLabelView.xib */; };
-		1862D6F32A5E5BE800FB8AD8 /* TextEditDragDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862D6EA2A5E5BE800FB8AD8 /* TextEditDragDropViewController.xib */; };
 		1862D6F42A5E5BE800FB8AD8 /* FontColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862D6EB2A5E5BE800FB8AD8 /* FontColorCollectionViewCell.swift */; };
 		1862D6F52A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1862D6EC2A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.xib */; };
 		1862D6F62A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1862D6ED2A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.swift */; };
@@ -75,6 +75,7 @@
 		189B90722A5D168900683325 /* StampLogoVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B906F2A5D168900683325 /* StampLogoVideoViewModel.swift */; };
 		189B90732A5D168900683325 /* StampLogoVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 189B90702A5D168900683325 /* StampLogoVideoViewController.xib */; };
 		189B90752A5D38CE00683325 /* VideoPlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B90742A5D38CE00683325 /* VideoPlayerExtension.swift */; };
+		18A04AA32A69345A00B5B3E6 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A04AA22A69345A00B5B3E6 /* UIImageExtension.swift */; };
 		18B48A262A55232300EC2B8D /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B48A252A55232300EC2B8D /* CGRectExtension.swift */; };
 		18B4D9102A5BE26E00DE1728 /* CreatePostButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B4D90F2A5BE26E00DE1728 /* CreatePostButtonView.xib */; };
 		18B4D9122A5BE28F00DE1728 /* CreatePostButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4D9112A5BE28F00DE1728 /* CreatePostButtonView.swift */; };
@@ -109,6 +110,7 @@
 		183B27C82A30418600448624 /* ShortVideoListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListCollectionViewCell.xib; sourceTree = "<group>"; };
 		183B27CC2A305AC700448624 /* ShortVideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoList.swift; sourceTree = "<group>"; };
 		183B27CF2A3081E100448624 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		1841C2092A70BC0B001F10A4 /* TextEditDragDropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextEditDragDropViewController.xib; sourceTree = "<group>"; };
 		18430B822A53DA7B001DB9CD /* ShortVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideo.swift; sourceTree = "<group>"; };
 		184918E12A5663DA000832B5 /* ShortVideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoManager.swift; sourceTree = "<group>"; };
 		184918EA2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -126,7 +128,6 @@
 		1862D6E72A5E5BE800FB8AD8 /* TextEditDragDropViewController+Gesture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextEditDragDropViewController+Gesture.swift"; sourceTree = "<group>"; };
 		1862D6E82A5E5BE800FB8AD8 /* TextEditDragDropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditDragDropViewController.swift; sourceTree = "<group>"; };
 		1862D6E92A5E5BE800FB8AD8 /* DisplayLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayLabelView.xib; sourceTree = "<group>"; };
-		1862D6EA2A5E5BE800FB8AD8 /* TextEditDragDropViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextEditDragDropViewController.xib; sourceTree = "<group>"; };
 		1862D6EB2A5E5BE800FB8AD8 /* FontColorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		1862D6EC2A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FontStyleCollectionViewCell.xib; sourceTree = "<group>"; };
 		1862D6ED2A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontStyleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +160,7 @@
 		189B906F2A5D168900683325 /* StampLogoVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampLogoVideoViewModel.swift; sourceTree = "<group>"; };
 		189B90702A5D168900683325 /* StampLogoVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StampLogoVideoViewController.xib; sourceTree = "<group>"; };
 		189B90742A5D38CE00683325 /* VideoPlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerExtension.swift; sourceTree = "<group>"; };
+		18A04AA22A69345A00B5B3E6 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		18B48A252A55232300EC2B8D /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		18B4D90F2A5BE26E00DE1728 /* CreatePostButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostButtonView.xib; sourceTree = "<group>"; };
 		18B4D9112A5BE28F00DE1728 /* CreatePostButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostButtonView.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				18B48A252A55232300EC2B8D /* CGRectExtension.swift */,
 				189B90742A5D38CE00683325 /* VideoPlayerExtension.swift */,
 				1862D6F92A5E5FD400FB8AD8 /* ColorExtension.swift */,
+				18A04AA22A69345A00B5B3E6 /* UIImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -306,8 +309,8 @@
 			children = (
 				1862D6E72A5E5BE800FB8AD8 /* TextEditDragDropViewController+Gesture.swift */,
 				1862D6E82A5E5BE800FB8AD8 /* TextEditDragDropViewController.swift */,
+				1841C2092A70BC0B001F10A4 /* TextEditDragDropViewController.xib */,
 				1862D6E92A5E5BE800FB8AD8 /* DisplayLabelView.xib */,
-				1862D6EA2A5E5BE800FB8AD8 /* TextEditDragDropViewController.xib */,
 				1862D6EB2A5E5BE800FB8AD8 /* FontColorCollectionViewCell.swift */,
 				1862D6EC2A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.xib */,
 				1862D6ED2A5E5BE800FB8AD8 /* FontStyleCollectionViewCell.swift */,
@@ -564,6 +567,7 @@
 				1862D6F82A5E5BE800FB8AD8 /* FontColorCollectionViewCell.xib in Resources */,
 				184918ED2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
+				1841C20B2A70CC3F001F10A4 /* TextEditDragDropViewController.xib in Resources */,
 				1883C80D2A3B031400A3B168 /* ShortVideoPostViewController.xib in Resources */,
 				1852BEE62A4C3459001C930C /* DisplayHashTagCollectionViewCell.xib in Resources */,
 				1802574A2A3FF7750057E850 /* ProfileView.xib in Resources */,
@@ -572,7 +576,6 @@
 				18259C6E2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib in Resources */,
 				186DB2832A41591B00027809 /* ShortVideoPlayerViewController.xib in Resources */,
 				1852BEEC2A4C34A5001C930C /* SocialPostHashTagView.xib in Resources */,
-				1862D6F32A5E5BE800FB8AD8 /* TextEditDragDropViewController.xib in Resources */,
 				1883C7FB2A39816900A3B168 /* TestProgressBarViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +652,7 @@
 				1862D6F42A5E5BE800FB8AD8 /* FontColorCollectionViewCell.swift in Sources */,
 				189B906C2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift in Sources */,
 				183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */,
+				18A04AA32A69345A00B5B3E6 /* UIImageExtension.swift in Sources */,
 				183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */,
 				1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */,
 				1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */,

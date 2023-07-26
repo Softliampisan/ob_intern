@@ -10,6 +10,9 @@ import SDWebImage
 
 class ShortVideoListViewController: UIViewController {
     
+    deinit {
+        print("deinit ShortVideoListViewController")
+    }
     //MARK: - New Instance
     class func newInstance(post: ShortVideoPost) -> ShortVideoListViewController {
         let viewController = ShortVideoListViewController(nibName: String(describing: ShortVideoListViewController.self), bundle: nil)
@@ -48,10 +51,11 @@ class ShortVideoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.setCollectionViewEmptyState()
         }
     }
+
     
     //MARK: - Functions
     func setupView() {
@@ -133,6 +137,7 @@ extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
     
     func hideLoading() {
         self.hideActivityIndicator()
+        //view.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
 }
@@ -157,14 +162,14 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard !(viewModel?.currentList.isEmpty ?? false) else { return }
-        let lastElement = (self.viewModel?.currentList.count ?? 0) - 1
-            if indexPath.row == lastElement {
-                viewModel?.addMockData()
-                collectionView.reloadData()
-            }
-    }
+//    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        guard !(viewModel?.currentList.isEmpty ?? false) else { return }
+//        let lastElement = (self.viewModel?.currentList.count ?? 0) - 1
+//            if indexPath.row == lastElement {
+//                viewModel?.addMockData()
+//                collectionView.reloadData()
+//            }
+//    }
  
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProfileHeaderCollectionReusableView.identifier, for: indexPath) as! ProfileHeaderCollectionReusableView

@@ -42,10 +42,10 @@ class ShortVideoPostViewModel {
             guard let delegate = delegate else { return }
             delegate.updateData()
             delegate.hideLoading()
-        } errorHandler: { error in
+        } errorHandler: { [weak self] error in
             let alert = UIAlertController(title: "Error", message: "Oops, something went wrong. Please try again later.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.delegate?.showAlert(alert: alert)
+            self?.delegate?.showAlert(alert: alert)
         }
     }
     

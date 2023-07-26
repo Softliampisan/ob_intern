@@ -6,7 +6,6 @@ target 'ob_intern' do
   use_frameworks!
   pod 'SDWebImage'
   pod 'IQKeyboardManagerSwift'
-#  pod 'SkeletonView'
   pod "Alamofire"
   pod 'SwiftyJSON'
   # Pods for ob_intern

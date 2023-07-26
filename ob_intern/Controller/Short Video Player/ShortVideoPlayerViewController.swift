@@ -83,11 +83,11 @@ class ShortVideoPlayerViewController: UIViewController {
     }
     
     func createVideoPlayer(url: URL? = nil, textItem: AVPlayerItem? = nil) {
-        if let url = url {
-            player = AVPlayer(url: url)
-        }
         if let textItem = textItem {
             player = AVPlayer(playerItem: textItem)
+        }
+        if let url = url {
+            player = AVPlayer(url: url)
         }
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspectFill
@@ -136,7 +136,12 @@ extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
                               postTime: viewModel?.post?.media?.datePosted ?? "",
                               caption: viewModel?.post?.media?.caption ?? "",
                               hashtag: viewModel?.post?.hashtag ?? [])
-        createVideoPlayer(textItem: viewModel?.textItem)
+        if viewModel?.textItem != nil {
+            createVideoPlayer(textItem: viewModel?.textItem)
+        } else {
+            createVideoPlayer(url: URL(string: viewModel?.post?.media?.video ?? ""))
+
+        }
     }
     
     func showAlert(alert: UIAlertController) {

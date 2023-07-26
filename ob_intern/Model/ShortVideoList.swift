@@ -64,6 +64,8 @@ class ShortVideoList {
         let video = ShortVideoList.init()
         
         video.numberOfViews = numberFormat() ?? "0"
+        video.user = User.mock()
+        video.media = MediaModel.mock()
         video.videoImage = mockImageUrls.randomElement() ?? ""
         
         return video

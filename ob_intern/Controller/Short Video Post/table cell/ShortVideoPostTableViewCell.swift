@@ -41,7 +41,6 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         setProfile()
         setLikeComment()
         buttonMute.setButtonImage(imageName: "speaker.wave.2", iconColor: .white)
-        
         selectionStyle = .none
         notificationCenter.addObserver(self,
                                        selector: #selector(stopVideo(_:)),
@@ -49,6 +48,8 @@ class ShortVideoPostTableViewCell: UITableViewCell {
                                        object: nil)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapVideo))
         self.viewVDO.addGestureRecognizer(gesture)
+        playerLayer.frame = viewVDO.bounds
+
     }
     
     override func layoutSubviews() {

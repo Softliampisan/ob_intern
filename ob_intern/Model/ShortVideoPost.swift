@@ -73,6 +73,7 @@ class ShortVideoPost {
         
         let post = ShortVideoPost.init()
         
+        post.postID = Int(Date().timeIntervalSince1970) + Int.random(in: 0...999)
         post.user = User.mock()
         post.media = MediaModel.mock()
         //post.hashtag = mockHashtag.randomElement() ?? ""

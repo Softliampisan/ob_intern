@@ -37,7 +37,9 @@ class ShortVideoPostViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         self.viewModel?.getVideoPost()
+        print("view model list \(viewModel?.currentList)")
         self.tableView.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +144,8 @@ extension ShortVideoPostViewController: ShortVideoPostTableViewCellDelegate {
     
 }
 
-extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate  {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.currentList.count ?? 0
     }
@@ -192,4 +195,5 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
     }
     
 }
+
 

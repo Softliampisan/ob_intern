@@ -59,7 +59,9 @@ class ShortVideoPlayerViewModel {
     
     func getVideoFromPost() {
         //delegate?.updateData()
+        delegate?.showLoading()
         delegate?.updateMockData()
+        delegate?.hideLoading()
     }
     
     func addMockData() {

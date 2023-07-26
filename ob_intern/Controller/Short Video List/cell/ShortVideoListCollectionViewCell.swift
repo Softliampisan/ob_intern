@@ -18,8 +18,14 @@ class ShortVideoListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         imageViewVideo.layer.cornerRadius = 16
-        imageViewVideo.clipsToBounds = true 
+        imageViewVideo.clipsToBounds = true
 
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageViewVideo.image = nil
+        imageViewIcon.image = nil
     }
     
     func setData(imageURL: String,

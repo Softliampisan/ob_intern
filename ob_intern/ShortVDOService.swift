@@ -11,8 +11,34 @@ import SwiftyJSON
 
 class ShortVDOService {
     
+    var currentList: [ShortVideoPost] = []
+    var videoList: [ShortVideoList] = []
+
+    func addMockPost(){
+        let numberOfVideos: Int = 20
+        for _ in 0..<numberOfVideos {
+            let user = ShortVideoPost.mock()
+            self.currentList.append(user)
+        }
+    }
+    
+    func addMockList(){
+        let numberOfVideos: Int = 20
+        for _ in 0..<numberOfVideos {
+            let user = ShortVideoList.mock()
+            self.videoList.append(user)
+        }
+    }
+
+    
     func getShortVDOPost(completion: @escaping ( ([ShortVideoPost]) -> Void),
                          errorHandler: @escaping ( (Error) -> Void)){
+        if ShortVideoManager.isMock == true {
+            addMockPost()
+            let videoPosts = currentList
+            completion(videoPosts)
+            return
+        }
         let link = "https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoList"
         let request = AF.request(link, method: .get)
         request.responseJSON { response in
@@ -32,6 +58,13 @@ class ShortVDOService {
     
     func getShortVDOList(completion: @escaping ( ([ShortVideoList]) -> Void),
                          errorHandler: @escaping ( (Error) -> Void)){
+        if ShortVideoManager.isMock == true {
+            addMockList()
+            let videoList = videoList
+            print("video list \(videoList)")
+            completion(videoList)
+            return
+        }
         let link = "https://cccfefc5-f8d5-4f42-b9c0-1a17022434cb.mock.pstmn.io/getVideoList"
         let request = AF.request(link, method: .get)
         request.responseJSON { response in
