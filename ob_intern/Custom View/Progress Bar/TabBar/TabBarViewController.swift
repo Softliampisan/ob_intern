@@ -13,6 +13,15 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         setupTabBar()
     }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if let index = tabBar.items?.firstIndex(of: item), index == 2 {
+            ShortVideoManager.myProfile = true
+        } else {
+            ShortVideoManager.myProfile = false
+        }
+    }
+    
     func setupTabBar(){
         
         self.tabBar.tintColor = .red
@@ -25,12 +34,16 @@ class TabBarViewController: UITabBarController {
         controller.tabBarItem.image = UIImage(systemName: "house.fill")
         
         let controller2 = CreateShortVideoViewController.newInstance()
-        self.navigationController?.pushViewController(controller, animated: false)
+        self.navigationController?.pushViewController(controller2, animated: false)
         controller2.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
 
-        
+        let controller3 = ShortVideoListViewController.newInstance(post: ShortVideoPost.myProfile())
+        self.navigationController?.pushViewController(controller3, animated: false)
+        controller3.tabBarItem.image = UIImage(systemName: "person.fill")
+
         viewControllers = [UINavigationController(rootViewController: controller),
-                           UINavigationController(rootViewController: controller2)]
+                           UINavigationController(rootViewController: controller2),
+                           UINavigationController(rootViewController: controller3)]
     }
 
     /*

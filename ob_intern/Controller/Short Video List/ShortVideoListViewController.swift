@@ -137,7 +137,6 @@ extension ShortVideoListViewController: ShortVideoListViewModelDelegate {
     
     func hideLoading() {
         self.hideActivityIndicator()
-        //view.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
 }
@@ -176,6 +175,8 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
         profileHeader.setData(imageURLProfilePic: viewModel?.post?.user?.profilePic ?? "",
                               imageURLFrontCover: viewModel?.post?.media?.coverImage ?? "",
                               label: viewModel?.post?.user?.profileName ?? "")
+        profileHeader.delegate = self
+        profileHeader.hideSettings()
         return profileHeader
     }
     
@@ -205,4 +206,13 @@ extension ShortVideoListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ShortVideoListViewController: ProfileHeaderCollectionReusableViewDelegate {
+    func didTapSettingsButton() {
+        let settingsViewController = SettingsViewController()
+        settingsViewController.modalPresentationStyle = .fullScreen
+        self.present(settingsViewController, animated: true)
+    }
+    
+    
+}
 

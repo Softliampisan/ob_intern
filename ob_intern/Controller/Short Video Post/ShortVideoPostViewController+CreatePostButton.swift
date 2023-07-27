@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 
 extension ShortVideoPostViewController: CreatePostButtonViewDelegate {
-    func tapCreateButton() {
-        let controller = CreateShortVideoViewController.newInstance()
-        self.navigationController?.pushViewController(controller, animated: true)
+    func presentPopupMenu() {
         pauseVideo()
+        let vc = CreateMenuViewController.newInstance()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
     }
 }
