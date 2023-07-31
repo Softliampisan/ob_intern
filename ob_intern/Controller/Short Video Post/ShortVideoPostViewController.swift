@@ -44,9 +44,16 @@ class ShortVideoPostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.viewModel?.getVideoPost()
+        self.tableView.reloadData()
         ShortVideoManager.isMute = false
         ShortVideoManager.isFirstLoad = true
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pauseVideo()
     }
     
     //MARK: - Functions

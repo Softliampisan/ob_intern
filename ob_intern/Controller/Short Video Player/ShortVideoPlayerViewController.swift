@@ -66,6 +66,16 @@ class ShortVideoPlayerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         playerLayer.frame = viewVDO.bounds
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        player?.play()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player?.pause()
+    }
 
     
     //MARK: - Functions
@@ -114,6 +124,26 @@ class ShortVideoPlayerViewController: UIViewController {
         self.activityView.removeFromSuperview()
     }
     
+    func checkPhotosAuthorizationStatus() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        if (status == PHAuthorizationStatus.denied) {
+            let alertController = UIAlertController (title: "Please go to settings for access to photo library", message: nil, preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     func downloadSuccessAlert() {
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: "Your video was successfully saved", message: nil, preferredStyle: .alert)
@@ -139,7 +169,8 @@ class ShortVideoPlayerViewController: UIViewController {
             guard let urlData = NSData(contentsOf: url) else { return }
             
             let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
-            let filePath = "\(documentsPath)/tempFile.mov"
+            let randomFilename = UUID().uuidString
+            let filePath = "\(documentsPath)\(randomFilename).mov"
             DispatchQueue.main.async {
                 urlData.write(toFile: filePath, atomically: true)
                 PHPhotoLibrary.shared().performChanges({
@@ -166,6 +197,8 @@ class ShortVideoPlayerViewController: UIViewController {
     
     
     @IBAction func buttonDownloadAction(_ sender: Any) {
+        
+        checkPhotosAuthorizationStatus()
         if let asset = viewModel?.asset as? AVURLAsset {
             downloadAssetVideo(asset: asset)
         } else if let url = URL(string: viewModel?.post?.media?.video ?? "") {
@@ -173,7 +206,6 @@ class ShortVideoPlayerViewController: UIViewController {
         }
         
     }
-    
     
     
 }

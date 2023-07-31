@@ -88,6 +88,12 @@
 		18C654282A4AD26200E3171C /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C654272A4AD26200E3171C /* LeftAlignedFlowLayout.swift */; };
 		18C6542A2A4AD5F700E3171C /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C654292A4AD5F700E3171C /* UICollectionViewExtension.swift */; };
 		18C6542C2A4ADF8B00E3171C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C6542B2A4ADF8B00E3171C /* DateExtension.swift */; };
+		18D89AC72A72236400A79E3F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D89AC42A72236400A79E3F /* SettingsViewController.swift */; };
+		18D89AC82A72236400A79E3F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D89AC52A72236400A79E3F /* SettingsViewModel.swift */; };
+		18D89AC92A72236400A79E3F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D89AC62A72236400A79E3F /* SettingsViewController.xib */; };
+		18D89ACE2A7246AE00A79E3F /* CreateMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D89ACB2A7246AE00A79E3F /* CreateMenuViewController.swift */; };
+		18D89ACF2A7246AE00A79E3F /* CreateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D89ACC2A7246AE00A79E3F /* CreateMenuViewModel.swift */; };
+		18D89AD02A7246AE00A79E3F /* CreateMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D89ACD2A7246AE00A79E3F /* CreateMenuViewController.xib */; };
 		30981B7D3DC2F27CEFEF6212 /* Pods_ob_intern.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722B11459BDA426B454507F2 /* Pods_ob_intern.framework */; };
 /* End PBXBuildFile section */
 
@@ -175,6 +181,12 @@
 		18C654272A4AD26200E3171C /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
 		18C654292A4AD5F700E3171C /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		18C6542B2A4ADF8B00E3171C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		18D89AC42A72236400A79E3F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		18D89AC52A72236400A79E3F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		18D89AC62A72236400A79E3F /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		18D89ACB2A7246AE00A79E3F /* CreateMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewController.swift; sourceTree = "<group>"; };
+		18D89ACC2A7246AE00A79E3F /* CreateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMenuViewModel.swift; sourceTree = "<group>"; };
+		18D89ACD2A7246AE00A79E3F /* CreateMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateMenuViewController.xib; sourceTree = "<group>"; };
 		722B11459BDA426B454507F2 /* Pods_ob_intern.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ob_intern.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2891CAD7838F9872C169350 /* Pods-ob_intern.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ob_intern.debug.xcconfig"; path = "Target Support Files/Pods-ob_intern/Pods-ob_intern.debug.xcconfig"; sourceTree = "<group>"; };
 		E45927E6BAB06AA9A3A56770 /* Pods-ob_intern.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ob_intern.release.xcconfig"; path = "Target Support Files/Pods-ob_intern/Pods-ob_intern.release.xcconfig"; sourceTree = "<group>"; };
@@ -372,7 +384,6 @@
 		1883C8072A3B02F800A3B168 /* Short Video Post */ = {
 			isa = PBXGroup;
 			children = (
-				184918E12A5663DA000832B5 /* ShortVideoManager.swift */,
 				180257482A3FF70B0057E850 /* Custom View */,
 				1883C8122A3B03DE00A3B168 /* table cell */,
 				1883C8082A3B031300A3B168 /* ShortVideoPostViewController.swift */,
@@ -434,6 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				1852BEF32A4D7D29001C930C /* ShortVDOService.swift */,
+				184918E12A5663DA000832B5 /* ShortVideoManager.swift */,
 				1852BEE22A4C1D66001C930C /* Model */,
 				1833D7652A32ED24006C5BF7 /* Custom View */,
 				183B27CE2A3081C700448624 /* Extension */,
@@ -452,6 +464,8 @@
 		18C163BE2A30394D00188D98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18D89ACA2A72469D00A79E3F /* Create Menu */,
+				18D89AC32A72235000A79E3F /* Settings */,
 				1862D6E62A5E5BE800FB8AD8 /* TextEdit */,
 				189B906D2A5D161F00683325 /* Mask Video */,
 				186DB27D2A4158DC00027809 /* Short Video Player */,
@@ -473,6 +487,26 @@
 				183B27C32A303D6400448624 /* ShortVideoListViewController.xib */,
 			);
 			path = "Short Video List";
+			sourceTree = "<group>";
+		};
+		18D89AC32A72235000A79E3F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				18D89AC42A72236400A79E3F /* SettingsViewController.swift */,
+				18D89AC52A72236400A79E3F /* SettingsViewModel.swift */,
+				18D89AC62A72236400A79E3F /* SettingsViewController.xib */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		18D89ACA2A72469D00A79E3F /* Create Menu */ = {
+			isa = PBXGroup;
+			children = (
+				18D89ACB2A7246AE00A79E3F /* CreateMenuViewController.swift */,
+				18D89ACC2A7246AE00A79E3F /* CreateMenuViewModel.swift */,
+				18D89ACD2A7246AE00A79E3F /* CreateMenuViewController.xib */,
+			);
+			path = "Create Menu";
 			sourceTree = "<group>";
 		};
 		50B42A8B2DA1FF081A14875D /* Pods */ = {
@@ -565,6 +599,8 @@
 				186E08E42A36C9D900FDDCB6 /* UploadVideoProgressbar.xib in Resources */,
 				18C163B42A30332600188D98 /* Assets.xcassets in Resources */,
 				1862D6F82A5E5BE800FB8AD8 /* FontColorCollectionViewCell.xib in Resources */,
+				18D89AD02A7246AE00A79E3F /* CreateMenuViewController.xib in Resources */,
+				18D89AC92A72236400A79E3F /* SettingsViewController.xib in Resources */,
 				184918ED2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				1841C20B2A70CC3F001F10A4 /* TextEditDragDropViewController.xib in Resources */,
@@ -629,13 +665,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D89ACE2A7246AE00A79E3F /* CreateMenuViewController.swift in Sources */,
 				1862D6F02A5E5BE800FB8AD8 /* TextEditDragDropViewController+Gesture.swift in Sources */,
 				186DB27C2A4148D700027809 /* VideoInfoView.swift in Sources */,
 				18C6542C2A4ADF8B00E3171C /* DateExtension.swift in Sources */,
 				18C163AF2A30332400188D98 /* ViewController.swift in Sources */,
 				18B48A262A55232300EC2B8D /* CGRectExtension.swift in Sources */,
+				18D89AC72A72236400A79E3F /* SettingsViewController.swift in Sources */,
 				1802574C2A3FF7A90057E850 /* ProfileView.swift in Sources */,
 				1883C80B2A3B031400A3B168 /* ShortVideoPostViewController.swift in Sources */,
+				18D89ACF2A7246AE00A79E3F /* CreateMenuViewModel.swift in Sources */,
 				18C163AB2A30332400188D98 /* AppDelegate.swift in Sources */,
 				1852BEE42A4C2A3A001C930C /* RandomDate.swift in Sources */,
 				1862D6FA2A5E5FD400FB8AD8 /* ColorExtension.swift in Sources */,
@@ -673,6 +712,7 @@
 				1852BEE82A4C3470001C930C /* DisplayHashTagCollectionViewCell.swift in Sources */,
 				180257502A40007D0057E850 /* LikeCommentView.swift in Sources */,
 				186E08E62A36CB5400FDDCB6 /* UploadVideoProgressbar.swift in Sources */,
+				18D89AC82A72236400A79E3F /* SettingsViewModel.swift in Sources */,
 				1883C7FF2A399AFE00A3B168 /* InitializeXibView.swift in Sources */,
 				1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */,
 				189B906A2A5D033900683325 /* ShortVideoPostViewController+VideoPlayer.swift in Sources */,

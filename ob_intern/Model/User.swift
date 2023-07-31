@@ -52,4 +52,15 @@ class User {
         
     }
     
+    class func currentUser() -> User {
+        
+        let user = User.init()
+        
+        user.profileName = "Soft Liampisan"
+        user.profilePic = "https://www.unisoftbank.com/wp-content/uploads/2022/12/aesthetic-cute-discord-pfp-2.jpg"
+      
+        return user
+        
+    }
+    
 }

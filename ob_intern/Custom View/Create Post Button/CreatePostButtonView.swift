@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CreatePostButtonViewDelegate: AnyObject {
-    func tapCreateButton()
+    func presentPopupMenu()
 }
 
 class CreatePostButtonView: InitializeXibView {
@@ -41,7 +41,7 @@ class CreatePostButtonView: InitializeXibView {
     
     
     @IBAction func tapCreatePostButton(_ sender: Any) {
-        delegate?.tapCreateButton()
+        delegate?.presentPopupMenu()
     }
     
 }

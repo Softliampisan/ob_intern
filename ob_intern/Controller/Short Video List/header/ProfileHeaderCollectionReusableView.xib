@@ -56,6 +56,18 @@
                                 <constraint firstAttribute="height" constant="4" id="2jg-jq-gWk"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8z-4G-viU">
+                            <rect key="frame" x="186.33333333333334" y="287" width="80.666666666666657" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Settings" image="gearshape" catalog="system">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="buttonSettingsAction:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="8PB-vR-pb5"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
@@ -63,6 +75,8 @@
                         <constraint firstItem="kAh-SW-HP5" firstAttribute="leading" secondItem="81t-HI-j7A" secondAttribute="leading" id="AQP-MC-ifD"/>
                         <constraint firstAttribute="trailing" secondItem="kAh-SW-HP5" secondAttribute="trailing" id="CRS-db-Mwd"/>
                         <constraint firstAttribute="bottom" secondItem="HBj-R1-hrQ" secondAttribute="bottom" constant="16" id="Lj5-aw-W4w"/>
+                        <constraint firstItem="J8z-4G-viU" firstAttribute="centerX" secondItem="81t-HI-j7A" secondAttribute="centerX" id="aCu-X6-eNq"/>
+                        <constraint firstItem="J8z-4G-viU" firstAttribute="top" secondItem="hK2-f6-neM" secondAttribute="bottom" constant="5" id="abg-uU-198"/>
                         <constraint firstItem="HBj-R1-hrQ" firstAttribute="leading" secondItem="81t-HI-j7A" secondAttribute="leading" id="b10-zj-RbK"/>
                         <constraint firstAttribute="height" constant="350" id="c22-ZK-kvv"/>
                         <constraint firstItem="Tw6-DL-5rf" firstAttribute="top" secondItem="81t-HI-j7A" secondAttribute="top" constant="165" id="iUV-N5-G2V"/>
@@ -80,6 +94,7 @@
                 <constraint firstItem="81t-HI-j7A" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="z6q-MC-bFD"/>
             </constraints>
             <connections>
+                <outlet property="buttonSettings" destination="J8z-4G-viU" id="Ku4-DS-as3"/>
                 <outlet property="imageViewFrontCover" destination="kAh-SW-HP5" id="eoD-uM-s0A"/>
                 <outlet property="imageViewProfilePic" destination="Tw6-DL-5rf" id="ZvJ-re-zXr"/>
                 <outlet property="labelProfileName" destination="hK2-f6-neM" id="cmC-DK-9dt"/>
@@ -89,6 +104,7 @@
         </collectionReusableView>
     </objects>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
