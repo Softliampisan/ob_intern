@@ -13,8 +13,8 @@ class CreateMenuViewController: UIViewController {
     class func newInstance() -> CreateMenuViewController {
         let viewController = CreateMenuViewController(nibName: String(describing: CreateMenuViewController.self),
                                                        bundle: nil)
-        
-        let viewModel = CreateMenuViewModel(delegate: viewController)
+
+        let viewModel = CreateMenuViewModel()
         viewController.viewModel = viewModel
         
         return viewController
