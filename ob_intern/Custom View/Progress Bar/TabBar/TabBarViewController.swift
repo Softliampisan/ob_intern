@@ -29,21 +29,21 @@ class TabBarViewController: UITabBarController {
         self.tabBar.isHidden = false
         
 
-        let controller = ShortVideoPostViewController.newInstance()
-        self.navigationController?.pushViewController(controller, animated: false)
-        controller.tabBarItem.image = UIImage(systemName: "house.fill")
+        let shortVdoPostVC = ShortVideoPostViewController.newInstance()
+        self.navigationController?.pushViewController(shortVdoPostVC, animated: false)
+        shortVdoPostVC.tabBarItem.image = UIImage(systemName: "house.fill")
         
-        let controller2 = CreateShortVideoViewController.newInstance()
-        self.navigationController?.pushViewController(controller2, animated: false)
-        controller2.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
+        let createShortVdoVC = CreateShortVideoViewController.newInstance()
+        self.navigationController?.pushViewController(createShortVdoVC, animated: false)
+        createShortVdoVC.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
 
-        let controller3 = ShortVideoListViewController.newInstance(post: ShortVideoPost.myProfile())
-        self.navigationController?.pushViewController(controller3, animated: false)
-        controller3.tabBarItem.image = UIImage(systemName: "person.fill")
+        let shortVdoListVC = ShortVideoListViewController.newInstance(post: ShortVideoPost.myProfile())
+        self.navigationController?.pushViewController(shortVdoListVC, animated: false)
+        shortVdoListVC.tabBarItem.image = UIImage(systemName: "person.fill")
 
-        viewControllers = [UINavigationController(rootViewController: controller),
-                           UINavigationController(rootViewController: controller2),
-                           UINavigationController(rootViewController: controller3)]
+        viewControllers = [UINavigationController(rootViewController: shortVdoPostVC),
+                           UINavigationController(rootViewController: createShortVdoVC),
+                           UINavigationController(rootViewController: shortVdoListVC)]
     }
 
     /*

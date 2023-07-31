@@ -17,15 +17,11 @@ protocol CreateMenuViewModelDelegate: AnyObject {
 class CreateMenuViewModel {
     
     // MARK: - Properties
-    weak var delegate: CreateMenuViewModelDelegate?
     
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: CreateMenuViewModelDelegate) {
-        self.delegate = delegate
-    }
-    
+  
     // MARK: - Functions
     
 }
