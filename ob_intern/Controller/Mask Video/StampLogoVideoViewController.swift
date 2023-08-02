@@ -155,13 +155,15 @@ class StampLogoVideoViewController: UIViewController {
     
     func setupDragAndDrop() {
         addTextView = TextEditDragDropViewController.init(nibName: String(describing: TextEditDragDropViewController.self), bundle: nil)
-        //        let width = UIScreen.main.bounds.width
-        //        let height = width * (16/9)
-        //        addTextView?.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        addTextView?.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        addTextView?.view.layoutIfNeeded()
         addTextView?.delegate = self
         if let addTextView = self.addTextView {
             view.addSubview(addTextView.view)
         }
+        self.view.layoutIfNeeded()
     }
     
     func createVideoPlayer(url: URL) {
@@ -206,7 +208,6 @@ class StampLogoVideoViewController: UIViewController {
             
             //set video position
             let positionedVideo = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
-            print("positionedText size \(positionedText?.extent.size)")
             
             //combine resize video and video position
             let transformedVideo = videoTransform.transformed(by: positionedVideo, highQualityDownsample: true)
@@ -248,15 +249,16 @@ class StampLogoVideoViewController: UIViewController {
                     if let url = outputURL {
                         let outputAsset = AVURLAsset(url: url)
                         let post = ShortVideoPost.mock()
-//                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
-//                                                                                    asset: outputAsset)
+                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
+                                                                                    asset: outputAsset)
 //                        self?.navigationController?.pushViewController(controller, animated: true)
+                        AppDirector.shared?.rootViewController?.present(controller, animated: true)
 //                        
-                        AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
+//                        AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
 
                     }
                     
-                    //                    self?.createVideoController(asset: outputAsset)
+//                                        self?.createVideoController(asset: outputAsset)
                 }
             default:
                 print("default")
@@ -329,9 +331,6 @@ class StampLogoVideoViewController: UIViewController {
         removeOldURLs()
         addTextView?.view.clipsToBounds = true
         if let customText = addTextView?.exportTextImage() {
-            print("textview width \(addTextView?.view.frame.width)")
-            print("textview height \(addTextView?.view.frame.height)")
-            print("custom text size \(customText.size)")
             guard let resizedImage = customText.dataWithImageResizeMaxWidthOrHeightValue(value: WIDTH_CONFIG/3) else { return }
             createCustomText(url: videoURL! as URL, image: resizedImage)
             

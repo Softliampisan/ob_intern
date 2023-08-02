@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -23,11 +23,18 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-Rj-gy4" userLabel="Video view">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Rkn-Rj-gy4" secondAttribute="height" multiplier="9:16" id="dBu-Yf-EDO"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnb-Jn-4Gr" userLabel="Nav bar view">
-                    <rect key="frame" x="0.0" y="59" width="393" height="40"/>
+                    <rect key="frame" x="0.0" y="20" width="414" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7f-ok-Tyu">
                             <rect key="frame" x="16" y="9" width="13" height="22"/>
@@ -39,7 +46,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stamp Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKy-eg-J8W">
-                            <rect key="frame" x="150.66666666666666" y="9.6666666666666714" width="92" height="21"/>
+                            <rect key="frame" x="161" y="9.6666666666666679" width="92" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -54,22 +61,15 @@
                         <constraint firstItem="j7f-ok-Tyu" firstAttribute="leading" secondItem="Wnb-Jn-4Gr" secondAttribute="leading" constant="16" id="wgb-G9-cX5"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rkn-Rj-gy4" userLabel="Video view">
-                    <rect key="frame" x="0.0" y="99" width="393" height="698.66666666666663"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="Rkn-Rj-gy4" secondAttribute="height" multiplier="9:16" id="dBu-Yf-EDO"/>
-                    </constraints>
-                </view>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="10O-jM-F8m">
-                    <rect key="frame" x="0.0" y="99" width="393" height="4"/>
+                    <rect key="frame" x="0.0" y="60" width="414" height="4"/>
                     <color key="tintColor" red="0.97647058819999999" green="0.22182390090000001" blue="0.50557649140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </progressView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcA-tc-hOo" userLabel="Tool bar view">
-                    <rect key="frame" x="0.0" y="732.66666666666663" width="393" height="65"/>
+                    <rect key="frame" x="0.0" y="671" width="414" height="65"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vij-pT-Fed">
-                            <rect key="frame" x="171.66666666666666" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="182" y="0.0" width="50" height="50"/>
                             <color key="backgroundColor" red="0.97647058819999999" green="0.22182390090000001" blue="0.50557649140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="Dew-hp-FoI"/>
@@ -83,7 +83,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Kn-Ig-RWd">
-                            <rect key="frame" x="241.66666666666663" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="252" y="0.0" width="50" height="50"/>
                             <color key="backgroundColor" red="0.97647058819999999" green="0.22182390090000001" blue="0.50557649140000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="MpU-IP-Ul2"/>
@@ -116,8 +116,8 @@
                 <constraint firstItem="TcA-tc-hOo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="B7l-XV-VgZ"/>
                 <constraint firstItem="10O-jM-F8m" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="BQp-oE-sIK"/>
                 <constraint firstItem="Rkn-Rj-gy4" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="InB-yF-wfr"/>
-                <constraint firstItem="Rkn-Rj-gy4" firstAttribute="top" secondItem="Wnb-Jn-4Gr" secondAttribute="bottom" id="JGR-tL-Zgo"/>
-                <constraint firstItem="Rkn-Rj-gy4" firstAttribute="bottom" secondItem="TcA-tc-hOo" secondAttribute="bottom" id="Qzt-s1-g8a"/>
+                <constraint firstItem="Rkn-Rj-gy4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JGR-tL-Zgo"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="TcA-tc-hOo" secondAttribute="bottom" id="Qzt-s1-g8a"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TcA-tc-hOo" secondAttribute="trailing" id="YmV-Wl-Mye"/>
                 <constraint firstAttribute="trailing" secondItem="Wnb-Jn-4Gr" secondAttribute="trailing" id="at5-ZY-ow8"/>
                 <constraint firstItem="Wnb-Jn-4Gr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jKQ-di-4QT"/>
