@@ -41,9 +41,8 @@ class TabBarViewController: UITabBarController {
         self.navigationController?.pushViewController(shortVdoListVC, animated: false)
         shortVdoListVC.tabBarItem.image = UIImage(systemName: "person.fill")
 
-        viewControllers = [UINavigationController(rootViewController: shortVdoPostVC),
-                           UINavigationController(rootViewController: createShortVdoVC),
-                           UINavigationController(rootViewController: shortVdoListVC)]
+        viewControllers = [shortVdoPostVC, createShortVdoVC, shortVdoListVC]
+        
     }
 
     /*

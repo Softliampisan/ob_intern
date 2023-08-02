@@ -11,9 +11,6 @@ import UIKit
 extension ShortVideoPostViewController: CreatePostButtonViewDelegate {
     func presentPopupMenu() {
         pauseVideo()
-        let vc = CreateMenuViewController.newInstance()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
+        AppDirector.sharedInstance().presentMenuViewController()
     }
 }

@@ -11,13 +11,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+//        self.navigationController?.setNavigationBarHidden(true, animated: false)
 //        let vc = TabBarViewController()
 //        vc.modalPresentationStyle = .fullScreen
 //        self.navigationController?.present(vc, animated: false)
+//        
+//        AppDirector.sharedInstance().rootViewController = vc.navigationController
         
     }
-    
     
     @IBAction func buttonToCreateShortVideo(_ sender: Any) {
         let controller = StampLogoVideoViewController.newInstance()

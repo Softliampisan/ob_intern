@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 protocol CreateShortVideoViewModelDelegate: AnyObject {
     func showSuccessPost()
@@ -21,12 +22,14 @@ class CreateShortVideoViewModel {
     
     // MARK: - Properties
     weak var delegate: CreateShortVideoViewModelDelegate?
-    
+    var asset: AVAsset?
+
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: CreateShortVideoViewModelDelegate) {
+    init(delegate: CreateShortVideoViewModelDelegate, asset: AVAsset? = nil) {
         self.delegate = delegate
+        self.asset = asset
     }
     
     // MARK: - Functions

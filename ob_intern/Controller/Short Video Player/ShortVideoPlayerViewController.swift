@@ -191,7 +191,7 @@ class ShortVideoPlayerViewController: UIViewController {
         if let currentTime = player?.currentTime() {
             delegate?.updateCurrentTime(currentTime: currentTime)
         }
-        self.navigationController?.popViewController(animated: true)
+        AppDirector.sharedInstance().rootViewController?.popToRootViewController(animated: false)
         
     }
     

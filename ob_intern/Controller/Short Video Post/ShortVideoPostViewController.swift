@@ -30,22 +30,19 @@ class ShortVideoPostViewController: UIViewController {
     private var viewModel: ShortVideoPostViewModel?
     private var activityView = UIActivityIndicatorView(style: .large)
     var createButton: CreatePostButtonView?
-
+    let refresher = UIRefreshControl()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.viewModel?.getVideoPost()
-        print("view model list \(viewModel?.currentList)")
         self.tableView.reloadData()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel?.getVideoPost()
-        self.tableView.reloadData()
         ShortVideoManager.isMute = false
         ShortVideoManager.isFirstLoad = true
         
@@ -64,9 +61,20 @@ class ShortVideoPostViewController: UIViewController {
         tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
+        refresher.tintColor = UIColor.red
+        refresher.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        tableView.addSubview(refresher)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupCreateButton()
         
+    }
+    
+    @objc func reloadData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            self?.viewModel?.getVideoPost()
+            self?.tableView.reloadData()
+            self?.refresher.endRefreshing()
+        }
     }
     
     func setupCreateButton() {

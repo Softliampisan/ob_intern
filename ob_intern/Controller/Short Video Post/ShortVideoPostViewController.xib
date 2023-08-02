@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShortVideoPostViewController" customModule="ob_intern" customModuleProvider="target">
             <connections>
-                <outlet property="buttonBack" destination="ufI-dl-TXU" id="4cI-ol-49e"/>
                 <outlet property="tableView" destination="elK-Se-mkr" id="IXu-ed-XPt"/>
                 <outlet property="view" destination="iN0-l3-epB" id="cZF-jF-rQz"/>
             </connections>
@@ -21,55 +20,23 @@
             <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Lb-Dj-KTU">
-                    <rect key="frame" x="0.0" y="47" width="428" height="40"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufI-dl-TXU">
-                            <rect key="frame" x="16" y="9" width="13" height="22"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="chevron.left" catalog="system"/>
-                            <connections>
-                                <action selector="buttonBackAction:" destination="-1" eventType="touchUpInside" id="Nk4-I1-T4b"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Video Post" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDX-Ye-4bm">
-                            <rect key="frame" x="150" y="9.6666666666666643" width="128" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstItem="nDX-Ye-4bm" firstAttribute="centerY" secondItem="8Lb-Dj-KTU" secondAttribute="centerY" id="5L8-vA-fL1"/>
-                        <constraint firstAttribute="height" constant="40" id="NXg-KX-DNt"/>
-                        <constraint firstItem="ufI-dl-TXU" firstAttribute="leading" secondItem="8Lb-Dj-KTU" secondAttribute="leading" constant="16" id="cDZ-MW-FXl"/>
-                        <constraint firstItem="nDX-Ye-4bm" firstAttribute="centerX" secondItem="8Lb-Dj-KTU" secondAttribute="centerX" id="hi9-vs-H0v"/>
-                        <constraint firstItem="ufI-dl-TXU" firstAttribute="centerY" secondItem="8Lb-Dj-KTU" secondAttribute="centerY" id="i0n-60-bY7"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="elK-Se-mkr">
-                    <rect key="frame" x="0.0" y="87" width="428" height="805"/>
+                    <rect key="frame" x="0.0" y="0.0" width="428" height="892"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Lb-Dj-KTU" secondAttribute="trailing" id="8Z2-Ai-HXE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="elK-Se-mkr" secondAttribute="trailing" id="KcR-i9-TUA"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="elK-Se-mkr" secondAttribute="bottom" id="UFr-fL-dvo"/>
-                <constraint firstItem="elK-Se-mkr" firstAttribute="top" secondItem="8Lb-Dj-KTU" secondAttribute="bottom" id="Wej-N7-M86"/>
-                <constraint firstItem="8Lb-Dj-KTU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZKj-Nd-xHa"/>
+                <constraint firstItem="elK-Se-mkr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WFX-Oo-fML"/>
                 <constraint firstItem="elK-Se-mkr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="cy7-v0-11l"/>
-                <constraint firstItem="8Lb-Dj-KTU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="twR-cJ-YjF"/>
             </constraints>
             <point key="canvasLocation" x="138" y="19"/>
         </view>
     </objects>
     <resources>
-        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -64,7 +64,7 @@ class StampLogoVideoViewController: UIViewController {
     
     //MARK: - Functions
     func setupView() {
-        setupVideoPicker()
+        showPickerAlert()
         buttonPlay.layer.cornerRadius = buttonPlay.frame.width/2
         buttonConfirm.layer.cornerRadius = buttonConfirm.frame.width/2
         viewButton.isHidden = true
@@ -85,17 +85,72 @@ class StampLogoVideoViewController: UIViewController {
         }
     }
     
-    func setupVideoPicker() {
+    func checkAuthorizationStatus(photoStatus: PHAuthorizationStatus? = nil, cameraStatus: AVAuthorizationStatus? = nil, alertMessage: String) {
+     
+        if (photoStatus != nil && photoStatus == PHAuthorizationStatus.denied || cameraStatus != nil && cameraStatus == AVAuthorizationStatus.denied) {
+            let alertController = UIAlertController (title: alertMessage, message: nil, preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func showPickerAlert() {
+        let alertController = UIAlertController(title: "Choose an option", message: nil, preferredStyle: .alert)
+        
+        let cameraAction = UIAlertAction(title: "Open Video Camera", style: .default) { [weak self] _ in
+            self?.openVideoCamera()
+        }
+        alertController.addAction(cameraAction)
+        
+        let libraryAction = UIAlertAction(title: "Add Video", style: .default) { [weak self] _ in
+            self?.addVideo()
+        }
+        alertController.addAction(libraryAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func openVideoCamera() {
+        checkAuthorizationStatus(cameraStatus: AVCaptureDevice.authorizationStatus(for: .video), alertMessage: "Please go to settings for access to camera")
+        checkAuthorizationStatus(cameraStatus: AVCaptureDevice.authorizationStatus(for: .audio), alertMessage: "Please go to settings for access to microphone")
+        openImagePicker(sourceType: .camera, mediaType: ["public.movie"], isAllowsEditing: false, cameraCaptureMode: .video)
+    }
+    
+    func addVideo() {
+        checkAuthorizationStatus(photoStatus: PHPhotoLibrary.authorizationStatus(), alertMessage: "Please go to settings for access to photo library")
+        openImagePicker(sourceType: .photoLibrary, mediaType: ["public.movie"], isAllowsEditing: false)
+    }
+    
+    func openImagePicker(sourceType: UIImagePickerController.SourceType,
+                         mediaType: [String],
+                         isAllowsEditing: Bool,
+                         cameraCaptureMode: UIImagePickerController.CameraCaptureMode? = nil) {
         let picker = UIImagePickerController()
         picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
-        picker.mediaTypes = ["public.movie"]
+        picker.sourceType = sourceType
+        picker.videoMaximumDuration = 10
+        picker.allowsEditing = isAllowsEditing
+        picker.mediaTypes = mediaType
+        if let mode = cameraCaptureMode {
+            picker.cameraCaptureMode = mode
+        }
         picker.videoQuality = .typeHigh
-        picker.allowsEditing = false
         present(picker, animated: true, completion: nil)
-        
     }
     
     func setupDragAndDrop() {
@@ -193,9 +248,12 @@ class StampLogoVideoViewController: UIViewController {
                     if let url = outputURL {
                         let outputAsset = AVURLAsset(url: url)
                         let post = ShortVideoPost.mock()
-                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
-                                                                                    asset: outputAsset)
-                        self?.navigationController?.pushViewController(controller, animated: true)
+//                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
+//                                                                                    asset: outputAsset)
+//                        self?.navigationController?.pushViewController(controller, animated: true)
+//                        
+                        AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
+
                     }
                     
                     //                    self?.createVideoController(asset: outputAsset)

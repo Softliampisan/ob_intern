@@ -6,16 +6,19 @@
 //  Copyright (c) 2566 BE ___ORGANIZATIONNAME___. All rights reserved.
 
 import UIKit
+import AVKit
+import AVFoundation
+
 
 class CreateShortVideoViewController: UIViewController {
 
     //MARK: - New Instance
-    class func newInstance() -> CreateShortVideoViewController {
+    class func newInstance(asset: AVAsset? = nil) -> CreateShortVideoViewController {
         let viewController = CreateShortVideoViewController(nibName: String(describing: CreateShortVideoViewController.self),
                                                        bundle: nil)
         
         
-        let viewModel = CreateShortVideoViewModel(delegate: viewController)
+        let viewModel = CreateShortVideoViewModel(delegate: viewController, asset: asset)
         viewController.viewModel = viewModel
         
         return viewController
@@ -141,7 +144,7 @@ class CreateShortVideoViewController: UIViewController {
                                   isAllowComments: switchAllowComments.isOn,
                                   isPublic: switchStatus.isOn,
                                   isAllowGifts: switchReceiveGifts.isOn)
-
+        
     }
     
     
@@ -173,8 +176,12 @@ class CreateShortVideoViewController: UIViewController {
 
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func isPostSuccess() {
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true)
+//        self.navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: true)
+        guard let asset = viewModel?.asset as? AVURLAsset else { return }
+        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
+                                                                    asset: asset)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func showSuccessPost() {

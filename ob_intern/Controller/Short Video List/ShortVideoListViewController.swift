@@ -34,7 +34,7 @@ class ShortVideoListViewController: UIViewController {
     private let PADDING: CGFloat = 16
     private let CELL_RATIO: CGFloat = 163/122
     private let ITEM_PER_ROW: Int = 3
-    private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+    private let INSET: UIEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 8)
     private var viewModel: ShortVideoListViewModel?
     private var refresher: UIRefreshControl!
     private var activityView = UIActivityIndicatorView(style: .large)
@@ -194,7 +194,7 @@ extension ShortVideoListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
