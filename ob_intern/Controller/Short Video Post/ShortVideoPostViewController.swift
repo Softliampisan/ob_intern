@@ -44,8 +44,13 @@ class ShortVideoPostViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ShortVideoManager.isMute = false
-        ShortVideoManager.isFirstLoad = true
-        
+        //TODO: - Soft
+//        ShortVideoManager.isFirstLoad = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkShouldPlayVideo()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,7 +112,22 @@ class ShortVideoPostViewController: UIViewController {
         }
     }
     
-
+    private func checkShouldPlayVideo() {
+        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
+            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
+                cell.player?.play()
+            }
+            if let videoPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
+                let userID = videoPost.postID
+                let userInfo: [AnyHashable: Any] = ["postID": userID]
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("stopVideo"),
+                    object: nil,
+                    userInfo: userInfo
+                )
+            }
+        }
+    }
     
     //MARK: - Action
     @IBAction func buttonBackAction(_ sender: Any) {
@@ -186,27 +206,15 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
             if let cell = cell as? ShortVideoPostTableViewCell {
-                cell.checkFirstLoad()
+                //TODO: - Soft
+//                cell.checkFirstLoad()
                 cell.checkMuteState()
                 
             }
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
-            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
-                cell.player?.play()
-            }
-            if let videoPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-                let userID = videoPost.postID
-                let userInfo: [AnyHashable: Any] = ["postID": userID]
-                NotificationCenter.default.post(
-                    name: NSNotification.Name("stopVideo"),
-                    object: nil,
-                    userInfo: userInfo
-                )
-            }
-        }
+        checkShouldPlayVideo()
     }
     
 }

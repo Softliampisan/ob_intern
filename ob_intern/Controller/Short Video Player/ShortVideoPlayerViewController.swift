@@ -187,6 +187,7 @@ class ShortVideoPlayerViewController: UIViewController {
     
     
     //MARK: - Action
+    //TODO: - check code smell
     @IBAction func buttonBackAction(_ sender: Any) {
         if let currentTime = player?.currentTime() {
             delegate?.updateCurrentTime(currentTime: currentTime)
