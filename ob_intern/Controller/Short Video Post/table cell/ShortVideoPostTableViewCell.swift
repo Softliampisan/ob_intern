@@ -151,12 +151,6 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         buttonMute.setButtonImage(imageName: buttonImage, iconColor: .white)
     }
     
-    func checkFirstLoad() {
-        if ShortVideoManager.isFirstLoad == true {
-            player?.play()
-        }
-    }
-    
     func setPlayerTime(time: CMTime) {
         player?.seek(to: time)
         player?.play()

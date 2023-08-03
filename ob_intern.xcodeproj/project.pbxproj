@@ -383,7 +383,7 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		1883C8072A3B02F800A3B168 /* Short Video Timeline */ = {
+		1883C8072A3B02F800A3B168 /* Short Video Post */ = {
 			isa = PBXGroup;
 			children = (
 				180257482A3FF70B0057E850 /* Custom View */,
@@ -394,7 +394,7 @@
 				1883C8092A3B031300A3B168 /* ShortVideoPostViewModel.swift */,
 				1883C80A2A3B031300A3B168 /* ShortVideoPostViewController.xib */,
 			);
-			path = "Short Video Timeline";
+			path = "Short Video Post";
 			sourceTree = "<group>";
 		};
 		1883C8122A3B03DE00A3B168 /* table cell */ = {
@@ -472,15 +472,15 @@
 				1862D6E62A5E5BE800FB8AD8 /* TextEdit */,
 				189B906D2A5D161F00683325 /* Mask Video */,
 				186DB27D2A4158DC00027809 /* Short Video Player */,
-				1883C8072A3B02F800A3B168 /* Short Video Timeline */,
+				1883C8072A3B02F800A3B168 /* Short Video Post */,
 				18259C682A331B5C0000CCA1 /* Edit Short Video Cover */,
 				1808CA332A317D01009CA1EB /* Create Short Video */,
-				18C163BF2A30395E00188D98 /* Profile Short Video List */,
+				18C163BF2A30395E00188D98 /* Short Video List */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		18C163BF2A30395E00188D98 /* Profile Short Video List */ = {
+		18C163BF2A30395E00188D98 /* Short Video List */ = {
 			isa = PBXGroup;
 			children = (
 				184918E92A56B983000832B5 /* header */,
@@ -489,7 +489,7 @@
 				183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */,
 				183B27C32A303D6400448624 /* ShortVideoListViewController.xib */,
 			);
-			path = "Profile Short Video List";
+			path = "Short Video List";
 			sourceTree = "<group>";
 		};
 		18D89AC32A72235000A79E3F /* Settings */ = {

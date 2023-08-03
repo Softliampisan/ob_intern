@@ -22,7 +22,6 @@ class ShortVideoManager {
     static var myProfile: Bool = false
     static var isMock: Bool = true
     static var isMute: Bool = false
-    static var isFirstLoad: Bool = false
     
     
 }
