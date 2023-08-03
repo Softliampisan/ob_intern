@@ -45,7 +45,7 @@ class ShortVideoPostViewController: UIViewController {
         super.viewWillAppear(animated)
         ShortVideoManager.isMute = false
         ShortVideoManager.isFirstLoad = true
-        
+        playVideo()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,6 +103,14 @@ class ShortVideoPostViewController: UIViewController {
         if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
             if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
                 cell.pauseVideo()
+            }
+        }
+    }
+    
+    func playVideo() {
+        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
+            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
+                cell.playVideo()
             }
         }
     }

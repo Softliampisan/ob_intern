@@ -48,14 +48,13 @@ class ShortVideoPostTableViewCell: UITableViewCell {
                                        object: nil)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapVideo))
         self.viewVDO.addGestureRecognizer(gesture)
-        playerLayer.frame = viewVDO.bounds
 
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         playerLayer.frame = viewVDO.bounds
-        
+        playerLayer.layoutIfNeeded()
     }
     
     override func prepareForReuse() {
@@ -119,6 +118,7 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspectFill
         playerLayer.frame = viewVDO.bounds
+        playerLayer.layoutIfNeeded()
         viewVDO.layer.addSublayer(playerLayer)
     }
     
@@ -164,6 +164,10 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     
     func pauseVideo() {
         player?.pause()
+    }
+    
+    func playVideo() {
+        player?.play()
     }
     
     

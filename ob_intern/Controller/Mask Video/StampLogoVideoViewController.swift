@@ -204,6 +204,11 @@ class StampLogoVideoViewController: UIViewController {
             let targetHeight = WIDTH_CONFIG / videoAspectRatio
             
             //resize video
+            print("video width \(videoSize.width)")
+            print("video height \(videoSize.height)")
+            
+            //let isPortrait =
+            
             let videoTransform = request.sourceImage.transformed(by: .init(scaleX: WIDTH_CONFIG / videoSize.width, y: targetHeight / videoSize.height))
             
             //set video position
@@ -252,9 +257,8 @@ class StampLogoVideoViewController: UIViewController {
                         let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
                                                                                     asset: outputAsset)
 //                        self?.navigationController?.pushViewController(controller, animated: true)
-                        AppDirector.shared?.rootViewController?.present(controller, animated: true)
-//                        
-//                        AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
+                    
+                        AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
 
                     }
                     

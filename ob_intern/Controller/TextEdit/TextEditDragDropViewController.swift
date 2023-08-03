@@ -281,6 +281,11 @@ class TextEditDragDropViewController: UIViewController {
             for (indexing, text) in self.displayedTexts.enumerated() {
                 if indexing < self.locationSaved.count {
                     text.frame.origin = self.locationSaved[indexing]
+                } else {
+                    text.frame = CGRect(x: (self.view.frame.width/2) - (text.frame.width/2),
+                                        y: self.view.frame.height/2,
+                                        width: text.frame.width,
+                                        height: text.frame.height)
                 }
             }
         })
