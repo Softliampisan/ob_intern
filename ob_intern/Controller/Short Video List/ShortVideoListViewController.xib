@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="buttonBack" destination="E7t-cQ-zne" id="kzK-sb-ixY"/>
                 <outlet property="collectionView" destination="TS5-jk-dQ5" id="GHQ-53-0nO"/>
+                <outlet property="labelProfileName" destination="IMN-0k-D5H" id="O3W-yg-Z68"/>
                 <outlet property="view" destination="iN0-l3-epB" id="cZF-jF-rQz"/>
                 <outlet property="viewEmptyState" destination="wNh-5q-7SC" id="Ifi-vB-sao"/>
             </connections>

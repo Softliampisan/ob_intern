@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="buttonBack" destination="Qrw-B7-ofH" id="dm0-ki-FG6"/>
                 <outlet property="buttonDownload" destination="kiO-dI-GbC" id="psX-Dw-J5E"/>
-                <outlet property="imageViewVideo" destination="72k-jB-Lh8" id="6ms-JI-RH9"/>
                 <outlet property="view" destination="iN0-l3-epB" id="cZF-jF-rQz"/>
                 <outlet property="viewGradient" destination="Hss-sc-r3F" id="OIc-Wq-4nB"/>
                 <outlet property="viewGradientHeight" destination="T9F-TQ-2fi" id="Hs7-fT-M92"/>
@@ -27,12 +26,9 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="72k-jB-Lh8">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nC2-2b-trw" userLabel="Video view">
                     <rect key="frame" x="0.0" y="99" width="393" height="698.66666666666663"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="nC2-2b-trw" secondAttribute="height" multiplier="9:16" id="w71-fe-gDH"/>
                     </constraints>
@@ -90,7 +86,7 @@
                         <constraint firstAttribute="width" constant="40" id="6Z6-ZN-hPd"/>
                         <constraint firstAttribute="height" constant="40" id="bPX-A5-sD1"/>
                     </constraints>
-                    <color key="tintColor" systemColor="systemCyanColor"/>
+                    <color key="tintColor" systemColor="systemBackgroundColor"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.down" catalog="system"/>
                     <connections>
@@ -104,20 +100,16 @@
                 <constraint firstItem="Mff-k4-oAb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="0d0-SR-rKq"/>
                 <constraint firstItem="Z9q-qx-fXJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1Oi-T3-ttS"/>
                 <constraint firstItem="Hss-sc-r3F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6MB-is-TjE"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="72k-jB-Lh8" secondAttribute="trailing" id="9YM-LF-xdk"/>
                 <constraint firstItem="nC2-2b-trw" firstAttribute="top" secondItem="Z9q-qx-fXJ" secondAttribute="bottom" id="DOp-Kh-ubq"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="kiO-dI-GbC" secondAttribute="bottom" constant="35.5" id="Exw-m8-bSA"/>
                 <constraint firstItem="Z9q-qx-fXJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Fce-Ge-bjo"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Mff-k4-oAb" secondAttribute="bottom" constant="35.5" id="LsJ-RJ-VWc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hss-sc-r3F" secondAttribute="trailing" id="NOh-ar-5c6"/>
-                <constraint firstItem="72k-jB-Lh8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Q9z-uC-cDU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kiO-dI-GbC" secondAttribute="trailing" constant="16" id="QO9-hG-CFL"/>
                 <constraint firstItem="nC2-2b-trw" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="RU1-oK-I6d"/>
                 <constraint firstItem="nC2-2b-trw" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="W0b-rP-fSP"/>
                 <constraint firstAttribute="bottom" secondItem="Hss-sc-r3F" secondAttribute="bottom" id="XZD-Di-WmM"/>
-                <constraint firstAttribute="bottom" secondItem="72k-jB-Lh8" secondAttribute="bottom" id="h76-Vv-9he"/>
                 <constraint firstItem="nC2-2b-trw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tpn-v3-I1A"/>
-                <constraint firstItem="72k-jB-Lh8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yCm-C5-oCA"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z9q-qx-fXJ" secondAttribute="trailing" id="zyI-bC-0f0"/>
             </constraints>
             <point key="canvasLocation" x="72.799999999999997" y="18.440779610194905"/>
@@ -129,9 +121,6 @@
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

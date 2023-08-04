@@ -2,19 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow access to microphone</string>
-	<key>Privacy - Photo Library Usage Description  </key>
-	<string>Allow access to photo library</string>
-	<key>Privacy - Camera Usage Description </key>
-	<string>Allow access to camera</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>Privacy - Camera Usage Description </key>
+	<string>Allow access to camera</string>
+	<key>Privacy - Photo Library Usage Description  </key>
+	<string>Allow access to photo library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

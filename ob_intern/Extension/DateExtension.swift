@@ -17,6 +17,12 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func convertDateFormat() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yy"
+        return dateFormatter.string(from: self)
+    }
+    
     func thaiTimeFormat() -> String {
         let dateFormatter = DateFormatter()
         let local = Locale(identifier: "TH")

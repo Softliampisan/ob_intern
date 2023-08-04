@@ -10,7 +10,6 @@ import UIKit
 
 extension ShortVideoPostViewController: CreatePostButtonViewDelegate {
     func presentPopupMenu() {
-        pauseVideo()
         AppDirector.sharedInstance().presentMenuViewController()
     }
 }

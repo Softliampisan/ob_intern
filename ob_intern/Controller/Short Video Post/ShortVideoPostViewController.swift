@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-//ondismiss
+
 class ShortVideoPostViewController: UIViewController {
 
     //MARK: - New Instance
@@ -44,8 +44,6 @@ class ShortVideoPostViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ShortVideoManager.isMute = false
-        playVideo()
-        //TODO: - Soft
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,15 +109,6 @@ class ShortVideoPostViewController: UIViewController {
             }
         }
     }
-    
-    func playVideo() {
-        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
-            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
-                cell.playVideo()
-            }
-        }
-    }
-    
 
     private func checkShouldPlayVideo() {
         if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {

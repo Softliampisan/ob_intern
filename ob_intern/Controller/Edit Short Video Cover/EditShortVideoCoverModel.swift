@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import AVFoundation
+import UIKit
 
 protocol EditShortVideoCoverViewModelDelegate: AnyObject {
     func showError(error: Error)
@@ -19,13 +21,16 @@ class EditShortVideoCoverViewModel {
     // MARK: - Properties
     weak var delegate: EditShortVideoCoverViewModelDelegate?
     var currentList: [ShortVideoList] = []
+    var asset: AVAsset?
+    var videoFrames: [UIImage]
 
-    
     //MARK: - Usecase
     
     //MARK: - Init
-    init(delegate: EditShortVideoCoverViewModelDelegate) {
+    init(delegate: EditShortVideoCoverViewModelDelegate, asset: AVAsset? = nil, videoFrames: [UIImage] = []) {
         self.delegate = delegate
+        self.asset = asset
+        self.videoFrames = videoFrames
         currentList.append(ShortVideoList.mock())
         currentList.append(ShortVideoList.mock())
         currentList.append(ShortVideoList.mock())
@@ -39,5 +44,29 @@ class EditShortVideoCoverViewModel {
     }
     
     // MARK: - Functions
-    
+    func generateFramesFromAsset(numberOfFrames: Int) {
+        guard let asset = asset as? AVURLAsset else { return }
+        let assetDuration = asset.duration
+        let totalTime = CMTimeGetSeconds(assetDuration)
+        let interval = totalTime / Double(numberOfFrames)
+
+        let assetImageGenerator = AVAssetImageGenerator(asset: asset)
+        assetImageGenerator.appliesPreferredTrackTransform = true
+        assetImageGenerator.maximumSize = CGSize(width: 300, height: 400)
+
+        var currentTime = CMTime.zero
+
+        for _ in 0..<numberOfFrames {
+            do {
+                let cgImage = try assetImageGenerator.copyCGImage(at: currentTime, actualTime: nil)
+                let uiImage = UIImage(cgImage: cgImage)
+                videoFrames.append(uiImage) // Append the generated frame to 'videoFrames'.
+            } catch let error as NSError {
+                print("Error generating image: \(error)")
+            }
+
+            currentTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(currentTime) + interval, preferredTimescale: assetDuration.timescale)
+        }
+        
+    }
 }

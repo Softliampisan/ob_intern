@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
     //MARK: - Action
     
     @IBAction func buttonBackAction(_ sender: Any) {
-        self.dismiss(animated: true)
+        AppDirector.sharedInstance().rootViewController?.dismiss(animated: true)
     }
     
     @IBAction func isMockSwitchAction(_ sender: Any) {

@@ -119,7 +119,9 @@ class StampLogoVideoViewController: UIViewController {
         }
         alertController.addAction(libraryAction)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            AppDirector.sharedInstance().rootViewController?.popToRootViewController(animated: true)
+        }
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
@@ -174,15 +176,6 @@ class StampLogoVideoViewController: UIViewController {
         
     }
     
-    func createVideoController(playerItem: AVPlayerItem) {
-        player = AVPlayer(playerItem: playerItem)
-        print("playerItem \(playerItem)")
-        playerViewController.player = player
-        self.present(playerViewController, animated: true) { [weak self] in
-            self?.playerViewController.player!.play()
-        }
-    }
-    
     func addComposition(asset: AVAsset, image: UIImage, url: URL) {
         let composition = AVMutableVideoComposition(asset: asset) { [weak self] request in
             guard let self = self else { return }
@@ -199,18 +192,40 @@ class StampLogoVideoViewController: UIViewController {
             
             //calculate video size
             let videoTrack = asset.tracks(withMediaType: .video).first
+//            let instruction = videoCompositionInstruction(videoTrack as! AVCompositionTrack, asset: asset)
+//            composition.instructions = [instruction]
+
             let videoSize = videoTrack?.naturalSize ?? CGSize.zero
             let videoAspectRatio = videoSize.width / videoSize.height
             let targetHeight = WIDTH_CONFIG / videoAspectRatio
             
+            //check video orientation
+            let firstAssetInfo = orientationFromTransform(videoTrack!.preferredTransform)
+            let firstLayerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack!)
+            
+            if firstAssetInfo.isPortrait {
+
+                let rotate = __CGAffineTransformMake(0.0, 1.0, -1.0, 0.0, 0.0, 0.0)
+                let scale = CGAffineTransform(scaleX: WIDTH_CONFIG / videoSize.width, y: targetHeight / videoSize.height)
+                let move = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
+                let transform = rotate.concatenating(scale).concatenating(move)
+                firstLayerInstruction.setTransform(transform, at: .zero)
+
+            } else {
+
+                let scale = CGAffineTransform(scaleX: WIDTH_CONFIG / videoSize.width, y: targetHeight / videoSize.height)
+                let move = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
+                let transform = scale.concatenating(move)
+                firstLayerInstruction.setTransform(transform, at: .zero)
+            }
+
             //resize video
             print("video width \(videoSize.width)")
             print("video height \(videoSize.height)")
-            
-            //let isPortrait =
-            
+                        
             let videoTransform = request.sourceImage.transformed(by: .init(scaleX: WIDTH_CONFIG / videoSize.width, y: targetHeight / videoSize.height))
-            
+            print("video transform size \(videoTransform)")
+
             //set video position
             let positionedVideo = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
             
@@ -223,6 +238,7 @@ class StampLogoVideoViewController: UIViewController {
             request.finish(with: combinedImage, context: nil)
         }
         composition.renderSize = CGSize(width: WIDTH_CONFIG, height: HEIGHT_CONFIG)
+
         let outputURL = createOutputURL()
         
         //export video
@@ -253,16 +269,9 @@ class StampLogoVideoViewController: UIViewController {
                     
                     if let url = outputURL {
                         let outputAsset = AVURLAsset(url: url)
-                        let post = ShortVideoPost.mock()
-                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
-                                                                                    asset: outputAsset)
-//                        self?.navigationController?.pushViewController(controller, animated: true)
-                    
                         AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
 
                     }
-                    
-//                                        self?.createVideoController(asset: outputAsset)
                 }
             default:
                 print("default")
@@ -271,6 +280,61 @@ class StampLogoVideoViewController: UIViewController {
         
     }
     
+    func orientationFromTransform(_ transform: CGAffineTransform) -> (orientation: UIImage.Orientation, isPortrait: Bool) {
+        var assetOrientation = UIImage.Orientation.up
+        var isPortrait = false
+        let tfA = transform.a
+        let tfB = transform.b
+        let tfC = transform.c
+        let tfD = transform.d
+        
+        if tfA == 0 && tfB == 1.0 && tfC == -1.0 && tfD == 0 {
+            assetOrientation = .right
+            isPortrait = true
+        } else if tfA == 0 && tfB == -1.0 && tfC == 1.0 && tfD == 0 {
+            assetOrientation = .left
+            isPortrait = true
+        } else if tfA == 1.0 && tfB == 0 && tfC == 0 && tfD == 1.0 {
+            assetOrientation = .up
+        } else if tfA == -1.0 && tfB == 0 && tfC == 0 && tfD == -1.0 {
+            assetOrientation = .down
+        }
+        return (assetOrientation, isPortrait)
+    }
+    
+//    static func videoCompositionInstruction(_ track: AVCompositionTrack, asset: AVAsset) -> AVMutableVideoCompositionLayerInstruction {
+//        // 1
+//        let instruction = AVMutableVideoCompositionLayerInstruction(assetTrack: track)
+//
+//        // 2
+//        let assetTrack = asset.tracks(withMediaType: .video)[0]
+//
+//        // 3
+//        let transform = assetTrack.preferredTransform
+//        let assetInfo = orientationFromTransform(transform)
+//
+//        var scaleToFitRatio = UIScreen.main.bounds.width / assetTrack.naturalSize.width
+//        if assetInfo.isPortrait {
+//            // 4
+//            scaleToFitRatio = UIScreen.main.bounds.width / assetTrack.naturalSize.height
+//            let scaleFactor = CGAffineTransform(scaleX: scaleToFitRatio, y: scaleToFitRatio)
+//            instruction.setTransform(assetTrack.preferredTransform.concatenating(scaleFactor), at: .zero)
+//        } else {
+//            // 5
+//            let scaleFactor = CGAffineTransform(scaleX: scaleToFitRatio, y: scaleToFitRatio)
+//            var concat = assetTrack.preferredTransform.concatenating(scaleFactor).concatenating(CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.width / 2))
+//            if assetInfo.orientation == .down {
+//                let fixUpsideDown = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
+//                let windowBounds = UIScreen.main.bounds
+//                let yFix = assetTrack.naturalSize.height + windowBounds.height
+//                let centerFix = CGAffineTransform(translationX: assetTrack.naturalSize.width, y: yFix)
+//                concat = fixUpsideDown.concatenating(centerFix).concatenating(scaleFactor)
+//            }
+//            instruction.setTransform(concat, at: .zero)
+//        }
+//
+//        return instruction
+//    }
     
     func createCustomText(url: URL, image: UIImage) {
         let asset = AVAsset(url: url)
@@ -327,15 +391,14 @@ class StampLogoVideoViewController: UIViewController {
     @IBAction func buttonBackAction(_ sender: Any) {
         player?.pause()
         progressBar.setProgress(0.0, animated: false)
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
     @IBAction func buttonConfirmAction(_ sender: Any) {
         removeOldURLs()
         addTextView?.view.clipsToBounds = true
         if let customText = addTextView?.exportTextImage() {
-            guard let resizedImage = customText.dataWithImageResizeMaxWidthOrHeightValue(value: WIDTH_CONFIG/3) else { return }
+            guard let resizedImage = customText.dataWithImageResizeMaxWidthOrHeightValue(value: WIDTH_CONFIG/UIScreen.main.scale) else { return }
             createCustomText(url: videoURL! as URL, image: resizedImage)
             
         }

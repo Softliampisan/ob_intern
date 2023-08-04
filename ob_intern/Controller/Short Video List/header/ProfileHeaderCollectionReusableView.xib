@@ -12,11 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileHeaderCollectionReusableView" id="U6b-Vx-4bR" customClass="ProfileHeaderCollectionReusableView" customModule="ob_intern" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="453" height="348"/>
+            <rect key="frame" x="0.0" y="0.0" width="453" height="356"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81t-HI-j7A">
-                    <rect key="frame" x="0.0" y="0.0" width="453" height="350"/>
+                    <rect key="frame" x="0.0" y="0.0" width="453" height="346"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-SW-HP5">
                             <rect key="frame" x="0.0" y="0.0" width="453" height="207"/>
@@ -50,15 +50,15 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBj-R1-hrQ">
-                            <rect key="frame" x="0.0" y="330" width="453" height="4"/>
+                            <rect key="frame" x="0.0" y="326" width="453" height="4"/>
                             <color key="backgroundColor" systemColor="systemGray5Color"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="2jg-jq-gWk"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8z-4G-viU">
-                            <rect key="frame" x="186.33333333333334" y="287" width="80.666666666666657" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <rect key="frame" x="187.66666666666666" y="290" width="77.666666666666657" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Settings" image="gearshape" catalog="system">
@@ -75,10 +75,10 @@
                         <constraint firstItem="kAh-SW-HP5" firstAttribute="leading" secondItem="81t-HI-j7A" secondAttribute="leading" id="AQP-MC-ifD"/>
                         <constraint firstAttribute="trailing" secondItem="kAh-SW-HP5" secondAttribute="trailing" id="CRS-db-Mwd"/>
                         <constraint firstAttribute="bottom" secondItem="HBj-R1-hrQ" secondAttribute="bottom" constant="16" id="Lj5-aw-W4w"/>
+                        <constraint firstItem="HBj-R1-hrQ" firstAttribute="top" secondItem="J8z-4G-viU" secondAttribute="bottom" constant="16" id="PzZ-Ak-R9b"/>
                         <constraint firstItem="J8z-4G-viU" firstAttribute="centerX" secondItem="81t-HI-j7A" secondAttribute="centerX" id="aCu-X6-eNq"/>
-                        <constraint firstItem="J8z-4G-viU" firstAttribute="top" secondItem="hK2-f6-neM" secondAttribute="bottom" constant="5" id="abg-uU-198"/>
                         <constraint firstItem="HBj-R1-hrQ" firstAttribute="leading" secondItem="81t-HI-j7A" secondAttribute="leading" id="b10-zj-RbK"/>
-                        <constraint firstAttribute="height" constant="350" id="c22-ZK-kvv"/>
+                        <constraint firstAttribute="height" constant="346" id="c22-ZK-kvv"/>
                         <constraint firstItem="Tw6-DL-5rf" firstAttribute="top" secondItem="81t-HI-j7A" secondAttribute="top" constant="165" id="iUV-N5-G2V"/>
                         <constraint firstItem="kAh-SW-HP5" firstAttribute="top" secondItem="81t-HI-j7A" secondAttribute="top" id="jJt-Su-6H1"/>
                         <constraint firstItem="Tw6-DL-5rf" firstAttribute="centerX" secondItem="81t-HI-j7A" secondAttribute="centerX" id="kwf-EV-zbR"/>
@@ -100,7 +100,7 @@
                 <outlet property="labelProfileName" destination="hK2-f6-neM" id="cmC-DK-9dt"/>
                 <outlet property="viewProfileHeader" destination="81t-HI-j7A" id="8DT-Se-aRF"/>
             </connections>
-            <point key="canvasLocation" x="158.01526717557252" y="16.197183098591552"/>
+            <point key="canvasLocation" x="158.01526717557252" y="19.014084507042256"/>
         </collectionReusableView>
     </objects>
     <resources>

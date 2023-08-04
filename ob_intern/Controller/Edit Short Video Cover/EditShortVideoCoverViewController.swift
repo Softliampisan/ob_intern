@@ -7,15 +7,20 @@
 
 import UIKit
 import SDWebImage
+import AVFoundation
+
+protocol EditShortVideoCoverViewControllerDelegate: AnyObject {
+    func didSelectFrontCover(image: UIImage)
+}
 
 class EditShortVideoCoverViewController: UIViewController {
     
     //MARK: - New Instance
-    class func newInstance() -> EditShortVideoCoverViewController {
+    class func newInstance(asset: AVAsset? = nil) -> EditShortVideoCoverViewController {
         let viewController = EditShortVideoCoverViewController(nibName: String(describing: EditShortVideoCoverViewController.self),
                                                                bundle: nil)
         
-        let viewModel = EditShortVideoCoverViewModel(delegate: viewController)
+        let viewModel = EditShortVideoCoverViewModel(delegate: viewController, asset: asset)
         viewController.viewModel = viewModel
         
         return viewController
@@ -38,6 +43,7 @@ class EditShortVideoCoverViewController: UIViewController {
     private let NUM_ITEMS: CGFloat = 8
     private var viewModel: EditShortVideoCoverViewModel?
     private var initialCenter: CGPoint = .zero
+    weak var delegate: EditShortVideoCoverViewControllerDelegate?
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -55,7 +61,6 @@ class EditShortVideoCoverViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.setFirstFrame()
     }
    
     //MARK: - Functions
@@ -74,13 +79,12 @@ class EditShortVideoCoverViewController: UIViewController {
     }
     
     func setData() {
-        imageViewVideo.sd_setImage(with: URL(string: "https://i.pinimg.com/originals/31/9f/f9/319ff939cbca334407451fa12613783e.jpg"))
+        self.setFirstFrame()
     }
     
     func setFirstFrame() {
-        guard let currentVideo = self.viewModel?.currentList.takeSafe(index: 0) else { return }
-        self.imageViewFrame.sd_setImage(with: URL(string: currentVideo.videoImage))
-        self.imageViewVideo.sd_setImage(with: URL(string: currentVideo.videoImage))
+        viewModel?.generateFramesFromAsset(numberOfFrames: 8)
+        self.imageViewVideo.image = self.viewModel?.videoFrames[0]
         
     }
     
@@ -94,10 +98,10 @@ class EditShortVideoCoverViewController: UIViewController {
         guard index >= 0 else { return }
         let indexPath = IndexPath(item: Int(index), section: 0)
         
-        guard let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell, let imageURL = cell.imageViewVideoCover.sd_imageURL else { return }
-        
-        self.imageViewFrame.sd_setImage(with: imageURL)
-        self.imageViewVideo.sd_setImage(with: imageURL)
+        guard let cell = self.collectionView.cellForItem(at: indexPath) as? EditShortVideoCoverCollectionViewCell, let videoFrame = cell.imageViewVideoCover.image else { return }
+
+        self.imageViewFrame.image = videoFrame
+        self.imageViewVideo.image = videoFrame
         
     }
     
@@ -107,11 +111,17 @@ class EditShortVideoCoverViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    @IBAction func buttonConfirmAction(_ sender: Any) {
+        guard let frontCover = imageViewVideo.image else { return }
+        delegate?.didSelectFrontCover(image: frontCover)
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
+    }
+    
     @objc private func didPan(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
             initialCenter = viewPannable.center
-          
         case .changed:
             let translation = sender.translation(in: view)
             guard initialCenter.x + translation.x + viewPannable.frame.width < viewContainer.bounds.width && initialCenter.x + translation.x > viewContainer.bounds.minX else { return }
@@ -169,7 +179,7 @@ extension EditShortVideoCoverViewController: EditShortVideoCoverViewModelDelegat
 extension EditShortVideoCoverViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.currentList.count ?? 0
+        return viewModel?.videoFrames.count ?? 0
         
     }
     
@@ -178,8 +188,8 @@ extension EditShortVideoCoverViewController: UICollectionViewDataSource, UIColle
             return UICollectionViewCell()
         }
         
-        if let currentVideo = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-            cell.setData(imageURL: currentVideo.videoImage)
+        if let videoFrames = self.viewModel?.videoFrames.takeSafe(index: indexPath.row) {
+            cell.setData(image: videoFrames)
         }
         
         return cell

@@ -97,7 +97,7 @@ class CreateShortVideoViewController: UIViewController {
     }
     
     func setData() {
-        imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
+        imageViewVideo.image = viewModel?.createFrontCover()
     }
     
     func updateLoadingIndicator() {
@@ -129,13 +129,13 @@ class CreateShortVideoViewController: UIViewController {
 
     //MARK: - Action
     @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
-        let controller = EditShortVideoCoverViewController.newInstance()
+        let controller = EditShortVideoCoverViewController.newInstance(asset: viewModel?.asset)
+        controller.delegate = self 
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func buttonBackAction(_ sender: Any) {
-        self.dismiss(animated: true)
-        self.navigationController?.popViewController(animated: true)
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
     @IBAction func buttonPostAction(_ sender: Any) {
@@ -176,10 +176,8 @@ class CreateShortVideoViewController: UIViewController {
 
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func isPostSuccess() {
-//        self.navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true)
         guard let asset = viewModel?.asset as? AVURLAsset else { return }
-        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
+        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.myProfile(),
                                                                     asset: asset)
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -206,6 +204,14 @@ extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func hideLoading() {
         self.isLoading = false
         progressBar?.state = .success
+    }
+    
+}
+
+extension CreateShortVideoViewController: EditShortVideoCoverViewControllerDelegate {
+    func didSelectFrontCover(image: UIImage) {
+        print("in create short")
+        imageViewVideo.image = image
     }
     
 }
