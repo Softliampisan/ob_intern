@@ -121,8 +121,7 @@ class ShortVideoListViewController: UIViewController {
     
     //MARK: - Action
     @IBAction func buttonBackAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
 }

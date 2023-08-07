@@ -107,8 +107,7 @@ class EditShortVideoCoverViewController: UIViewController {
     
     //MARK: - Action
     @IBAction func buttonCancelAction(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
     

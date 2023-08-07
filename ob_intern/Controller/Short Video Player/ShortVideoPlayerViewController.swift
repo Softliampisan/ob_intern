@@ -274,7 +274,7 @@ extension ShortVideoPlayerViewController: VideoInfoViewDelegate {
         player?.pause()
         guard let post = viewModel?.post else { return }
         let controller = ShortVideoListViewController.newInstance(post: post)
-        self.navigationController?.pushViewController(controller, animated: true)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
     }
     
     func updateHeight(height: CGFloat) {

@@ -127,12 +127,6 @@ class ShortVideoPostViewController: UIViewController {
         }
     }
     
-    //MARK: - Action
-    @IBAction func buttonBackAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
-    }
-    
 }
 
 extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
@@ -163,14 +157,14 @@ extension ShortVideoPostViewController: ShortVideoPostTableViewCellDelegate {
     func tapVideo(post: ShortVideoPost, currentTime: CMTime) {
         let controller = ShortVideoPlayerViewController.newInstance(post: post)
         controller.currentTime = currentTime
-        controller.delegate = self 
-        self.navigationController?.pushViewController(controller, animated: true)
+        controller.delegate = self
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
         pauseVideo()
     }
     
     func tapProfileAction(post: ShortVideoPost) {
         let controller = ShortVideoListViewController.newInstance(post: post)
-        self.navigationController?.pushViewController(controller, animated: true)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
         pauseVideo()
 
     }
