@@ -31,16 +31,6 @@ class EditShortVideoCoverViewModel {
         self.delegate = delegate
         self.asset = asset
         self.videoFrames = videoFrames
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
-        currentList.append(ShortVideoList.mock())
     }
     
     // MARK: - Functions
@@ -52,6 +42,7 @@ class EditShortVideoCoverViewModel {
 
         let assetImageGenerator = AVAssetImageGenerator(asset: asset)
         assetImageGenerator.appliesPreferredTrackTransform = true
+        //UI requirements for width and height
         assetImageGenerator.maximumSize = CGSize(width: 300, height: 400)
 
         var currentTime = CMTime.zero

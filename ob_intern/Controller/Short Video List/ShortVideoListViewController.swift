@@ -37,6 +37,7 @@ class ShortVideoListViewController: UIViewController {
     private let ITEM_PER_ROW: Int = 3
     private var INTERIM_SPACE: CGFloat = 0
     private var INSET: UIEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+    private var HEADER_HEIGHT: CGFloat = 346
     private var viewModel: ShortVideoListViewModel?
     private var refresher: UIRefreshControl!
     private var activityView = UIActivityIndicatorView(style: .large)
@@ -192,7 +193,7 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 346)
+        return CGSize(width: UIScreen.main.bounds.width, height: HEADER_HEIGHT)
     }
     
 }

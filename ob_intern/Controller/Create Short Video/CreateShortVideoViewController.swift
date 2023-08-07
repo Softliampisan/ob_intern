@@ -129,8 +129,7 @@ class CreateShortVideoViewController: UIViewController {
 
     //MARK: - Action
     @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
-        let controller = EditShortVideoCoverViewController.newInstance(asset: viewModel?.asset)
-        controller.delegate = self
+        let controller = EditShortVideoCoverViewController.newInstance(delegate: self, asset: viewModel?.asset)
         AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
     }
     
@@ -177,7 +176,8 @@ class CreateShortVideoViewController: UIViewController {
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func isPostSuccess() {
         guard let asset = viewModel?.asset as? AVURLAsset else { return }
-        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.myProfile(),
+        let controller = ShortVideoPlayerViewController.newInstance(delegate: nil,
+                                                                    post: ShortVideoPost.myProfile(),
                                                                     asset: asset)
         AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
     }

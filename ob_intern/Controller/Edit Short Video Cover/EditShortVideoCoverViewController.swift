@@ -16,13 +16,13 @@ protocol EditShortVideoCoverViewControllerDelegate: AnyObject {
 class EditShortVideoCoverViewController: UIViewController {
     
     //MARK: - New Instance
-    class func newInstance(asset: AVAsset? = nil) -> EditShortVideoCoverViewController {
+    class func newInstance(delegate: EditShortVideoCoverViewControllerDelegate, asset: AVAsset? = nil) -> EditShortVideoCoverViewController {
         let viewController = EditShortVideoCoverViewController(nibName: String(describing: EditShortVideoCoverViewController.self),
                                                                bundle: nil)
         
         let viewModel = EditShortVideoCoverViewModel(delegate: viewController, asset: asset)
         viewController.viewModel = viewModel
-        
+        viewController.delegate = delegate
         return viewController
     }
     

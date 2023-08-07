@@ -22,6 +22,11 @@ class ShortVideoListCollectionViewCell: UICollectionViewCell {
 
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageViewVideo.image = nil
+    }
+    
     func setData(imageURL: String,
                  label: String){
         self.labelViewCount.text = label

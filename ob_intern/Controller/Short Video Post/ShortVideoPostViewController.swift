@@ -155,9 +155,8 @@ extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
 
 extension ShortVideoPostViewController: ShortVideoPostTableViewCellDelegate {
     func tapVideo(post: ShortVideoPost, currentTime: CMTime) {
-        let controller = ShortVideoPlayerViewController.newInstance(post: post)
+        let controller = ShortVideoPlayerViewController.newInstance(delegate: self, post: post)
         controller.currentTime = currentTime
-        controller.delegate = self
         AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
         pauseVideo()
     }

@@ -17,13 +17,15 @@ protocol ShortVideoPlayerDelegate: AnyObject {
 class ShortVideoPlayerViewController: UIViewController {
 
     //MARK: - New Instance
-    class func newInstance(post: ShortVideoPost,
+    class func newInstance(delegate: ShortVideoPlayerDelegate?,
+                           post: ShortVideoPost,
                            asset: AVAsset? = nil) -> ShortVideoPlayerViewController {
         let viewController = ShortVideoPlayerViewController(nibName: String(describing: ShortVideoPlayerViewController.self),
                                                        bundle: nil)
         
         let viewModel = ShortVideoPlayerViewModel(delegate: viewController, post: post, asset: asset)
         viewController.viewModel = viewModel
+        viewController.delegate = delegate
         
         return viewController
     }
