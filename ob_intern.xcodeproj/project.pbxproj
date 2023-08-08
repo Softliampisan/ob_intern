@@ -14,10 +14,12 @@
 		1808CA372A317D6B009CA1EB /* CreateShortVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */; };
 		1808CA382A317D6B009CA1EB /* CreateShortVideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */; };
 		1808CA392A317D6B009CA1EB /* CreateShortVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */; };
+		18173D032A7D0B91007499B5 /* AppIcon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18173D022A7D0B91007499B5 /* AppIcon.storyboard */; };
 		18259C6C2A331B9C0000CCA1 /* EditShortVideoCoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18259C692A331B9C0000CCA1 /* EditShortVideoCoverViewController.swift */; };
 		18259C6D2A331B9C0000CCA1 /* EditShortVideoCoverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18259C6A2A331B9C0000CCA1 /* EditShortVideoCoverModel.swift */; };
 		18259C6E2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18259C6B2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib */; };
 		1833D7672A32ED41006C5BF7 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */; };
+		1834CAD32A77768D003615A2 /* AppDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1834CAD22A77768D003615A2 /* AppDirector.swift */; };
 		183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C12A303D6400448624 /* ShortVideoListViewController.swift */; };
 		183B27C52A303D6400448624 /* ShortVideoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */; };
 		183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 183B27C32A303D6400448624 /* ShortVideoListViewController.xib */; };
@@ -105,10 +107,12 @@
 		1808CA342A317D6B009CA1EB /* CreateShortVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewController.swift; sourceTree = "<group>"; };
 		1808CA352A317D6B009CA1EB /* CreateShortVideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShortVideoViewModel.swift; sourceTree = "<group>"; };
 		1808CA362A317D6B009CA1EB /* CreateShortVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateShortVideoViewController.xib; sourceTree = "<group>"; };
+		18173D022A7D0B91007499B5 /* AppIcon.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppIcon.storyboard; sourceTree = "<group>"; };
 		18259C692A331B9C0000CCA1 /* EditShortVideoCoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortVideoCoverViewController.swift; sourceTree = "<group>"; };
 		18259C6A2A331B9C0000CCA1 /* EditShortVideoCoverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShortVideoCoverModel.swift; sourceTree = "<group>"; };
 		18259C6B2A331B9C0000CCA1 /* EditShortVideoCoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditShortVideoCoverViewController.xib; sourceTree = "<group>"; };
 		1833D7662A32ED41006C5BF7 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		1834CAD22A77768D003615A2 /* AppDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDirector.swift; sourceTree = "<group>"; };
 		183B27C12A303D6400448624 /* ShortVideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewController.swift; sourceTree = "<group>"; };
 		183B27C22A303D6400448624 /* ShortVideoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortVideoListViewModel.swift; sourceTree = "<group>"; };
 		183B27C32A303D6400448624 /* ShortVideoListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShortVideoListViewController.xib; sourceTree = "<group>"; };
@@ -446,6 +450,8 @@
 			children = (
 				1852BEF32A4D7D29001C930C /* ShortVDOService.swift */,
 				184918E12A5663DA000832B5 /* ShortVideoManager.swift */,
+				1834CAD22A77768D003615A2 /* AppDirector.swift */,
+				18173D022A7D0B91007499B5 /* AppIcon.storyboard */,
 				1852BEE22A4C1D66001C930C /* Model */,
 				1833D7652A32ED24006C5BF7 /* Custom View */,
 				183B27CE2A3081C700448624 /* Extension */,
@@ -601,6 +607,7 @@
 				1862D6F82A5E5BE800FB8AD8 /* FontColorCollectionViewCell.xib in Resources */,
 				18D89AD02A7246AE00A79E3F /* CreateMenuViewController.xib in Resources */,
 				18D89AC92A72236400A79E3F /* SettingsViewController.xib in Resources */,
+				18173D032A7D0B91007499B5 /* AppIcon.storyboard in Resources */,
 				184918ED2A56C20D000832B5 /* ProfileHeaderCollectionReusableView.xib in Resources */,
 				183B27C62A303D6400448624 /* ShortVideoListViewController.xib in Resources */,
 				1841C20B2A70CC3F001F10A4 /* TextEditDragDropViewController.xib in Resources */,
@@ -690,6 +697,7 @@
 				189B90722A5D168900683325 /* StampLogoVideoViewModel.swift in Sources */,
 				1862D6F42A5E5BE800FB8AD8 /* FontColorCollectionViewCell.swift in Sources */,
 				189B906C2A5D0B0700683325 /* ShortVideoPostViewController+CreatePostButton.swift in Sources */,
+				1834CAD32A77768D003615A2 /* AppDirector.swift in Sources */,
 				183B27CD2A305AC700448624 /* ShortVideoList.swift in Sources */,
 				18A04AA32A69345A00B5B3E6 /* UIImageExtension.swift in Sources */,
 				183B27C42A303D6400448624 /* ShortVideoListViewController.swift in Sources */,
@@ -875,11 +883,14 @@
 				DEVELOPMENT_TEAM = YTC85R9RQU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ob_intern/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to microphone";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -905,11 +916,14 @@
 				DEVELOPMENT_TEAM = YTC85R9RQU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ob_intern/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to microphone";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

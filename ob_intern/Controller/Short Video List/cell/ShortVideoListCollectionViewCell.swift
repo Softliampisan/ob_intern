@@ -25,7 +25,6 @@ class ShortVideoListCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageViewVideo.image = nil
-        imageViewIcon.image = nil
     }
     
     func setData(imageURL: String,

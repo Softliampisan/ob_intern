@@ -26,6 +26,7 @@ class ShortVideoListViewController: UIViewController {
     //MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewEmptyState: UIView!
+    @IBOutlet weak var labelProfileName: UILabel!
     @IBOutlet weak var buttonBack: UIButton!
     
     //MARK: - Parameters
@@ -34,7 +35,9 @@ class ShortVideoListViewController: UIViewController {
     private let PADDING: CGFloat = 16
     private let CELL_RATIO: CGFloat = 163/122
     private let ITEM_PER_ROW: Int = 3
-    private let INSET: UIEdgeInsets = .init(top: 0, left: 16, bottom: 0, right: 16)
+    private var INTERIM_SPACE: CGFloat = 0
+    private var INSET: UIEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
+    private var HEADER_HEIGHT: CGFloat = 346
     private var viewModel: ShortVideoListViewModel?
     private var refresher: UIRefreshControl!
     private var activityView = UIActivityIndicatorView(style: .large)
@@ -44,6 +47,7 @@ class ShortVideoListViewController: UIViewController {
         super.viewDidLoad()
         self.setupView()
         calculateCollectionHeight()
+        calculateCellInterimSpacing()
         self.viewModel?.getVideoList()
         collectionView.reloadData()
         
@@ -53,6 +57,9 @@ class ShortVideoListViewController: UIViewController {
         super.viewWillAppear(animated)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.setCollectionViewEmptyState()
+        }
+        if ShortVideoManager.myProfile == true {
+            buttonBack.isHidden = true
         }
     }
 
@@ -84,6 +91,10 @@ class ShortVideoListViewController: UIViewController {
         
     }
     
+    private func calculateCellInterimSpacing() {
+        INTERIM_SPACE = floor((UIScreen.main.bounds.width - (WIDTH_PER_ROW * 3))/3)
+    }
+    
     func setCollectionViewEmptyState(){
 //        viewEmptyState.isHidden = !collectionView.visibleCells.isEmpty
     }
@@ -103,7 +114,7 @@ class ShortVideoListViewController: UIViewController {
     
     @objc func loadData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.viewModel?.updateData()
+            self.viewModel?.getVideoList()
             self.collectionView.reloadData()
             self.refresher.endRefreshing()
         }
@@ -111,8 +122,7 @@ class ShortVideoListViewController: UIViewController {
     
     //MARK: - Action
     @IBAction func buttonBackAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
 }
@@ -175,6 +185,7 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
         profileHeader.setData(imageURLProfilePic: viewModel?.post?.user?.profilePic ?? "",
                               imageURLFrontCover: viewModel?.post?.media?.coverImage ?? "",
                               label: viewModel?.post?.user?.profileName ?? "")
+        labelProfileName.text = viewModel?.post?.user?.profileName
         profileHeader.delegate = self
         profileHeader.hideSettings()
         return profileHeader
@@ -182,7 +193,7 @@ extension ShortVideoListViewController: UICollectionViewDataSource, UICollection
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 350)
+        return CGSize(width: UIScreen.main.bounds.width, height: HEADER_HEIGHT)
     }
     
 }
@@ -194,10 +205,11 @@ extension ShortVideoListViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        INSET = .init(top: 0, left: INTERIM_SPACE, bottom: 0, right: INTERIM_SPACE)
         return INSET
     }
     

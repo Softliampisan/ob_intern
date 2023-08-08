@@ -17,13 +17,15 @@ protocol ShortVideoPlayerDelegate: AnyObject {
 class ShortVideoPlayerViewController: UIViewController {
 
     //MARK: - New Instance
-    class func newInstance(post: ShortVideoPost,
+    class func newInstance(delegate: ShortVideoPlayerDelegate?,
+                           post: ShortVideoPost,
                            asset: AVAsset? = nil) -> ShortVideoPlayerViewController {
         let viewController = ShortVideoPlayerViewController(nibName: String(describing: ShortVideoPlayerViewController.self),
                                                        bundle: nil)
         
         let viewModel = ShortVideoPlayerViewModel(delegate: viewController, post: post, asset: asset)
         viewController.viewModel = viewModel
+        viewController.delegate = delegate
         
         return viewController
     }
@@ -31,7 +33,6 @@ class ShortVideoPlayerViewController: UIViewController {
     //MARK: - IBOutlet
     @IBOutlet weak var viewGradient: UIView!
     @IBOutlet weak var viewVideoInfo: UIView!
-    @IBOutlet weak var imageViewVideo: UIImageView!
     @IBOutlet weak var viewVDO: UIView!
     @IBOutlet weak var viewVideoInfoHeight: NSLayoutConstraint!
     @IBOutlet weak var viewGradientHeight: NSLayoutConstraint!
@@ -97,6 +98,7 @@ class ShortVideoPlayerViewController: UIViewController {
         
         if let asset = viewModel?.asset as? AVURLAsset {
             player = AVPlayer(url: asset.url)
+            buttonBack.setImage(UIImage(systemName: "xmark"), for: .normal)
         } else if let url = url {
             player = AVPlayer(url: url)
         }
@@ -187,11 +189,12 @@ class ShortVideoPlayerViewController: UIViewController {
     
     
     //MARK: - Action
+    //TODO: - check code smell
     @IBAction func buttonBackAction(_ sender: Any) {
         if let currentTime = player?.currentTime() {
             delegate?.updateCurrentTime(currentTime: currentTime)
         }
-        self.navigationController?.popViewController(animated: true)
+        AppDirector.sharedInstance().rootViewController?.popToRootViewController(animated: false)
         
     }
     
@@ -216,7 +219,7 @@ extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
         videoInfoView?.config(delegate: self,
                               profileImageURL: viewModel?.post?.user?.profilePic ?? "",
                               profileName: viewModel?.post?.user?.profileName ?? "",
-                              postTime: viewModel?.post?.media?.datePosted ?? "",
+                              postTime: viewModel?.post?.media?.datePosted.convertDateFormat() ?? "",
                               caption: viewModel?.post?.media?.caption ?? "",
                               hashtag: viewModel?.post?.hashtag ?? [])
         if viewModel?.asset != nil {
@@ -237,20 +240,18 @@ extension ShortVideoPlayerViewController: ShortVideoPlayerViewModelDelegate {
         videoInfoView?.config(delegate: self,
                               profileImageURL: video.user?.profilePic ?? "",
                               profileName: video.user?.profileName ?? "",
-                              postTime: video.media?.datePosted ?? "",
+                              postTime: video.media?.datePosted.convertDateFormat() ?? "",
                               caption: video.media?.caption ?? "",
                               hashtag: video.hashtag)
-        imageViewVideo.sd_setImage(with: URL(string: video.media?.coverImage ?? ""))
     }
     
     func updateData() {
         videoInfoView?.config(delegate: self,
                               profileImageURL: viewModel?.post?.user?.profilePic ?? "",
                               profileName: viewModel?.post?.user?.profileName ?? "",
-                              postTime: viewModel?.post?.media?.datePosted ?? "",
+                              postTime: viewModel?.post?.media?.datePosted.convertDateFormat() ?? "",
                               caption: viewModel?.post?.media?.caption ?? "",
                               hashtag: viewModel?.post?.hashtag ?? [])
-        imageViewVideo.sd_setImage(with: URL(string: viewModel?.post?.media?.coverImage ?? ""))
         if let videoURL = URL(string: viewModel?.post?.media?.video ?? "") {
             createVideoPlayer(url: videoURL)
         }
@@ -275,7 +276,7 @@ extension ShortVideoPlayerViewController: VideoInfoViewDelegate {
         player?.pause()
         guard let post = viewModel?.post else { return }
         let controller = ShortVideoListViewController.newInstance(post: post)
-        self.navigationController?.pushViewController(controller, animated: true)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
     }
     
     func updateHeight(height: CGFloat) {

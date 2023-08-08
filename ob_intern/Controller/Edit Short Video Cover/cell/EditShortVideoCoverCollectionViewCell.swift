@@ -16,7 +16,7 @@ class EditShortVideoCoverCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func setData(imageURL: String){
-        self.imageViewVideoCover.sd_setImage(with: URL(string: imageURL))
+    func setData(image: UIImage){
+        imageViewVideoCover.image = image
     }
 }

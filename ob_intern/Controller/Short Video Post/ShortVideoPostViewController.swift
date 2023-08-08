@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-//ondismiss
+
 class ShortVideoPostViewController: UIViewController {
 
     //MARK: - New Instance
@@ -30,25 +30,25 @@ class ShortVideoPostViewController: UIViewController {
     private var viewModel: ShortVideoPostViewModel?
     private var activityView = UIActivityIndicatorView(style: .large)
     var createButton: CreatePostButtonView?
-
+    let refresher = UIRefreshControl()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.viewModel?.getVideoPost()
-        print("view model list \(viewModel?.currentList)")
         self.tableView.reloadData()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel?.getVideoPost()
-        self.tableView.reloadData()
         ShortVideoManager.isMute = false
-        ShortVideoManager.isFirstLoad = true
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkShouldPlayVideo()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,9 +64,20 @@ class ShortVideoPostViewController: UIViewController {
         tableView.register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
         tableView.estimatedRowHeight = 700
         tableView.rowHeight = UITableView.automaticDimension
+        refresher.tintColor = UIColor.red
+        refresher.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        tableView.addSubview(refresher)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupCreateButton()
         
+    }
+    
+    @objc func reloadData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            self?.viewModel?.getVideoPost()
+            self?.tableView.reloadData()
+            self?.refresher.endRefreshing()
+        }
     }
     
     func setupCreateButton() {
@@ -98,13 +109,22 @@ class ShortVideoPostViewController: UIViewController {
             }
         }
     }
-    
 
-    
-    //MARK: - Action
-    @IBAction func buttonBackAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+    private func checkShouldPlayVideo() {
+        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
+            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
+                cell.player?.play()
+            }
+            if let videoPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
+                let userID = videoPost.postID
+                let userInfo: [AnyHashable: Any] = ["postID": userID]
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("stopVideo"),
+                    object: nil,
+                    userInfo: userInfo
+                )
+            }
+        }
     }
     
 }
@@ -135,16 +155,15 @@ extension ShortVideoPostViewController: ShortVideoPostViewModelDelegate {
 
 extension ShortVideoPostViewController: ShortVideoPostTableViewCellDelegate {
     func tapVideo(post: ShortVideoPost, currentTime: CMTime) {
-        let controller = ShortVideoPlayerViewController.newInstance(post: post)
+        let controller = ShortVideoPlayerViewController.newInstance(delegate: self, post: post)
         controller.currentTime = currentTime
-        controller.delegate = self 
-        self.navigationController?.pushViewController(controller, animated: true)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
         pauseVideo()
     }
     
     func tapProfileAction(post: ShortVideoPost) {
         let controller = ShortVideoListViewController.newInstance(post: post)
-        self.navigationController?.pushViewController(controller, animated: true)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
         pauseVideo()
 
     }
@@ -178,27 +197,14 @@ extension ShortVideoPostViewController: UITableViewDataSource, UITableViewDelega
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
             if let cell = cell as? ShortVideoPostTableViewCell {
-                cell.checkFirstLoad()
+                //TODO: - Soft
                 cell.checkMuteState()
                 
             }
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if let indexPath = tableView.indexPathForRow(at: tableView.bounds.center) {
-            if let cell = tableView.cellForRow(at: indexPath) as? ShortVideoPostTableViewCell {
-                cell.player?.play()
-            }
-            if let videoPost = self.viewModel?.currentList.takeSafe(index: indexPath.row) {
-                let userID = videoPost.postID
-                let userInfo: [AnyHashable: Any] = ["postID": userID]
-                NotificationCenter.default.post(
-                    name: NSNotification.Name("stopVideo"),
-                    object: nil,
-                    userInfo: userInfo
-                )
-            }
-        }
+        checkShouldPlayVideo()
     }
     
 }

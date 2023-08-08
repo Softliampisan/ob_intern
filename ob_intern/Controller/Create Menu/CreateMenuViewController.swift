@@ -13,7 +13,6 @@ class CreateMenuViewController: UIViewController {
     class func newInstance() -> CreateMenuViewController {
         let viewController = CreateMenuViewController(nibName: String(describing: CreateMenuViewController.self),
                                                        bundle: nil)
-
         let viewModel = CreateMenuViewModel()
         viewController.viewModel = viewModel
         
@@ -52,9 +51,9 @@ class CreateMenuViewController: UIViewController {
     
     //MARK: - Action
     @IBAction func buttonCreateShortAction(_ sender: Any) {
-        let vc = CreateShortVideoViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
+        self.dismiss(animated: true) {
+            AppDirector.sharedInstance().displayStampLogoVideoViewController()
+        }
     }
     
 }

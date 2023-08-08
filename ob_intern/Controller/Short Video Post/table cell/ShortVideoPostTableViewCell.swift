@@ -48,14 +48,17 @@ class ShortVideoPostTableViewCell: UITableViewCell {
                                        object: nil)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapVideo))
         self.viewVDO.addGestureRecognizer(gesture)
-        playerLayer.frame = viewVDO.bounds
+        playerLayer.frame = viewVDO.frame
 
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        playerLayer.frame = viewVDO.bounds
-        
+        DispatchQueue.main.async {
+            self.viewVDO.layoutIfNeeded()
+            self.playerLayer.frame = self.viewVDO.frame
+            self.playerLayer.layoutIfNeeded()
+        }
     }
     
     override func prepareForReuse() {
@@ -65,11 +68,6 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         viewVDO.removePlayerLayer()
     }
     
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
     
     @objc func tapVideo(sender : UITapGestureRecognizer) {
         guard let currentTime = player?.currentTime() else { return }
@@ -95,8 +93,7 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         
         profileView?.imageViewProfilePic.sd_setImage(with: URL(string: post?.user?.profilePic ?? "" ))
         profileView?.labelProfileName.text = post?.user?.profileName
-        profileView?.labelPostTime.text = post?.media?.datePosted
-        //imageViewPost.sd_setImage(with: URL(string: postImageURL))
+        profileView?.labelPostTime.text = post?.media?.datePosted.timeAgo
 
         if let videoURL = URL(string: post?.media?.video ?? "") {
             createVideoPlayer(url: videoURL)
@@ -118,8 +115,10 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         player = AVPlayer(url: url)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspectFill
-        playerLayer.frame = viewVDO.bounds
+        playerLayer.frame = viewVDO.frame
+        playerLayer.layoutIfNeeded()
         viewVDO.layer.addSublayer(playerLayer)
+        viewVDO.setNeedsLayout()
     }
     
     func setProfile() {
@@ -151,12 +150,6 @@ class ShortVideoPostTableViewCell: UITableViewCell {
         buttonMute.setButtonImage(imageName: buttonImage, iconColor: .white)
     }
     
-    func checkFirstLoad() {
-        if ShortVideoManager.isFirstLoad == true {
-            player?.play()
-        }
-    }
-    
     func setPlayerTime(time: CMTime) {
         player?.seek(to: time)
         player?.play()
@@ -164,6 +157,10 @@ class ShortVideoPostTableViewCell: UITableViewCell {
     
     func pauseVideo() {
         player?.pause()
+    }
+    
+    func playVideo() {
+        player?.play()
     }
     
     

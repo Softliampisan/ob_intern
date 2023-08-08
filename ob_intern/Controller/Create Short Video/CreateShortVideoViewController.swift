@@ -6,16 +6,19 @@
 //  Copyright (c) 2566 BE ___ORGANIZATIONNAME___. All rights reserved.
 
 import UIKit
+import AVKit
+import AVFoundation
+
 
 class CreateShortVideoViewController: UIViewController {
 
     //MARK: - New Instance
-    class func newInstance() -> CreateShortVideoViewController {
+    class func newInstance(asset: AVAsset? = nil) -> CreateShortVideoViewController {
         let viewController = CreateShortVideoViewController(nibName: String(describing: CreateShortVideoViewController.self),
                                                        bundle: nil)
         
         
-        let viewModel = CreateShortVideoViewModel(delegate: viewController)
+        let viewModel = CreateShortVideoViewModel(delegate: viewController, asset: asset)
         viewController.viewModel = viewModel
         
         return viewController
@@ -94,7 +97,7 @@ class CreateShortVideoViewController: UIViewController {
     }
     
     func setData() {
-        imageViewVideo.sd_setImage(with: URL(string: "https://images3.alphacoders.com/110/1108129.jpg"))
+        imageViewVideo.image = viewModel?.createFrontCover()
     }
     
     func updateLoadingIndicator() {
@@ -126,13 +129,12 @@ class CreateShortVideoViewController: UIViewController {
 
     //MARK: - Action
     @IBAction func buttonChooseFrontCoverAction(_ sender: UISwitch) {
-        let controller = EditShortVideoCoverViewController.newInstance()
-        self.navigationController?.pushViewController(controller, animated: true)
+        let controller = EditShortVideoCoverViewController.newInstance(delegate: self, asset: viewModel?.asset)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func buttonBackAction(_ sender: Any) {
-        self.dismiss(animated: true)
-        self.navigationController?.popViewController(animated: true)
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
     @IBAction func buttonPostAction(_ sender: Any) {
@@ -141,7 +143,7 @@ class CreateShortVideoViewController: UIViewController {
                                   isAllowComments: switchAllowComments.isOn,
                                   isPublic: switchStatus.isOn,
                                   isAllowGifts: switchReceiveGifts.isOn)
-
+        
     }
     
     
@@ -173,8 +175,11 @@ class CreateShortVideoViewController: UIViewController {
 
 extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func isPostSuccess() {
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true)
+        guard let asset = viewModel?.asset as? AVURLAsset else { return }
+        let controller = ShortVideoPlayerViewController.newInstance(delegate: nil,
+                                                                    post: ShortVideoPost.myProfile(),
+                                                                    asset: asset)
+        AppDirector.sharedInstance().rootViewController?.pushViewController(controller, animated: true)
     }
     
     func showSuccessPost() {
@@ -199,6 +204,13 @@ extension CreateShortVideoViewController: CreateShortVideoViewModelDelegate {
     func hideLoading() {
         self.isLoading = false
         progressBar?.state = .success
+    }
+    
+}
+
+extension CreateShortVideoViewController: EditShortVideoCoverViewControllerDelegate {
+    func didSelectFrontCover(image: UIImage) {
+        imageViewVideo.image = image
     }
     
 }

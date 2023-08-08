@@ -15,7 +15,7 @@ class TabBarViewController: UITabBarController {
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if let index = tabBar.items?.firstIndex(of: item), index == 2 {
+        if let index = tabBar.items?.firstIndex(of: item), index == 1 {
             ShortVideoManager.myProfile = true
         } else {
             ShortVideoManager.myProfile = false
@@ -32,18 +32,13 @@ class TabBarViewController: UITabBarController {
         let shortVdoPostVC = ShortVideoPostViewController.newInstance()
         self.navigationController?.pushViewController(shortVdoPostVC, animated: false)
         shortVdoPostVC.tabBarItem.image = UIImage(systemName: "house.fill")
-        
-        let createShortVdoVC = CreateShortVideoViewController.newInstance()
-        self.navigationController?.pushViewController(createShortVdoVC, animated: false)
-        createShortVdoVC.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
 
         let shortVdoListVC = ShortVideoListViewController.newInstance(post: ShortVideoPost.myProfile())
         self.navigationController?.pushViewController(shortVdoListVC, animated: false)
         shortVdoListVC.tabBarItem.image = UIImage(systemName: "person.fill")
 
-        viewControllers = [UINavigationController(rootViewController: shortVdoPostVC),
-                           UINavigationController(rootViewController: createShortVdoVC),
-                           UINavigationController(rootViewController: shortVdoListVC)]
+        viewControllers = [shortVdoPostVC, shortVdoListVC]
+        
     }
 
     /*

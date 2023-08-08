@@ -64,7 +64,7 @@ class StampLogoVideoViewController: UIViewController {
     
     //MARK: - Functions
     func setupView() {
-        setupVideoPicker()
+        showPickerAlert()
         buttonPlay.layer.cornerRadius = buttonPlay.frame.width/2
         buttonConfirm.layer.cornerRadius = buttonConfirm.frame.width/2
         viewButton.isHidden = true
@@ -85,28 +85,87 @@ class StampLogoVideoViewController: UIViewController {
         }
     }
     
-    func setupVideoPicker() {
+    func checkAuthorizationStatus(photoStatus: PHAuthorizationStatus? = nil, cameraStatus: AVAuthorizationStatus? = nil, alertMessage: String) {
+     
+        if (photoStatus != nil && photoStatus == PHAuthorizationStatus.denied || cameraStatus != nil && cameraStatus == AVAuthorizationStatus.denied) {
+            let alertController = UIAlertController (title: alertMessage, message: nil, preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)")
+                    })
+                }
+            }
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alertController.addAction(cancelAction)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func showPickerAlert() {
+        let alertController = UIAlertController(title: "Choose an option", message: nil, preferredStyle: .alert)
+        
+        let cameraAction = UIAlertAction(title: "Open Video Camera", style: .default) { [weak self] _ in
+            self?.openVideoCamera()
+        }
+        alertController.addAction(cameraAction)
+        
+        let libraryAction = UIAlertAction(title: "Add Video", style: .default) { [weak self] _ in
+            self?.addVideo()
+        }
+        alertController.addAction(libraryAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            AppDirector.sharedInstance().rootViewController?.popToRootViewController(animated: true)
+        }
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func openVideoCamera() {
+        checkAuthorizationStatus(cameraStatus: AVCaptureDevice.authorizationStatus(for: .video), alertMessage: "Please go to settings for access to camera")
+        checkAuthorizationStatus(cameraStatus: AVCaptureDevice.authorizationStatus(for: .audio), alertMessage: "Please go to settings for access to microphone")
+        openVideoPicker(sourceType: .camera, mediaType: ["public.movie"], isAllowsEditing: false, cameraCaptureMode: .video)
+    }
+    
+    func addVideo() {
+        checkAuthorizationStatus(photoStatus: PHPhotoLibrary.authorizationStatus(), alertMessage: "Please go to settings for access to photo library")
+        openVideoPicker(sourceType: .photoLibrary, mediaType: ["public.movie"], isAllowsEditing: false)
+    }
+    
+    func openVideoPicker(sourceType: UIImagePickerController.SourceType,
+                         mediaType: [String],
+                         isAllowsEditing: Bool,
+                         cameraCaptureMode: UIImagePickerController.CameraCaptureMode? = nil) {
         let picker = UIImagePickerController()
         picker.delegate = self
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary) ?? []
-        picker.mediaTypes = ["public.movie"]
+        picker.sourceType = sourceType
+        picker.videoMaximumDuration = 10
+        picker.allowsEditing = isAllowsEditing
+        picker.mediaTypes = mediaType
+        if let mode = cameraCaptureMode {
+            picker.cameraCaptureMode = mode
+        }
         picker.videoQuality = .typeHigh
-        picker.allowsEditing = false
         present(picker, animated: true, completion: nil)
-        
     }
     
     func setupDragAndDrop() {
         addTextView = TextEditDragDropViewController.init(nibName: String(describing: TextEditDragDropViewController.self), bundle: nil)
-        //        let width = UIScreen.main.bounds.width
-        //        let height = width * (16/9)
-        //        addTextView?.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        addTextView?.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        addTextView?.view.layoutIfNeeded()
         addTextView?.delegate = self
         if let addTextView = self.addTextView {
             view.addSubview(addTextView.view)
         }
+        self.view.layoutIfNeeded()
     }
     
     func createVideoPlayer(url: URL) {
@@ -115,15 +174,6 @@ class StampLogoVideoViewController: UIViewController {
         playerLayer.frame = viewVideo.bounds
         viewVideo.layer.addSublayer(playerLayer)
         
-    }
-    
-    func createVideoController(playerItem: AVPlayerItem) {
-        player = AVPlayer(playerItem: playerItem)
-        print("playerItem \(playerItem)")
-        playerViewController.player = player
-        self.present(playerViewController, animated: true) { [weak self] in
-            self?.playerViewController.player!.play()
-        }
     }
     
     func addComposition(asset: AVAsset, image: UIImage, url: URL) {
@@ -145,25 +195,23 @@ class StampLogoVideoViewController: UIViewController {
             let videoSize = videoTrack?.naturalSize ?? CGSize.zero
             let videoAspectRatio = videoSize.width / videoSize.height
             let targetHeight = WIDTH_CONFIG / videoAspectRatio
-            
+
             //resize video
             let videoTransform = request.sourceImage.transformed(by: .init(scaleX: WIDTH_CONFIG / videoSize.width, y: targetHeight / videoSize.height))
-            
+
             //set video position
             let positionedVideo = CGAffineTransform(translationX: 0, y: (background.extent.height - targetHeight) / 2)
-            print("positionedText size \(positionedText?.extent.size)")
             
             //combine resize video and video position
             let transformedVideo = videoTransform.transformed(by: positionedVideo, highQualityDownsample: true)
-            print("y\((background.extent.height - request.sourceImage.extent.size.height)/2)")
             
             //combine text and video over background
             let combinedImage = positionedText?.composited(over: transformedVideo.composited(over: background)) ?? request.sourceImage
             request.finish(with: combinedImage, context: nil)
         }
         composition.renderSize = CGSize(width: WIDTH_CONFIG, height: HEIGHT_CONFIG)
+
         let outputURL = createOutputURL()
-        
         //export video
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality)
         guard let exporter = exporter else { return }
@@ -180,10 +228,10 @@ class StampLogoVideoViewController: UIViewController {
             self.exportProgressBarTimer?.invalidate()
             switch export.status {
             case  .failed:
-                print("failed \(export.error)")
+                print("failed \(String(describing: export.error))")
                 break
             case .cancelled:
-                print("cancelled \(export.error)")
+                print("cancelled \(String(describing: export.error))")
                 break
             case .completed:
                 print("complete")
@@ -192,13 +240,9 @@ class StampLogoVideoViewController: UIViewController {
                     
                     if let url = outputURL {
                         let outputAsset = AVURLAsset(url: url)
-                        let post = ShortVideoPost.mock()
-                        let controller = ShortVideoPlayerViewController.newInstance(post: ShortVideoPost.mock(),
-                                                                                    asset: outputAsset)
-                        self?.navigationController?.pushViewController(controller, animated: true)
+                        AppDirector.sharedInstance().displayCreateShortViewController(asset: outputAsset)
+
                     }
-                    
-                    //                    self?.createVideoController(asset: outputAsset)
                 }
             default:
                 print("default")
@@ -206,7 +250,6 @@ class StampLogoVideoViewController: UIViewController {
         }
         
     }
-    
     
     func createCustomText(url: URL, image: UIImage) {
         let asset = AVAsset(url: url)
@@ -263,18 +306,14 @@ class StampLogoVideoViewController: UIViewController {
     @IBAction func buttonBackAction(_ sender: Any) {
         player?.pause()
         progressBar.setProgress(0.0, animated: false)
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        AppDirector.sharedInstance().rootViewController?.popViewController(animated: true)
     }
     
     @IBAction func buttonConfirmAction(_ sender: Any) {
         removeOldURLs()
         addTextView?.view.clipsToBounds = true
         if let customText = addTextView?.exportTextImage() {
-            print("textview width \(addTextView?.view.frame.width)")
-            print("textview height \(addTextView?.view.frame.height)")
-            print("custom text size \(customText.size)")
-            guard let resizedImage = customText.dataWithImageResizeMaxWidthOrHeightValue(value: WIDTH_CONFIG/3) else { return }
+            guard let resizedImage = customText.dataWithImageResizeMaxWidthOrHeightValue(value: WIDTH_CONFIG/UIScreen.main.scale) else { return }
             createCustomText(url: videoURL! as URL, image: resizedImage)
             
         }

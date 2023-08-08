@@ -29,8 +29,8 @@ let videoUrls: [String] = [
 ]
 
 let mockCaption: [String] = ["Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum ", "Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text", "Lorem Ipsum is"]
-let mockDate1 = Date.parse("2023-06-27")
-let mockDate2 = Date.parse("2023-06-28")
+let mockDate1 = Date.parse("2565-06-27")
+let mockDate2 = Date.parse("2566-06-28")
 
 func dateFormat(postTime: String) -> Date? {
     let originalDate = postTime
@@ -45,12 +45,12 @@ class MediaModel {
     
     var coverImage: String = ""
     var video: String = ""
-    var datePosted: String = ""
+    var datePosted: Date = Date()
     var caption: String = ""
     
     init(postImage: String,
          video: String,
-         datedPosted: String,
+         datedPosted: Date,
          caption: String) {
         self.coverImage = postImage
         self.video = video
@@ -61,7 +61,7 @@ class MediaModel {
     init(json: JSON) {
         self.coverImage = json["coverImageUrl"].stringValue
         self.video = json["videoUrl"].stringValue
-        self.datePosted = dateFormat(postTime: json["postTime"].stringValue)?.timeAgo ?? ""
+        self.datePosted = dateFormat(postTime: json["postTime"].stringValue) ??  Date()
         self.caption = json["caption"].stringValue
         
     }
@@ -78,7 +78,7 @@ class MediaModel {
         media.coverImage = coverImageUrls.randomElement() ?? ""
         media.video = videoUrls.randomElement() ?? ""
         let randomDate = Date.randomBetween(start: mockDate1, end: mockDate2)
-        media.datePosted = randomDate.timeAgo
+        media.datePosted = randomDate
         
         return media
         
