@@ -19,6 +19,8 @@ extension Date {
     
     func convertDateFormat() -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "th_TH")
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.dateFormat = "dd/MM/yy"
         return dateFormatter.string(from: self)
     }

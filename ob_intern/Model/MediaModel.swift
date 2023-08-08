@@ -29,8 +29,8 @@ let videoUrls: [String] = [
 ]
 
 let mockCaption: [String] = ["Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum ", "Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text simply dum Lorem Ipsum is simply dummy text of the printingaii and indust Lorem Ipsum is simply dummy text dummy Lorem Ipsum is simply dummy text", "Lorem Ipsum is"]
-let mockDate1 = Date.parse("2022-06-27")
-let mockDate2 = Date.parse("2023-06-28")
+let mockDate1 = Date.parse("2565-06-27")
+let mockDate2 = Date.parse("2566-06-28")
 
 func dateFormat(postTime: String) -> Date? {
     let originalDate = postTime

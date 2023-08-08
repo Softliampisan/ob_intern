@@ -130,15 +130,15 @@ class StampLogoVideoViewController: UIViewController {
     func openVideoCamera() {
         checkAuthorizationStatus(cameraStatus: AVCaptureDevice.authorizationStatus(for: .video), alertMessage: "Please go to settings for access to camera")
         checkAuthorizationStatus(cameraStatus: AVCaptureDevice.authorizationStatus(for: .audio), alertMessage: "Please go to settings for access to microphone")
-        openImagePicker(sourceType: .camera, mediaType: ["public.movie"], isAllowsEditing: false, cameraCaptureMode: .video)
+        openVideoPicker(sourceType: .camera, mediaType: ["public.movie"], isAllowsEditing: false, cameraCaptureMode: .video)
     }
     
     func addVideo() {
         checkAuthorizationStatus(photoStatus: PHPhotoLibrary.authorizationStatus(), alertMessage: "Please go to settings for access to photo library")
-        openImagePicker(sourceType: .photoLibrary, mediaType: ["public.movie"], isAllowsEditing: false)
+        openVideoPicker(sourceType: .photoLibrary, mediaType: ["public.movie"], isAllowsEditing: false)
     }
     
-    func openImagePicker(sourceType: UIImagePickerController.SourceType,
+    func openVideoPicker(sourceType: UIImagePickerController.SourceType,
                          mediaType: [String],
                          isAllowsEditing: Bool,
                          cameraCaptureMode: UIImagePickerController.CameraCaptureMode? = nil) {
@@ -204,7 +204,6 @@ class StampLogoVideoViewController: UIViewController {
             
             //combine resize video and video position
             let transformedVideo = videoTransform.transformed(by: positionedVideo, highQualityDownsample: true)
-            print("y\((background.extent.height - request.sourceImage.extent.size.height)/2)")
             
             //combine text and video over background
             let combinedImage = positionedText?.composited(over: transformedVideo.composited(over: background)) ?? request.sourceImage
@@ -213,7 +212,6 @@ class StampLogoVideoViewController: UIViewController {
         composition.renderSize = CGSize(width: WIDTH_CONFIG, height: HEIGHT_CONFIG)
 
         let outputURL = createOutputURL()
-        
         //export video
         let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality)
         guard let exporter = exporter else { return }
@@ -230,10 +228,10 @@ class StampLogoVideoViewController: UIViewController {
             self.exportProgressBarTimer?.invalidate()
             switch export.status {
             case  .failed:
-                print("failed \(export.error)")
+                print("failed \(String(describing: export.error))")
                 break
             case .cancelled:
-                print("cancelled \(export.error)")
+                print("cancelled \(String(describing: export.error))")
                 break
             case .completed:
                 print("complete")
