@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarVC = TabBarViewController()
         let navController = UINavigationController(rootViewController: tabBarVC)
         navController.setNavigationBarHidden(true, animated: false)
-        navController.view.backgroundColor = .red
+        navController.view.backgroundColor = .systemBackground
         AppDirector.sharedInstance().rootViewController = navController
         window.rootViewController = navController
         
