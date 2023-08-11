@@ -85,6 +85,7 @@ class EditShortVideoCoverViewController: UIViewController {
     func setFirstFrame() {
         viewModel?.generateFramesFromAsset(numberOfFrames: 8)
         self.imageViewVideo.image = self.viewModel?.videoFrames[0]
+        self.imageViewFrame.image = self.viewModel?.videoFrames[0]
         
     }
     

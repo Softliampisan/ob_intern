@@ -174,7 +174,7 @@
 		18B48A252A55232300EC2B8D /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		18B4D90F2A5BE26E00DE1728 /* CreatePostButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreatePostButtonView.xib; sourceTree = "<group>"; };
 		18B4D9112A5BE28F00DE1728 /* CreatePostButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostButtonView.swift; sourceTree = "<group>"; };
-		18C163A72A30332400188D98 /* ob_intern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ob_intern.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18C163A72A30332400188D98 /* Soft Intern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soft Intern.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C163AA2A30332400188D98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C163AC2A30332400188D98 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		18C163AE2A30332400188D98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 		18C163A82A30332400188D98 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18C163A72A30332400188D98 /* ob_intern.app */,
+				18C163A72A30332400188D98 /* Soft Intern.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -535,9 +535,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18C163A62A30332400188D98 /* ob_intern */ = {
+		18C163A62A30332400188D98 /* Soft Intern */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18C163BB2A30332600188D98 /* Build configuration list for PBXNativeTarget "ob_intern" */;
+			buildConfigurationList = 18C163BB2A30332600188D98 /* Build configuration list for PBXNativeTarget "Soft Intern" */;
 			buildPhases = (
 				04589B316C77F8D83DD03E49 /* [CP] Check Pods Manifest.lock */,
 				18C163A32A30332400188D98 /* Sources */,
@@ -549,9 +549,9 @@
 			);
 			dependencies = (
 			);
-			name = ob_intern;
+			name = "Soft Intern";
 			productName = ob_intern;
-			productReference = 18C163A72A30332400188D98 /* ob_intern.app */;
+			productReference = 18C163A72A30332400188D98 /* Soft Intern.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -582,7 +582,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18C163A62A30332400188D98 /* ob_intern */,
+				18C163A62A30332400188D98 /* Soft Intern */,
 			);
 		};
 /* End PBXProject section */
@@ -883,6 +883,7 @@
 				DEVELOPMENT_TEAM = YTC85R9RQU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ob_intern/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Soft Intern";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to camera";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photo library";
@@ -916,6 +917,7 @@
 				DEVELOPMENT_TEAM = YTC85R9RQU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ob_intern/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Soft Intern";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow access to camera";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow access to microphone";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photo library";
@@ -950,7 +952,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18C163BB2A30332600188D98 /* Build configuration list for PBXNativeTarget "ob_intern" */ = {
+		18C163BB2A30332600188D98 /* Build configuration list for PBXNativeTarget "Soft Intern" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18C163BC2A30332600188D98 /* Debug */,
